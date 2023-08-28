@@ -1,0 +1,9 @@
+HISTORY of SGTX
+--------------------
+
+1.4.1.0        03.MAR.2018
+-------------------------
+- Initial Release.
+
+
+End of document

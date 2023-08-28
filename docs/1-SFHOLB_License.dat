@@ -1,0 +1,324 @@
+# Intel Corporation Software and/or Intellectual Property License File
+# Issued 01 June 2020
+# Upgrade to these products will no longer be available after the Maintenance Expiration  
+# date unless licenses are renewed.  
+# Fixed Node License
+# Primary Machine Name-00e04c5602d3
+# Primary Machine ID-NIC ID 00e04c5602d3
+# Companion ID-NIC ID 000d60103ffc
+# Companion ID 2-NIC ID 005056c00001
+# Product License Summary:
+# QUARTUS PRIME PRO FIXED, 1 Seat(s)
+# - Maintenance Expiration of 2021.05
+# Intel Corporation Software and/or Intellectual Property License File
+# Issued 24 February 2020
+# Upgrade to these products will no longer be available after the Maintenance Expiration  
+# date unless licenses are renewed.  
+# Fixed Node License
+# Primary Machine Name-PHEFF-PC
+# Primary Machine ID-NIC ID 00E04C5602D3
+# Companion ID-NIC ID 000D60103FFC
+# Companion ID 2-NIC ID 005056c00001
+# Product License Summary:
+# Quartus II SE Fixed, 1 Seat(s)
+# - Maintenance Expiration of 2020.06
+# 10GBASE-KR PHY FPGA IP, 1 Seat(s)
+# - Maintenance Expiration of 2021.02
+# 10Gb Ethernet MAC FPGA IP, 1 Seat(s)
+# - Maintenance Expiration of 2019.11
+# Low Latency 10Gbps Ethernet MAC 1588 opt, 1 Seat(s)
+# - Maintenance Expiration of 2021.02
+# 1G / 2.5G / 5G / 10G Multi-Rate Ethernet PHY FPGA IP, 1 Seat(s)
+# - Maintenance Expiration of 2021.02
+# Nios II Soft Processor FPGA IP - F Core, 1 Seat(s)
+# - Maintenance Expiration of 2020.06
+# Triple Speed Ethernet MAC, 1 Seat(s)
+# - Maintenance Expiration of 2019.11
+# XAUI PCS FPGA IP, 1 Seat(s)
+# - Maintenance Expiration of 2019.11
+################################################################################ 
+# FEATURE START 
+# The following is a license file for 10GBASE-KR PHY FPGA IP 
+# Number of seat licenses is 1 
+# No license expiration date 
+FEATURE 6AF8_0106 alterad 2021.02 permanent uncounted 651AB6839702 \
+   VENDOR_STRING=8868EJYIGZ6k2mXEYVTNdu HOSTID="00e04c5602d3 \
+   000d60103ffc 005056c00001" TS_OK SIGN="1AA7 BC27 A7AC EA03 \
+   950C E485 4D49 5537 52ED 961A 599A 7214 AF5D FB51 2B7F 0EB1 \
+   4D7D B3BA 57A8 BC3D 6D33 0B04 3B3B EC19 DA2F ABE9 059B 97BA \
+   0DAC 6CFF"
+FEATURE 6AF8_0107 alterad 2021.02 permanent uncounted 74E05E500065 \
+   VENDOR_STRING=76PYAD0nrz2FMshQ3CLd5V HOSTID="00e04c5602d3 \
+   000d60103ffc 005056c00001" TS_OK SIGN="180A 2313 FF0A D307 \
+   F742 C9CB 0CC9 5A56 369E 5F11 5ECC B236 F427 CCF4 2E28 0166 \
+   2377 154A 3FFE A953 857C 8329 F5C7 763A 5880 876B F6C1 722B \
+   30E2 E952"
+FEATURE 6AF8_00D2 alterad 2021.02 permanent uncounted BDD2F19E25C4 \
+   VENDOR_STRING=iehwD4lEx0Ff0p7VXtKUR0 HOSTID="00e04c5602d3 \
+   000d60103ffc 005056c00001" TS_OK SIGN="188D 73CD 8D0F 611D \
+   FC88 2266 06ED 2EBF 0F57 0D73 1E1C 556C 75FC 60A0 715A 09FC \
+   CCBB 9699 5A71 9D45 B9C6 1EAA AF33 45FD 0E49 60F4 E354 C5DB \
+   DBA3 6F92"
+FEATURE 6AF7_0106 alterad 2021.02 permanent uncounted 5CF0301DBBA4 \
+   VENDOR_STRING="iiiiiiiihdLkhIIIIIIIImPDuiaaaaaaaaP1X38DDDDDDDDmjz5cdddddddd4mGzGJJJJJJJJiqIh0uuuuuuuucYYWiVVVVVVVVcp0FVHHHHHHHHPUEakffffffffR2FFRkkkkkkkkqL$84" \
+   HOSTID="00e04c5602d3 000d60103ffc 005056c00001" TS_OK \
+   SIGN="1977 1FE0 77FE 0BB8 797E 3E0F 97D1 19DE FDEA 73AC 8119 \
+   0C3E 5268 A49F D003 157E C7E4 8456 B7AA 465C 8B76 B067 78B3 \
+   79EB F2FD 623E 2E0A 6523 8B90 84E8"
+FEATURE 6AF7_0107 alterad 2021.02 permanent uncounted E113211AB413 \
+   VENDOR_STRING="iiiiiiiihdLkhIIIIIIIImPDuiaaaaaaaaP1X38DDDDDDDDmjz5cdddddddd4mGzGJJJJJJJJiqIh0uuuuuuuucYYWiVVVVVVVVcp0FVHHHHHHHHPUEakffffffffR2FFRkkkkkkkkqL$84" \
+   HOSTID="00e04c5602d3 000d60103ffc 005056c00001" TS_OK \
+   SIGN="1C77 D709 6849 4745 4AEE B79B B2CC 6C43 AE6B A46A 0CA0 \
+   17D0 3214 3E35 BC73 0A3E 7702 6F35 C1C5 3AAD 77AA A5B6 31B3 \
+   21A0 04CD 02FB C090 77EE 34F6 2985"
+FEATURE 6AF7_00D2 alterad 2021.02 permanent uncounted E9A416278455 \
+   VENDOR_STRING="iiiiiiiihdLkhIIIIIIIImPDuiaaaaaaaaP1X38DDDDDDDDmjz5cdddddddd4mGzGJJJJJJJJiqIh0uuuuuuuucYYWiVVVVVVVVcp0FVHHHHHHHHPUEakffffffffR2FFRkkkkkkkkqL$84" \
+   HOSTID="00e04c5602d3 000d60103ffc 005056c00001" TS_OK \
+   SIGN="0BC7 8E74 E368 8D86 E0FD 7D03 339E 3DC7 2D07 DED2 6D7A \
+   349A DFE2 8234 3500 16A9 85B8 0712 33E7 B4D9 C4A3 9F9B 1D78 \
+   A7A3 7D3B 6D74 73BF EEFC 6882 E48D"
+# FEATURE END 
+################################################################################
+# FEATURE START 
+# The following is a license file for 10Gb Ethernet MAC FPGA IP 
+# Number of seat licenses is 1 
+# No license expiration date 
+FEATURE 6AF8_00D9 alterad 2019.11 permanent uncounted 2844EACC66E2 \
+   VENDOR_STRING=haRDD2oEN8iOcX0z0v5Jgn HOSTID="00e04c5602d3 \
+   000d60103ffc 005056c00001" TS_OK SIGN="148A DBFC A5B0 6E1C \
+   2FF0 7B92 5A5E 13FA 35B0 6BCD 85E6 B9C6 5EFE A6CC 6DD2 1CB5 \
+   5956 14B7 AD7B DE26 A64A 7609 B8C1 38C0 E884 8970 F3B9 6CE3 \
+   4F89 E09D"
+FEATURE 6AF7_00D9 alterad 2019.11 permanent uncounted 980D9F1653CF \
+   VENDOR_STRING="iiiiiiiihdLkhIIIIIIIImPDuiaaaaaaaaP1X38DDDDDDDDmjz5cdddddddd4mGzGJJJJJJJJiqIh0uuuuuuuucYYWiVVVVVVVVcp0FVHHHHHHHHPUEakffffffffR2FFRkkkkkkkkqL$84" \
+   HOSTID="00e04c5602d3 000d60103ffc 005056c00001" TS_OK \
+   SIGN="0E25 0A06 5643 33E9 CE19 9221 D934 B503 7C6E 730B C49B \
+   E3A5 7DC2 4DB6 05D8 1547 B88C F448 9983 4754 A98E 5E95 8D32 \
+   B8EC EFB2 4C42 FBB5 3A44 F443 544E"
+# FEATURE END 
+################################################################################
+# FEATURE START 
+# The following is a license file for Low Latency 10Gbps Ethernet MAC 1588 opt 
+# Number of seat licenses is 1 
+# No license expiration date 
+FEATURE 6AF7_0119 alterad 2021.02 permanent uncounted 8EBC01FD8EA3 \
+   VENDOR_STRING="iiiiiiiihdLkhIIIIIIIImPDuiaaaaaaaaP1X38DDDDDDDDmjz5cdddddddd4mGzGJJJJJJJJiqIh0uuuuuuuucYYWiVVVVVVVVcp0FVHHHHHHHHPUEakffffffffR2FFRkkkkkkkkqL$84" \
+   HOSTID="00e04c5602d3 000d60103ffc 005056c00001" TS_OK \
+   SIGN="1420 3B12 7138 2813 AD2A AA63 6BD5 01A4 1C9E 8943 BBD5 \
+   816E ED5F A2B6 F92B 0859 7ACA AB1C AE1D 6BD7 65BC CF0E 9F53 \
+   D626 5E3E E6F9 31CB EFAE 467E 370F"
+FEATURE 6AF7_0105 alterad 2021.02 permanent uncounted D3E917D07A21 \
+   VENDOR_STRING="iiiiiiiihdLkhIIIIIIIImPDuiaaaaaaaaP1X38DDDDDDDDmjz5cdddddddd4mGzGJJJJJJJJiqIh0uuuuuuuucYYWiVVVVVVVVcp0FVHHHHHHHHPUEakffffffffR2FFRkkkkkkkkqL$84" \
+   HOSTID="00e04c5602d3 000d60103ffc 005056c00001" TS_OK \
+   SIGN="012D 307D 7B88 48C7 A30D C6F1 7278 BF62 70D4 1199 7E95 \
+   81F0 A31C 8690 56AF 1E5C 2B7F AC91 04C3 5310 3FC8 8E8E 5113 \
+   BECD 1452 E52C 2730 512B EEDC D783"
+# FEATURE END 
+################################################################################
+# FEATURE START 
+# The following is a license file for 1G / 2.5G / 5G / 10G Multi-Rate Ethernet PHY  
+# FPGA IP  
+# Number of seat licenses is 1 
+# No license expiration date 
+FEATURE 6AF7_00E4 alterad 2021.02 permanent uncounted 5BABAA7E02B9 \
+   VENDOR_STRING="iiiiiiiihdLkhIIIIIIIImPDuiaaaaaaaaP1X38DDDDDDDDmjz5cdddddddd4mGzGJJJJJJJJiqIh0uuuuuuuucYYWiVVVVVVVVcp0FVHHHHHHHHPUEakffffffffR2FFRkkkkkkkkqL$84" \
+   HOSTID="00e04c5602d3 000d60103ffc 005056c00001" TS_OK \
+   SIGN="11F2 0A0D 100D 560E A938 22E9 13CA B316 87E8 077E 5821 \
+   4926 9182 1E30 24FD 17BC D354 B472 C52A C201 687E DB4F 28FB \
+   1B02 4A93 CFAD 3F84 FFB0 4820 72B7"
+# FEATURE END 
+################################################################################ 
+# FEATURE START 
+# The following is a license file for the Mentor Graphics AXI3 Inline Monitor BFM 
+# Number of seat licenses is 1 
+# License Expires 01-Jun-2021 
+INCREMENT mgcvipae mgcld 2021.06 1-jun-2021 uncounted \
+  1FF02AE1A6662E8B60A8 \
+    VENDOR_STRING=A8BCA84A HOSTID=00e04c5602d3 ISSUER=Intel SN=71643551 \
+    SIGN2="0753 7782 19A8 DB3F A09F 6D4A BD10 A643 AE94 EBD7 5389 CDF4 \
+    1CD6 8147 A4BC 10A5 A236 5F00 FF3F 5A24 8A92 B401 DE22 26B4 9F6B 792D \
+    E472 8DEB 5DC0 6AE5"
+# FEATURE END 
+################################################################################
+# FEATURE START 
+# The following is a license file for the Mentor Graphics AXI3 Master BFM 
+# Number of seat licenses is 1 
+# License Expires 01-Jun-2021 
+INCREMENT mgcvipaeaxi mgcld 2021.06 1-jun-2021 uncounted \
+  FFC00AD1D8612DE7C385 \
+    VENDOR_STRING=A27778DE HOSTID=00e04c5602d3 ISSUER=Intel SN=71643552 \
+    SIGN2="009D A075 57D3 89B1 1D77 3D0A 1F21 B07C 230A D479 14D7 66F9 \
+    9C82 5FB8 629B 1249 7A32 1549 046A 9A69 A939 A0BB F4A1 40A1 E285 7CD1 \
+    9513 1FEA A872 8AB8"
+# FEATURE END 
+################################################################################
+# FEATURE START 
+# The following is a license file for the Mentor Graphics AXI3 Slave BFM 
+# Number of seat licenses is 1 
+# License Expires 01-Jun-2021 
+INCREMENT mgcvipaeaxi mgcld 2021.06 1-jun-2021 uncounted \
+  FFC00AD1D8612DE8C384 \
+    VENDOR_STRING=A27778DE HOSTID=00e04c5602d3 ISSUER=Intel SN=71643553 \
+    SIGN2="0C1C 4D29 C005 327F 90D7 2E1E 3358 E568 E148 C294 8026 5021 \
+    D567 458C AD23 1A88 400A 0450 BA07 E655 141C AEED EAAC EFB8 7130 B1C6 \
+    D156 4BF1 8DBB 63AD"
+# FEATURE END 
+################################################################################
+# FEATURE START 
+# The following is a license file for the Mentor Graphics AXI4 
+# Number of seat licenses is 1 
+# License Expires 01-Jun-2021 
+INCREMENT mgcvipaeaxi4 mgcld 2021.06 1-jun-2021 uncounted \
+  9FB07AB18ECED51BEA7C \
+    VENDOR_STRING=E99FE609 HOSTID=00e04c5602d3 ISSUER=Intel SN=71643554 \
+    SIGN2="0F11 79D6 630D 72B5 01C2 53DD FAC5 6810 F136 DEEB 4B9A 9F0F \
+    5AE1 C788 F336 00AF 10EA 60A1 F58A 57CE E619 2CCB A57F 3C1C EC4C 2867 \
+    52FB A50D 6A33 C1CD"
+# FEATURE END 
+################################################################################
+# FEATURE START 
+# The following is a license file for the Nios II Soft Processor FPGA IP 
+# Number of seat licenses is 1 
+# No license expiration date 
+FEATURE 6AF8_00A2 alterad 2020.06 permanent uncounted 1E3B6693E912 \
+   VENDOR_STRING=lh14qoK3vAB7WVp5s7yRgb HOSTID="00e04c5602d3 \
+   000d60103ffc 005056c00001" TS_OK SIGN="06C7 A20F AA76 226B \
+   4E22 833D 499B 7CEA 1868 3C31 E367 3D6A 07A0 4B86 7C66 090B \
+   B343 81C3 AB2C B1D6 EE29 2B4F C08A 68C9 455A 7652 DA82 733B \
+   F667 FE66"
+FEATURE 6AF7_00A2 alterad 2020.06 permanent uncounted B62658277B79 \
+   VENDOR_STRING="iiiiiiiihdLkhIIIIIIIImPDuiaaaaaaaaP1X38DDDDDDDDmjz5cdddddddd4mGzGJJJJJJJJiqIh0uuuuuuuucYYWiVVVVVVVVcp0FVHHHHHHHHPUEakffffffffR2FFRkkkkkkkkqL$84" \
+   HOSTID="00e04c5602d3 000d60103ffc 005056c00001" TS_OK \
+   SIGN="12BC 1754 9AAF 719D 6932 0D5C 6818 673D 80FE 821B 3881 \
+   8118 D306 4A3A 0B66 0C8E 537A F33A E09A BA07 E66B D51A 0C40 \
+   6922 4366 E947 B6B0 20C9 0230 CE59"
+# FEATURE END 
+################################################################################
+# FEATURE START 
+# The following is a license file for the IP Base Suite Package part number for IP  
+# Base Suite (NCO, FFT, FIR Compiler II)  
+# Number of seat licenses is 1 
+# No license expiration date 
+PACKAGE ip_base alterad COMPONENTS="6AF7_00D8 6AF7_0014 6AF7_0034" \
+	OPTIONS=SUITE SIGN="153B EB57 5B09 B585 D1D5 3EA8 1CC3 CB52 \
+	DC01 2214 9CDA 4A26 598F 76C2 C126 00FE 5122 A135 BCB7 9D0A \
+	2BAD 5F03 BE38 FE97 EDF8 5B2A 55F2 99E3 1468 72B8"
+INCREMENT ip_base alterad 2021.05 permanent uncounted CBDB85F61680 \
+	VENDOR_STRING="iiiiiiiihdLkhIIIIIIIIUPDuiaaaaaaaa11X38DDDDDDDDpjz5cddddddddtmGzGJJJJJJJJbqIh0uuuuuuuugYYWiVVVVVVVVbp0FVHHHHHHHHBUEakffffffffD2FFRkkkkkkkkWL$84" \
+	HOSTID="00e04c5602d3 000d60103ffc 005056c00001" TS_OK \
+	SIGN="0CB1 96F9 5BF3 AFF5 3202 AEE3 4103 E771 E58D 3352 20D9 \
+	05A1 68D0 6C52 B0AF 1F1F A2BE D7C7 9A36 CF32 CF23 AC52 B2EB \
+	CBFB 1F62 4A3F 1E78 7A70 352A 5D3E"
+# FEATURE END 
+################################################################################
+# FEATURE START 
+# The following is a license file for the Package part number for Quartus SE and Quartus  
+# PE  
+# Number of seat licenses is 1 
+# No license expiration date 
+PACKAGE sw_pe alterad COMPONENTS="quartus_nonvolatile_encryption \
+	quartus quartus_pro" OPTIONS=SUITE SIGN="181C 751C B841 0156 \
+	B614 2C80 BA6C 5C2E EB4B 67A0 D098 A21A C564 7901 784D 1A73 \
+	F3CF 3993 C89D 5692 40A2 A824 0C87 D6CA B325 0E2B 8ACE CC01 \
+	B03F 411F"
+INCREMENT sw_pe alterad 2021.05 permanent uncounted 7F4EE5F411B4 \
+	HOSTID="00e04c5602d3 000d60103ffc 005056c00001" TS_OK \
+	SIGN="1844 C809 A137 8E0A F9A2 E04A 013F 567F 37D8 D4F4 8430 \
+	225E 7974 6223 CCC0 0D3C 685E 8CA4 E0A0 27D0 82AC A6BE 5DB9 \
+	7486 2F5A 75B3 4F6D 3D40 3707 19DE"
+# FEATURE END 
+################################################################################
+# FEATURE START 
+# The following is a license file for the Quartus PRIME PRO Edition Fixed 
+# Number of seat licenses is 1 
+# No license expiration date 
+FEATURE maxplus2 alterad 2021.05 permanent uncounted AB74FC12B946 \
+	HOSTID="00e04c5602d3 000d60103ffc 005056c00001" SIGN="025B \
+	4452 3A03 0DFE AA6D DD68 D88C 669C C429 7641 E190 EC81 B1E4 \
+	A5EB B65E 0B36 DD8B 52DC 128E 84FB 7293 EBEF 7D55 93BE F3CB \
+	3BC7 2D67 D1A4 12AA 9F81"
+FEATURE quartus_pro alterad 2021.05 permanent uncounted 9C25BED49B33 \
+	HOSTID="00e04c5602d3 000d60103ffc 005056c00001" TS_OK \
+	SIGN="141F A40B 420A 6D01 64EF 872E 4044 7A0E 29B2 2D7F CF59 \
+	5763 F624 EE79 DF9A 0937 2ED8 E149 8AD5 4FD2 7F6F 06A9 4883 \
+	4597 2A9C 3F89 7764 62FB 8A51 BDC7"
+# FEATURE END 
+################################################################################
+################################################################################
+# FEATURE START 
+# The following is a license file for the Triple Speed Ethernet MAC MegaCore 
+# Number of seat licenses is 1 
+# No license expiration date 
+FEATURE 6AF8_00BD alterad 2019.11 permanent uncounted A79CF5A602E6 \
+   VENDOR_STRING=eb7YaYHaIrvOusPLa2WZjk HOSTID="00e04c5602d3 \
+   000d60103ffc 005056c00001" TS_OK SIGN="05BC 15C1 EE0F EA36 \
+   B12A 14A0 3883 CCCF 2CA6 32DC 6A08 C7E7 F333 A0CF CD5A 1F59 \
+   C39D DB0F ADB2 E71F A745 AA56 E822 AAF0 21F4 095D 9AB5 8372 \
+   C4C1 F9B3"
+FEATURE 6AF7_00BD alterad 2019.11 permanent uncounted B56F628738D8 \
+   VENDOR_STRING="iiiiiiiihdLkhIIIIIIIImPDuiaaaaaaaaP1X38DDDDDDDDmjz5cdddddddd4mGzGJJJJJJJJiqIh0uuuuuuuucYYWiVVVVVVVVcp0FVHHHHHHHHPUEakffffffffR2FFRkkkkkkkkqL$84" \
+   HOSTID="00e04c5602d3 000d60103ffc 005056c00001" TS_OK \
+   SIGN="0D49 3720 2527 DD42 E4FE 16F0 C92D 4492 D2C8 1E33 72B8 \
+   F340 4641 B3DC C5EA 08C1 FD3A 086C 8BC6 26B9 37EF 9D3F CC68 \
+   CC58 6744 4F59 3991 C3A1 0C3F 2FF4"
+# FEATURE END 
+################################################################################
+# FEATURE START 
+# The following is a license file for the XAUI PHY (10GBASE-X) FPGA IP. 
+# Number of seat licenses is 1 
+# No license expiration date 
+FEATURE 6AF8_00D7 alterad 2019.11 permanent uncounted D4CABE7F3AA7 \
+   VENDOR_STRING=8ao0TgfvsumBqNmijfiwJn HOSTID="00e04c5602d3 \
+   000d60103ffc 005056c00001" TS_OK SIGN="11A4 379B 70C6 25D1 \
+   1569 B5F3 0A83 1AF7 F407 7AF7 970F BF4F CE16 9483 EC8F 079D \
+   C6BB 3557 5B36 5CD2 A1AB 4C1D 5A04 05F7 6795 224E 0F0C B103 \
+   F7BF 986B"
+FEATURE 6AF7_00D7 alterad 2019.11 permanent uncounted 493F81247979 \
+   VENDOR_STRING="iiiiiiiihdLkhIIIIIIIImPDuiaaaaaaaaP1X38DDDDDDDDmjz5cdddddddd4mGzGJJJJJJJJiqIh0uuuuuuuucYYWiVVVVVVVVcp0FVHHHHHHHHPUEakffffffffR2FFRkkkkkkkkqL$84" \
+   HOSTID="00e04c5602d3 000d60103ffc 005056c00001" TS_OK \
+   SIGN="1070 7525 77EF 422F DAE7 3FE0 B123 1413 375C 9140 8B48 \
+   9C82 8EC7 F5B2 A63B 09C0 E50D 6582 C3A8 7834 82D2 BC6C 47E1 \
+   DE28 26AC CBE4 720C 43BE 0B2F 713D"
+# FEATURE END 
+################################################################################
+# FEATURE START 
+# The following is a license file for MAX+PLUS II Verilog 
+# Number of seat licenses is 1 
+# No license expiration date 
+FEATURE maxplus2verilog alterad 2020.06 permanent uncounted \
+   6EE4FF1CE7B0 HOSTID="00e04c5602d3 000d60103ffc 005056c00001" \
+   SIGN="01C8 8044 4469 0F3B 7165 CF96 DBDA 3986 750D B2A1 F476 \
+   16B0 6C22 8BFC 9AD4 0440 A87C B9D8 4EE1 2EAD 1283 3C9C 0F0A \
+   DC40 755A 07CB 3D74 AAEA D3CB DC1B"
+# FEATURE END 
+################################################################################
+# FEATURE START 
+# The following is a license file for MAX+PLUS II VHDL 
+# Number of seat licenses is 1 
+# No license expiration date 
+FEATURE maxplus2vhdl alterad 2020.06 permanent uncounted 8D4614235D45 \
+   HOSTID="00e04c5602d3 000d60103ffc 005056c00001" SIGN="0BC5 \
+   30AD 7050 F448 B0FA 0667 AAB4 CD2D 5FE1 FA4A 4BAC C3A1 7B39 \
+   F92F 7E89 1D56 1A2C C2C1 F03B 2364 A6F8 0426 724C 5D48 E3EC \
+   18A4 C53D 1799 5BB5 4FBA"
+# FEATURE END 
+################################################################################
+# FEATURE START 
+# The following is a license file for the Intel Design Security feature for the Quartus  
+# II Software.  
+# Number of seat licenses is 1 
+# No license expiration date 
+FEATURE quartus_nonvolatile_encryption alterad 2020.06 permanent \
+   uncounted 1A7732682EF7 HOSTID="00e04c5602d3 000d60103ffc \
+   005056c00001" TS_OK SIGN="083F F7D7 7225 820C 991B 95A5 8699 \
+   BD95 F0A0 B333 DB0D 8F82 D10C 9998 AE8B 17B2 0C0C 996E 2053 \
+   FEBA 9E90 AF90 BEC5 577D 09D0 AE77 7719 482F 3D0B 8D84"
+# FEATURE END 
+# End of Intel Corporation Software and/or Intellectual Property License File. Issued 06/01/2020
+
+FEATURE 5750_0C03 alterad 2012.12 permanent uncounted 8C9E50A6CDCC \
+   VENDOR_STRING="86eb13cdkkkflhZRYuEMuEn8YaNiFYZZD2KLEeLhZ8vo3CTIySxi4G6cLju8xZCKF36hkGqoAIjVT2NUVtV0OacaSNb9zFn8mi0N1bBU6CrdralVwRQoYcqzgK0mnBRZlggQsNjlxA0UnPRIBLE3dh1iK7" \
+   HOSTID=00e04c5602d3 TS_OK SIGN="1B8C AD93 E2C4 5142 263A BF30 \
+   9C4A 094E 3DFB D104 3077 DA8B 3DFC 6FFE 538C 0410 3CE5 8CD5 \
+   2F57 B6E3 6939 B42C 73BA 12C7 A5AE F554 F1FF 2AA0 0936 E885"
+

@@ -1,0 +1,8 @@
+1.  VS Main Menu View->Property Manager
+2.  When switching from OPTO, FIFO or COM change the property app->Debug|x64->proj->User Macros->$(FW_SHARE) directory
+3.  Also change the CM_MEDIA_FTDI to CM_MEDIA_FIFO in ConView.cpp
+4.  CDM21236 must be added to the install directory release build
+5.  vc_redist.x64.exe must be added to install directory, VS2022 for release build
+6.  npcap-1.75.exe must be added to install directory for release build
+7.  7z1900-x64.exe must be installed from utils directory for creating rozipfs
+8.  Add "Install" at the end of the Post-Build step command line to create setup executable

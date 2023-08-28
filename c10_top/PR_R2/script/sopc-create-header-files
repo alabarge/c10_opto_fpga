@@ -1,0 +1,193 @@
+#!/bin/bash
+#
+# Exit with 0 on success, 1 on failure.
+# Errors and warnings sent to stderr.
+# Normal messages sent to stdout.
+
+PN="sopc-create-header-files"
+
+# If script is launched from Windows through Windows Subsystem for Linux (WSL).
+# The adjust-path function converts absolute windows paths to WSL
+# path (Example: c:/dir -> /c/dir).
+# The adjust_path_mixed function converts WSL path to Windows path.
+# This will ensure paths are readable.
+uname=$(uname -r)
+if [[ $uname =~ "Microsoft" ]]; then
+    _IS_WSL=1
+    windows_exe=.exe
+fi
+
+adjust_path() {
+    if [ "${_IS_WSL}" = "1" ] && [[ ! $1 =~ ^\/mnt\/* ]]; then
+        echo "$(wslpath -u "$1")"
+	else
+		echo "$1"
+	fi
+}
+
+adjust_path_mixed () {
+	if [ "${_IS_WSL}" = "1" ] && [[ ! $1 =~ ^[a-zA-Z]:.* ]]; then
+		if [ $(echo $1 | head -c 5) = "/mnt/" ]; then
+			echo "$1" | sed 's/\/mnt\///g;s/\//:\//1'
+		else
+			echo "$1"
+		fi
+	else
+		echo "$1"
+	fi
+}
+
+# Globals
+sopc_arg=
+sopc_design_file=
+swinfo_tmp_fname=${PN}.$$.tmp.swinfo
+
+# Routine to display error messages to stderr.
+err() {
+    echo "$*" 1>&2
+}
+
+usage() {
+    echo
+    echo "Usage: $PN [<sopc>] [OPTION]..."
+    echo
+    echo "This utility creates header files from your SOPC Builder system description."
+    echo "By default, the header files are in cpp format and have a .h suffix."
+    echo "Other formats may be selected with the appropriate command-line option."
+    echo
+    echo "Options:"
+    echo "  <sopc>      Path to SOPC Builder .sopcinfo file or its directory."
+    echo "              If omitted, <sopc> defaults to the current directory."
+    echo "              If a directory is specified for <sopc>, there must be one"
+    echo "              .sopcinfo file in the directory."
+    echo "              If you don't have a .sopcinfo file for your SOPC Builder system,"
+    echo "              re-generate your system in SOPC Builder (version 8.0 or later)"
+    echo "              to create one."
+    echo
+
+    # Now display wrapper help from sopcinfo2swinfo command.
+    sopcinfo2swinfo$windows_exe --help-wrapper-stdout
+
+    # Now display wrapper help from swinfo2header command.
+    swinfo2header$windows_exe --help-wrapper-stdout
+}
+
+# Called when exiting for any reason.
+# Makes sure .swinfo temporary file isn't left lying around.
+cleanup() {
+    rm -f "$swinfo_tmp_fname"
+}
+
+# Call cleanup routine when exiting for any reason.
+trap cleanup EXIT
+
+# Return path of SOPC Builder design file.
+# Must be called with the sopc_arg as a parameter.
+# Sets the global sopc_design_file as the return value.
+set_sopc_design_file() {
+    local sopc_design_dir
+
+    if [[ -f "$1" ]]; then
+        # User specified an SOPC Builder design file so just use it.
+        sopc_design_file="$1"
+
+        [[ -r "$sopc_design_file" ]] || {
+            err "$PN: Can't read SOPC design file $sopc_design_file"
+            exit 1
+        }
+    else
+        # Default to PWD if no directory name specified.
+        sopc_design_dir="."
+
+        [[ "$1" ]] && {
+            # Interpret sopc argument as a directory name.
+            sopc_design_dir="$1"
+
+            [[ -d "$sopc_design_dir" ]] || {
+                err "$PN: SOPC design argument $1 isn't a directory or a file"
+                exit 1
+            }
+        }
+
+        # Find the .sopcinfo files in the sopc design dir.
+        local sopcinfo_files=$(ls $sopc_design_dir/*.sopcinfo 2>/dev/null)
+        [[ -n "$sopcinfo_files" ]] && {
+            for arg in $sopcinfo_files; do
+                [[ "$sopc_design_file" ]] && {
+                    err "$PN: Found multiple .sopcinfo files in $sopc_design_dir directory."
+                    err "$PN: Specify desired .sopcinfo file on the command line."
+                    exit 1
+                }
+
+                sopc_design_file="$arg"
+            done
+
+            echo "$PN: Using SOPC design file $sopc_design_file found in $sopc_design_dir"
+            return
+        }
+
+        err "$PN: Can't find SOPC design file in $sopc_design_dir directory."
+        err "    Looking for .sopcinfo files."
+        err "    If you only have a .sopc file, re-generate your SOPC Builder"
+        err "    system in version 8.0 or later to create a .sopcinfo file."
+        err "    Specify SOPC design file or directory on the command line."
+        exit 1
+    fi
+}
+
+[[ $1 = "--help" ]] && {
+    usage
+    exit 0
+}
+
+[[ "$QUARTUS_ROOTDIR" ]] || {
+    err "Environment variable QUARTUS_ROOTDIR is empty. Do you have Quartus II installed?"
+    exit 1
+}
+
+# Extract sopc argument. If present, it is the first argument and doesn't start with --.
+case "$1" in
+--*)
+    ;;
+*)   sopc_arg=$1; shift
+    ;;
+esac
+
+# Go through arguments. Separate into those for sopcinfo2swinfo and swinfo2header.
+# Use bash arrays.
+declare -a sopcinfo2swinfo_args
+declare -a swinfo2header_args
+
+# Change IFS to allow spaces in arguments to be preserved (e.g. filenames)
+OLD_IFS="$IFS"
+IFS=""
+for arg in "$@"; do
+    case "$arg" in
+    --separate-masters)
+        sopcinfo2swinfo_args+=($arg)
+        ;;
+    *)
+        swinfo2header_args+=($arg)
+        ;;
+    esac
+done
+IFS="$OLD_IFS"
+
+set_sopc_design_file $sopc_arg
+sopc_design_file="$(adjust_path_mixed $sopc_design_file)"
+
+rm -f "$swinfo_tmp_fname"
+
+cmd="sopcinfo2swinfo$windows_exe --input=$sopc_design_file --output=$swinfo_tmp_fname ${sopcinfo2swinfo_args[@]}"
+sopcinfo2swinfo$windows_exe --input="$sopc_design_file" --output="$swinfo_tmp_fname" ${sopcinfo2swinfo_args[@]} || {
+    echo "$PN: $cmd failed"
+    exit 1
+}
+
+cmd="swinfo2header$windows_exe --swinfo $swinfo_tmp_fname --sopc $sopc_design_file ${swinfo2header_args[@]}"
+swinfo2header$windows_exe --swinfo "$swinfo_tmp_fname" --sopc "$sopc_design_file" "${swinfo2header_args[@]}" || {
+    echo "$PN: $cmd failed"
+    exit 1
+}
+
+exit 0

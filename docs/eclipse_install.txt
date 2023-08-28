@@ -1,0 +1,34 @@
+1. Download CDT 8.8.1 which is Eclipse C/C++ IDE for Mars.2.
+   a.Windows: https://www.eclipse.org/downloads/download.php?file=/technology/epp/downloads/release/mars/2/eclipse-cpp-mars-2-win32-x86_64.zip
+   b.Linux: https://www.eclipse.org/downloads/download.php?file=/technology/epp/downloads/release/mars/2/eclipse-cpp-mars-2-linux-gtk-x86_64.tar.gz
+2. Extract the downloaded file into this directory: < Intel® Quartus® Prime installation directory>/nios2eds/bin.
+3. You should see the < Intel® Quartus® Prime installation directory>/nios2eds/bin/eclipse
+   folder after extraction is done.
+4. Rename the < Intel® Quartus® Prime installation directory>/nios2eds/bin/eclipse folder to
+   < Intel® Quartus® Prime installation directory>/nios2eds/bin/eclipse_nios2.
+5. Extract < Intel® Quartus® Prime installation directory>/nios2eds/bin/eclipse_nios2_plugins.zip for
+   Windows or < Intel® Quartus® Prime installation directory>/nios2eds/bin/eclipse_nios2_plugins.tar.gz
+   for Linux* to < Intel® Quartus® Prime installation directory>/nios2eds/bin.
+   The extraction overrides files in < Intel® Quartus® Prime installation directory>/nios2eds/bin/eclipse_nios2.
+   Verify the extraction is done correctly by making sure you see the
+   < Intel® Quartus® Prime installation directory>/nios2eds/bin/eclipse_nios2/plugin_customization.ini file.
+6. You can now launch Nios® II SBT for Eclipse using eclipse-nios2.exe.
+   Note: The instructions are also included in the < Intel® Quartus® Prime installation directory>/nios2eds/bin/README file.
+
+7. Install WSL version 1 and Ubuntu 18.04LTS
+
+from PowerShell Admin
+
+wsl --set-default-version 1
+wsl --list --verbose
+
+wsl --set-version <distro_name> 1
+
+from ubuntu WSL shell command install 7Zip
+
+sudo apt-get install p7zip-full
+
+NOTE: scripts run from the NIOS command shell must have UNIX/LINUX
+      line endings, NOT DOS.
+
+

@@ -1,0 +1,577 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Header Files\MFC">
+      <UniqueIdentifier>{6b2b5c57-d2cd-4821-a343-3c9b9cf4f522}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\MFC">
+      <UniqueIdentifier>{e45b40af-7815-4de2-8ef0-98703551b134}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Core">
+      <UniqueIdentifier>{52847340-4978-4552-823f-beafc11fa4f0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Core">
+      <UniqueIdentifier>{114a6eea-8195-46f9-ba5d-d72de04fad78}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Socket">
+      <UniqueIdentifier>{b1e0ad2f-25db-4c87-9fcb-bfb7fead6fce}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Socket">
+      <UniqueIdentifier>{b37ea54c-3ea2-4a00-a4de-c60404250ccd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Panes">
+      <UniqueIdentifier>{b002f40e-91a4-407c-bf7e-dbd5df45f5fe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Panes">
+      <UniqueIdentifier>{10c8fbdb-de50-45f7-ba65-e90f1e1022c0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Servers">
+      <UniqueIdentifier>{0a223aca-7839-4b47-9f85-a1aa2b902d6f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Clients">
+      <UniqueIdentifier>{464ce5f0-2520-4eca-99f2-2ef503c72a58}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Clients\CP">
+      <UniqueIdentifier>{afeab3dc-8b48-43f3-a4e9-7c80d963e013}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Servers">
+      <UniqueIdentifier>{8b4c32b9-120b-4f60-9e1f-dfd9db831f62}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Clients">
+      <UniqueIdentifier>{cf95af67-dad3-4f4c-a938-8529c9929550}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Clients\CP">
+      <UniqueIdentifier>{afad689a-c779-4a4a-9249-9f38048e33d0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Source Files\Clients\DAQ">
+      <UniqueIdentifier>{46fd9f4d-0d98-4917-a744-452c4b5ee4f6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Clients\DAQ">
+      <UniqueIdentifier>{eb3e712b-d83d-49be-868a-206d40260ddc}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="app.h">
+      <Filter>Header Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="appDoc.h">
+      <Filter>Header Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="MainFrm.h">
+      <Filter>Header Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>Header Files\MFC</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>Header Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource.h">
+      <Filter>Header Files\MFC</Filter>
+    </ClInclude>
+    <ClInclude Include="BufferDC.h">
+      <Filter>Header Files\MFC</Filter>
+    </ClInclude>
+    <ClInclude Include="chkBox.h">
+      <Filter>Header Files\MFC</Filter>
+    </ClInclude>
+    <ClInclude Include="ColorBox.h">
+      <Filter>Header Files\MFC</Filter>
+    </ClInclude>
+    <ClInclude Include="HyperLink.h">
+      <Filter>Header Files\MFC</Filter>
+    </ClInclude>
+    <ClInclude Include="timer.h">
+      <Filter>Header Files\MFC</Filter>
+    </ClInclude>
+    <ClInclude Include="About.h">
+      <Filter>Header Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="appCfg.h">
+      <Filter>Header Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="appType.h">
+      <Filter>Header Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="CpView.h">
+      <Filter>Header Files\Clients\CP</Filter>
+    </ClInclude>
+    <ClInclude Include="CpMemView.h">
+      <Filter>Header Files\Clients\CP</Filter>
+    </ClInclude>
+    <ClInclude Include="ConView.h">
+      <Filter>Header Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="2DImage.h">
+      <Filter>Header Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="EditEx.h">
+      <Filter>Header Files\MFC</Filter>
+    </ClInclude>
+    <ClInclude Include="ProjectWnd.h">
+      <Filter>Header Files\Panes</Filter>
+    </ClInclude>
+    <ClInclude Include="OutputWnd.h">
+      <Filter>Header Files\Panes</Filter>
+    </ClInclude>
+    <ClInclude Include="LogEdit.h">
+      <Filter>Header Files\Panes</Filter>
+    </ClInclude>
+    <ClInclude Include="ImageWnd.h">
+      <Filter>Header Files\Panes</Filter>
+    </ClInclude>
+    <ClInclude Include="GraphWnd.h">
+      <Filter>Header Files\Panes</Filter>
+    </ClInclude>
+    <ClInclude Include="GraphSet.h">
+      <Filter>Header Files\Panes</Filter>
+    </ClInclude>
+    <ClInclude Include="TreeViewEx.h">
+      <Filter>Header Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="ViewEx.h">
+      <Filter>Header Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="WndResizer.h">
+      <Filter>Header Files\MFC</Filter>
+    </ClInclude>
+    <ClInclude Include="RichEx.h">
+      <Filter>Header Files\MFC</Filter>
+    </ClInclude>
+    <ClInclude Include="ImageSet.h">
+      <Filter>Header Files\Panes</Filter>
+    </ClInclude>
+    <ClInclude Include="ProjectSet.h">
+      <Filter>Header Files\Panes</Filter>
+    </ClInclude>
+    <ClInclude Include="build.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SrvView.h">
+      <Filter>Header Files\Servers</Filter>
+    </ClInclude>
+    <ClInclude Include="CliView.h">
+      <Filter>Header Files\Clients</Filter>
+    </ClInclude>
+    <ClInclude Include="..\socket\CMSock.h">
+      <Filter>Header Files\Socket</Filter>
+    </ClInclude>
+    <ClInclude Include="..\socket\DNLSock.h">
+      <Filter>Header Files\Socket</Filter>
+    </ClInclude>
+    <ClInclude Include="..\socket\MsgQue.h">
+      <Filter>Header Files\Socket</Filter>
+    </ClInclude>
+    <ClInclude Include="..\socket\MsgSock.h">
+      <Filter>Header Files\Socket</Filter>
+    </ClInclude>
+    <ClInclude Include="..\socket\CMQue.h">
+      <Filter>Header Files\Socket</Filter>
+    </ClInclude>
+    <ClInclude Include="ParmsWnd.h">
+      <Filter>Header Files\Panes</Filter>
+    </ClInclude>
+    <ClInclude Include="MFCEditEx.h">
+      <Filter>Header Files\MFC</Filter>
+    </ClInclude>
+    <ClInclude Include="DAQView.h">
+      <Filter>Header Files\Clients\DAQ</Filter>
+    </ClInclude>
+    <ClInclude Include="trace.h">
+      <Filter>Header Files\MFC</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>Source Files\MFC</Filter>
+    </ClCompile>
+    <ClCompile Include="app.cpp">
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="appDoc.cpp">
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="MainFrm.cpp">
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="BufferDC.cpp">
+      <Filter>Source Files\MFC</Filter>
+    </ClCompile>
+    <ClCompile Include="chkBox.cpp">
+      <Filter>Source Files\MFC</Filter>
+    </ClCompile>
+    <ClCompile Include="ColorBox.cpp">
+      <Filter>Source Files\MFC</Filter>
+    </ClCompile>
+    <ClCompile Include="HyperLink.cpp">
+      <Filter>Source Files\MFC</Filter>
+    </ClCompile>
+    <ClCompile Include="Path.cpp">
+      <Filter>Source Files\MFC</Filter>
+    </ClCompile>
+    <ClCompile Include="About.cpp">
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="CpView.cpp">
+      <Filter>Source Files\Clients\CP</Filter>
+    </ClCompile>
+    <ClCompile Include="CpMemView.cpp">
+      <Filter>Source Files\Clients\CP</Filter>
+    </ClCompile>
+    <ClCompile Include="ConView.cpp">
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="2DImage.cpp">
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="EditEx.cpp">
+      <Filter>Source Files\MFC</Filter>
+    </ClCompile>
+    <ClCompile Include="boxmuller.cpp">
+      <Filter>Source Files\Clients\CP</Filter>
+    </ClCompile>
+    <ClCompile Include="ProjectWnd.cpp">
+      <Filter>Source Files\Panes</Filter>
+    </ClCompile>
+    <ClCompile Include="OutputWnd.cpp">
+      <Filter>Source Files\Panes</Filter>
+    </ClCompile>
+    <ClCompile Include="LogEdit.cpp">
+      <Filter>Source Files\Panes</Filter>
+    </ClCompile>
+    <ClCompile Include="ImageWnd.cpp">
+      <Filter>Source Files\Panes</Filter>
+    </ClCompile>
+    <ClCompile Include="GraphWnd.cpp">
+      <Filter>Source Files\Panes</Filter>
+    </ClCompile>
+    <ClCompile Include="GraphSet.cpp">
+      <Filter>Source Files\Panes</Filter>
+    </ClCompile>
+    <ClCompile Include="TreeViewEx.cpp">
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="WndResizer.cpp">
+      <Filter>Source Files\MFC</Filter>
+    </ClCompile>
+    <ClCompile Include="RichEx.cpp">
+      <Filter>Source Files\MFC</Filter>
+    </ClCompile>
+    <ClCompile Include="ImageSet.cpp">
+      <Filter>Source Files\Panes</Filter>
+    </ClCompile>
+    <ClCompile Include="ProjectSet.cpp">
+      <Filter>Source Files\Panes</Filter>
+    </ClCompile>
+    <ClCompile Include="ViewEx.cpp">
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="SrvView.cpp">
+      <Filter>Source Files\Servers</Filter>
+    </ClCompile>
+    <ClCompile Include="CliView.cpp">
+      <Filter>Source Files\Clients</Filter>
+    </ClCompile>
+    <ClCompile Include="..\socket\CMSock.cpp">
+      <Filter>Source Files\Socket</Filter>
+    </ClCompile>
+    <ClCompile Include="..\socket\DNLSock.cpp">
+      <Filter>Source Files\Socket</Filter>
+    </ClCompile>
+    <ClCompile Include="..\socket\MsgQue.cpp">
+      <Filter>Source Files\Socket</Filter>
+    </ClCompile>
+    <ClCompile Include="..\socket\MsgSock.cpp">
+      <Filter>Source Files\Socket</Filter>
+    </ClCompile>
+    <ClCompile Include="..\socket\CMQue.cpp">
+      <Filter>Source Files\Socket</Filter>
+    </ClCompile>
+    <ClCompile Include="ParmsWnd.cpp">
+      <Filter>Source Files\Panes</Filter>
+    </ClCompile>
+    <ClCompile Include="MFCEditEx.cpp">
+      <Filter>Source Files\MFC</Filter>
+    </ClCompile>
+    <ClCompile Include="DAQView.cpp">
+      <Filter>Source Files\Clients\DAQ</Filter>
+    </ClCompile>
+    <ClCompile Include="trace.cpp">
+      <Filter>Source Files\MFC</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.reg" />
+    <None Include="res\app.rc2">
+      <Filter>Header Files\Resource Files</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="app.rc">
+      <Filter>Header Files\Resource Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="res\explorer.bmp">
+      <Filter>Header Files\Resource Files</Filter>
+    </Image>
+    <Image Include="res\explorer_hc.bmp">
+      <Filter>Header Files\Resource Files</Filter>
+    </Image>
+    <Image Include="res\menuimages.bmp">
+      <Filter>Header Files\Resource Files</Filter>
+    </Image>
+    <Image Include="res\menuimages_hc.bmp">
+      <Filter>Header Files\Resource Files</Filter>
+    </Image>
+    <Image Include="res\output_wnd.ico">
+      <Filter>Header Files\Resource Files</Filter>
+    </Image>
+    <Image Include="res\output_wnd_hc.ico">
+      <Filter>Header Files\Resource Files</Filter>
+    </Image>
+    <Image Include="res\info.bmp">
+      <Filter>Header Files\Resource Files</Filter>
+    </Image>
+    <Image Include="res\appDoc.ico">
+      <Filter>Header Files\Resource Files</Filter>
+    </Image>
+    <Image Include="res\app.ico">
+      <Filter>Header Files\Resource Files</Filter>
+    </Image>
+    <Image Include="res\Toolbar.bmp">
+      <Filter>Header Files\Resource Files</Filter>
+    </Image>
+    <Image Include="res\Toolbar256.bmp">
+      <Filter>Header Files\Resource Files</Filter>
+    </Image>
+    <Image Include="res\project_view.ico">
+      <Filter>Header Files\Resource Files</Filter>
+    </Image>
+    <Image Include="res\project_view_hc.ico">
+      <Filter>Header Files\Resource Files</Filter>
+    </Image>
+    <Image Include="res\projectview.bmp">
+      <Filter>Header Files\Resource Files</Filter>
+    </Image>
+    <Image Include="res\projectview_hc.bmp">
+      <Filter>Header Files\Resource Files</Filter>
+    </Image>
+    <Image Include="res\settings_wnd.ico">
+      <Filter>Header Files\Resource Files</Filter>
+    </Image>
+    <Image Include="res\settings_wnd_hc.ico">
+      <Filter>Header Files\Resource Files</Filter>
+    </Image>
+    <Image Include="res\settings_hc.bmp">
+      <Filter>Header Files\Resource Files</Filter>
+    </Image>
+    <Image Include="res\settings.bmp">
+      <Filter>Header Files\Resource Files</Filter>
+    </Image>
+    <Image Include="res\BIGGREY.bmp">
+      <Filter>Header Files\Resource Files</Filter>
+    </Image>
+    <Image Include="res\BIGGRN.bmp">
+      <Filter>Header Files\Resource Files</Filter>
+    </Image>
+    <Image Include="res\BIGRED.bmp">
+      <Filter>Header Files\Resource Files</Filter>
+    </Image>
+    <Image Include="res\BIGGREY.ico">
+      <Filter>Header Files\Resource Files</Filter>
+    </Image>
+    <Image Include="res\BIGGRN.ico">
+      <Filter>Header Files\Resource Files</Filter>
+    </Image>
+    <Image Include="res\BIGRED.ico">
+      <Filter>Header Files\Resource Files</Filter>
+    </Image>
+    <Image Include="res\BIGBLUE.ico">
+      <Filter>Header Files\Resource Files</Filter>
+    </Image>
+    <Image Include="res\BIGBLUE.bmp">
+      <Filter>Header Files\Resource Files</Filter>
+    </Image>
+    <Image Include="res\project.bmp">
+      <Filter>Header Files\Resource Files</Filter>
+    </Image>
+    <Image Include="res\graph.bmp">
+      <Filter>Header Files\Resource Files</Filter>
+    </Image>
+    <Image Include="res\app.bmp">
+      <Filter>Header Files\Resource Files</Filter>
+    </Image>
+    <Image Include="res\properties.ico">
+      <Filter>Header Files\Resource Files</Filter>
+    </Image>
+    <Image Include="res\refresh.ico">
+      <Filter>Header Files\Resource Files</Filter>
+    </Image>
+    <Image Include="res\image.bmp">
+      <Filter>Header Files\Resource Files</Filter>
+    </Image>
+    <Image Include="res\project_hc.bmp">
+      <Filter>Header Files\Resource Files</Filter>
+    </Image>
+    <Image Include="res\refresh.bmp">
+      <Filter>Header Files\Resource Files</Filter>
+    </Image>
+    <Image Include="res\refresh_hot.ico">
+      <Filter>Header Files\Resource Files</Filter>
+    </Image>
+    <Image Include="res\refresh_cold.ico">
+      <Filter>Header Files\Resource Files</Filter>
+    </Image>
+    <Image Include="res\vtk_image.bmp">
+      <Filter>Header Files\Resource Files</Filter>
+    </Image>
+    <Image Include="res\parms.bmp">
+      <Filter>Header Files\Resource Files</Filter>
+    </Image>
+    <Image Include="res\parms_hc.bmp">
+      <Filter>Header Files\Resource Files</Filter>
+    </Image>
+    <Image Include="res\parms_wnd.ico">
+      <Filter>Header Files\Resource Files</Filter>
+    </Image>
+    <Image Include="res\parms_wnd_hc.ico">
+      <Filter>Header Files\Resource Files</Filter>
+    </Image>
+    <Image Include="res\mode0_dnl_cold.ico">
+      <Filter>Header Files\Resource Files</Filter>
+    </Image>
+    <Image Include="res\mode0_dnl.ico">
+      <Filter>Header Files\Resource Files</Filter>
+    </Image>
+    <Image Include="res\mode0_dnl_hot.ico">
+      <Filter>Header Files\Resource Files</Filter>
+    </Image>
+    <Image Include="res\mode_cold.ico">
+      <Filter>Header Files\Resource Files</Filter>
+    </Image>
+    <Image Include="res\mode0.ico">
+      <Filter>Header Files\Resource Files</Filter>
+    </Image>
+    <Image Include="res\mode1.ico">
+      <Filter>Header Files\Resource Files</Filter>
+    </Image>
+    <Image Include="res\mode2.ico">
+      <Filter>Header Files\Resource Files</Filter>
+    </Image>
+    <Image Include="res\mode0Hot.ico">
+      <Filter>Header Files\Resource Files</Filter>
+    </Image>
+    <Image Include="res\mode1Hot.ico">
+      <Filter>Header Files\Resource Files</Filter>
+    </Image>
+    <Image Include="res\mode2Hot.ico">
+      <Filter>Header Files\Resource Files</Filter>
+    </Image>
+    <Image Include="res\mode0Chk.ico">
+      <Filter>Header Files\Resource Files</Filter>
+    </Image>
+    <Image Include="res\mode0HotChk.ico">
+      <Filter>Header Files\Resource Files</Filter>
+    </Image>
+    <Image Include="res\mode1Chk.ico">
+      <Filter>Header Files\Resource Files</Filter>
+    </Image>
+    <Image Include="res\mode1HotChk.ico">
+      <Filter>Header Files\Resource Files</Filter>
+    </Image>
+    <Image Include="res\mode2Chk.ico">
+      <Filter>Header Files\Resource Files</Filter>
+    </Image>
+    <Image Include="res\mode2HotChk.ico">
+      <Filter>Header Files\Resource Files</Filter>
+    </Image>
+    <Image Include="res\matlab_hot.ico">
+      <Filter>Header Files\Resource Files</Filter>
+    </Image>
+    <Image Include="res\matlab_cold.ico">
+      <Filter>Header Files\Resource Files</Filter>
+    </Image>
+    <Image Include="res\matlab.ico">
+      <Filter>Header Files\Resource Files</Filter>
+    </Image>
+    <Image Include="res\matlab_run.ico">
+      <Filter>Header Files\Resource Files</Filter>
+    </Image>
+    <Image Include="res\matlab_run_cold.ico">
+      <Filter>Header Files\Resource Files</Filter>
+    </Image>
+    <Image Include="res\matlab_run_hot.ico">
+      <Filter>Header Files\Resource Files</Filter>
+    </Image>
+    <Image Include="res\mode0_cold.ico">
+      <Filter>Header Files\Resource Files</Filter>
+    </Image>
+    <Image Include="res\mode0Chk_cold.ico">
+      <Filter>Header Files\Resource Files</Filter>
+    </Image>
+    <Image Include="res\mode1_cold.ico">
+      <Filter>Header Files\Resource Files</Filter>
+    </Image>
+    <Image Include="res\mode1Chk_cold.ico">
+      <Filter>Header Files\Resource Files</Filter>
+    </Image>
+    <Image Include="res\mode2_cold.ico">
+      <Filter>Header Files\Resource Files</Filter>
+    </Image>
+    <Image Include="res\mode2Chk_cold.ico">
+      <Filter>Header Files\Resource Files</Filter>
+    </Image>
+    <Image Include="res\mode0_hot.ico">
+      <Filter>Header Files\Resource Files</Filter>
+    </Image>
+    <Image Include="res\mode0Chk_hot.ico">
+      <Filter>Header Files\Resource Files</Filter>
+    </Image>
+    <Image Include="res\mode1_hot.ico">
+      <Filter>Header Files\Resource Files</Filter>
+    </Image>
+    <Image Include="res\mode1Chk_hot.ico">
+      <Filter>Header Files\Resource Files</Filter>
+    </Image>
+    <Image Include="res\mode2_hot.ico">
+      <Filter>Header Files\Resource Files</Filter>
+    </Image>
+    <Image Include="res\mode2Chk_hot.ico">
+      <Filter>Header Files\Resource Files</Filter>
+    </Image>
+    <Image Include="res\bitmap1.bmp">
+      <Filter>Header Files\Resource Files</Filter>
+    </Image>
+    <Image Include="res\ccl_chk_grn.bmp">
+      <Filter>Header Files\Resource Files</Filter>
+    </Image>
+    <Image Include="res\ccl_chk_red.bmp">
+      <Filter>Header Files\Resource Files</Filter>
+    </Image>
+    <Image Include="res\ccl_chk_wht.bmp">
+      <Filter>Header Files\Resource Files</Filter>
+    </Image>
+    <Image Include="res\omniwarelogo.bmp">
+      <Filter>Header Files\Resource Files</Filter>
+    </Image>
+    <Image Include="res\BIGACT.bmp">
+      <Filter>Header Files\Resource Files</Filter>
+    </Image>
+    <Image Include="res\BIGGRN-01.bmp">
+      <Filter>Header Files\Resource Files</Filter>
+    </Image>
+  </ItemGroup>
+</Project>

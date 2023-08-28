@@ -1,0 +1,378 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{5E13D219-280E-4C89-BC44-A86740840694}</ProjectGuid>
+    <RootNamespace>app</RootNamespace>
+    <Keyword>MFCProj</Keyword>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+    <UseOfMfc>Dynamic</UseOfMfc>
+    <SpectreMitigation>false</SpectreMitigation>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+    <UseOfMfc>Dynamic</UseOfMfc>
+    <UseIntelIPP>Sequential</UseIntelIPP>
+    <SpectreMitigation>false</SpectreMitigation>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="proj.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="proj.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>false</LinkIncremental>
+    <OutDir>$(SolutionDir)$(Configuration)\</OutDir>
+    <IntDir>$(Configuration)\</IntDir>
+    <ExecutablePath>$(SolutionDir)\dll\$(Platform)\$(Configuration);$(ExecutablePath)</ExecutablePath>
+    <IncludePath>$(IncludePath)</IncludePath>
+    <LibraryPath>$(LibraryPath)</LibraryPath>
+    <EnableManagedIncrementalBuild>false</EnableManagedIncrementalBuild>
+    <PreBuildEventUseInBuild>true</PreBuildEventUseInBuild>
+    <TargetName>de0</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+    <OutDir>$(SolutionDir)$(Configuration)\</OutDir>
+    <IntDir>$(Configuration)\</IntDir>
+    <PostBuildEventUseInBuild>true</PostBuildEventUseInBuild>
+    <ExecutablePath>$(SolutionDir)\dll\$(Platform)\$(Configuration);$(ExecutablePath)</ExecutablePath>
+    <IncludePath>$(IncludePath)</IncludePath>
+    <LibraryPath>$(LibraryPath)</LibraryPath>
+    <TargetName>de0</TargetName>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(SolutionDir)\app;$(SolutionDir)\inc;$(SolutionDir)\socket;$(FW_SHARE)</AdditionalIncludeDirectories>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <CompileAs>Default</CompileAs>
+      <ExceptionHandling>Async</ExceptionHandling>
+      <OpenMPSupport>true</OpenMPSupport>
+      <Optimization>Disabled</Optimization>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <InlineFunctionExpansion>Default</InlineFunctionExpansion>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <MinimalRebuild />
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>Netapi32.lib;PEGRP64F.lib;cmapi.lib;comapi.lib;optoapi.lib;uartapi.lib;fifoapi.lib;lanapi.lib;udpapi.lib;wbemuuid.lib;Winmm.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)\lib\$(Platform)\$(Configuration);$(SolutionDir)$(Configuration)\</AdditionalLibraryDirectories>
+      <IgnoreSpecificDefaultLibraries>MSVCRT;LIBCMT</IgnoreSpecificDefaultLibraries>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+      <DelayLoadDLLs>
+      </DelayLoadDLLs>
+      <LinkTimeCodeGeneration>
+      </LinkTimeCodeGeneration>
+      <Profile>true</Profile>
+    </Link>
+    <Midl>
+      <MkTypLibCompatible>false</MkTypLibCompatible>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </Midl>
+    <ResourceCompile>
+      <Culture>0x0409</Culture>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <PostBuildEvent>
+      <Command>copyDLLs.bat $(SolutionDir) $(Platform) $(Configuration)</Command>
+      <Message>Build Version</Message>
+    </PostBuildEvent>
+    <PreBuildEvent>
+      <Command>$(SolutionDir)..\..\utils\fw_ver.exe $(ProjectDir)build.inc $(ProjectDir)build.h ..\..\.git</Command>
+      <Message>Build Version</Message>
+    </PreBuildEvent>
+    <PreLinkEvent>
+      <Command>
+      </Command>
+    </PreLinkEvent>
+    <PreLinkEvent>
+      <Message>
+      </Message>
+    </PreLinkEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(SolutionDir)\app;$(SolutionDir)\inc;$(SolutionDir)\socket;$(FW_SHARE)</AdditionalIncludeDirectories>
+      <OmitFramePointers>false</OmitFramePointers>
+      <WholeProgramOptimization>false</WholeProgramOptimization>
+      <MinimalRebuild>
+      </MinimalRebuild>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <ExceptionHandling>Async</ExceptionHandling>
+      <EnableParallelCodeGeneration>true</EnableParallelCodeGeneration>
+      <OpenMPSupport>true</OpenMPSupport>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies>Netapi32.lib;PEGRP64F.lib;cmapi.lib;comapi.lib;optoapi.lib;uartapi.lib;fifoapi.lib;lanapi.lib;udpapi.lib;wbemuuid.lib;Winmm.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)\lib\$(Platform)\$(Configuration);$(SolutionDir)$(Configuration)\</AdditionalLibraryDirectories>
+      <IgnoreSpecificDefaultLibraries>
+      </IgnoreSpecificDefaultLibraries>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+      <LinkTimeCodeGeneration>
+      </LinkTimeCodeGeneration>
+      <DelayLoadDLLs>
+      </DelayLoadDLLs>
+    </Link>
+    <Midl>
+      <MkTypLibCompatible>false</MkTypLibCompatible>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </Midl>
+    <ResourceCompile>
+      <Culture>0x0409</Culture>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <PreBuildEvent>
+      <Command>$(SolutionDir)..\..\utils\fw_ver.exe $(ProjectDir)build.inc $(ProjectDir)build.h $(SolutionDir)..\..\.git</Command>
+      <Message>Build Version</Message>
+    </PreBuildEvent>
+    <PostBuildEvent>
+      <Command>copyDLLs.bat $(SolutionDir) $(Platform) $(Configuration) Install</Command>
+      <Message>Build Version</Message>
+    </PostBuildEvent>
+    <PreLinkEvent>
+      <Command>
+      </Command>
+    </PreLinkEvent>
+    <PreLinkEvent>
+      <Message>
+      </Message>
+    </PreLinkEvent>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="..\socket\CMQue.h" />
+    <ClInclude Include="..\socket\CMSock.h" />
+    <ClInclude Include="..\socket\DNLSock.h" />
+    <ClInclude Include="..\socket\MsgQue.h" />
+    <ClInclude Include="..\socket\MsgSock.h" />
+    <ClInclude Include="2DImage.h" />
+    <ClInclude Include="About.h" />
+    <ClInclude Include="BufferDC.h" />
+    <ClInclude Include="build.h" />
+    <ClInclude Include="chkBox.h" />
+    <ClInclude Include="CliView.h" />
+    <ClInclude Include="ColorBox.h" />
+    <ClInclude Include="ConView.h" />
+    <ClInclude Include="CpMemView.h" />
+    <ClInclude Include="CpView.h" />
+    <ClInclude Include="DAQView.h" />
+    <ClInclude Include="EditEx.h" />
+    <ClInclude Include="GraphSet.h" />
+    <ClInclude Include="GraphWnd.h" />
+    <ClInclude Include="HyperLink.h" />
+    <ClInclude Include="ImageSet.h" />
+    <ClInclude Include="ImageWnd.h" />
+    <ClInclude Include="appCfg.h" />
+    <ClInclude Include="appType.h" />
+    <ClInclude Include="MFCEditEx.h" />
+    <ClInclude Include="ParmsWnd.h" />
+    <ClInclude Include="ProjectSet.h" />
+    <ClInclude Include="ProjectWnd.h" />
+    <ClInclude Include="app.h" />
+    <ClInclude Include="appDoc.h" />
+    <ClInclude Include="MainFrm.h" />
+    <ClInclude Include="OutputWnd.h" />
+    <ClInclude Include="LogEdit.h" />
+    <ClInclude Include="Resource.h" />
+    <ClInclude Include="RichEx.h" />
+    <ClInclude Include="SrvView.h" />
+    <ClInclude Include="stdafx.h" />
+    <ClInclude Include="targetver.h" />
+    <ClInclude Include="timer.h" />
+    <ClInclude Include="trace.h" />
+    <ClInclude Include="TreeViewEx.h" />
+    <ClInclude Include="ViewEx.h" />
+    <ClInclude Include="WndResizer.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\socket\CMQue.cpp" />
+    <ClCompile Include="..\socket\CMSock.cpp" />
+    <ClCompile Include="..\socket\DNLSock.cpp" />
+    <ClCompile Include="..\socket\MsgQue.cpp" />
+    <ClCompile Include="..\socket\MsgSock.cpp" />
+    <ClCompile Include="2DImage.cpp" />
+    <ClCompile Include="About.cpp" />
+    <ClCompile Include="boxmuller.cpp" />
+    <ClCompile Include="BufferDC.cpp" />
+    <ClCompile Include="chkBox.cpp" />
+    <ClCompile Include="CliView.cpp" />
+    <ClCompile Include="ColorBox.cpp" />
+    <ClCompile Include="ConView.cpp" />
+    <ClCompile Include="CpMemView.cpp" />
+    <ClCompile Include="CpView.cpp" />
+    <ClCompile Include="DAQView.cpp" />
+    <ClCompile Include="EditEx.cpp" />
+    <ClCompile Include="GraphSet.cpp" />
+    <ClCompile Include="GraphWnd.cpp" />
+    <ClCompile Include="HyperLink.cpp" />
+    <ClCompile Include="ImageSet.cpp" />
+    <ClCompile Include="ImageWnd.cpp" />
+    <ClCompile Include="MFCEditEx.cpp" />
+    <ClCompile Include="ParmsWnd.cpp" />
+    <ClCompile Include="Path.cpp" />
+    <ClCompile Include="ProjectSet.cpp" />
+    <ClCompile Include="ProjectWnd.cpp" />
+    <ClCompile Include="app.cpp" />
+    <ClCompile Include="appDoc.cpp" />
+    <ClCompile Include="MainFrm.cpp" />
+    <ClCompile Include="OutputWnd.cpp" />
+    <ClCompile Include="LogEdit.cpp" />
+    <ClCompile Include="RichEx.cpp" />
+    <ClCompile Include="SrvView.cpp" />
+    <ClCompile Include="stdafx.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="trace.cpp" />
+    <ClCompile Include="TreeViewEx.cpp" />
+    <ClCompile Include="ViewEx.cpp" />
+    <ClCompile Include="WndResizer.cpp">
+      <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Disabled</Optimization>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.reg" />
+    <None Include="res\app.rc2" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="app.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="res\BIGACT.bmp" />
+    <Image Include="res\BIGBLUE.bmp" />
+    <Image Include="res\BIGBLUE.ico" />
+    <Image Include="res\BIGGREY.bmp" />
+    <Image Include="res\BIGGREY.ico" />
+    <Image Include="res\BIGGRN-01.bmp" />
+    <Image Include="res\BIGGRN.bmp" />
+    <Image Include="res\BIGGRN.ico" />
+    <Image Include="res\BIGRED.bmp" />
+    <Image Include="res\BIGRED.ico" />
+    <Image Include="res\bitmap1.bmp" />
+    <Image Include="res\ccl_chk_grn.bmp" />
+    <Image Include="res\ccl_chk_red.bmp" />
+    <Image Include="res\ccl_chk_wht.bmp" />
+    <Image Include="res\explorer.bmp" />
+    <Image Include="res\explorer_hc.bmp" />
+    <Image Include="res\graph.bmp" />
+    <Image Include="res\image.bmp" />
+    <Image Include="res\info.bmp" />
+    <Image Include="res\app.bmp" />
+    <Image Include="res\app.ico" />
+    <Image Include="res\appDoc.ico" />
+    <Image Include="res\matlab.ico" />
+    <Image Include="res\matlab_cold.ico" />
+    <Image Include="res\matlab_hot.ico" />
+    <Image Include="res\matlab_run.ico" />
+    <Image Include="res\matlab_run_cold.ico" />
+    <Image Include="res\matlab_run_hot.ico" />
+    <Image Include="res\menuimages.bmp" />
+    <Image Include="res\menuimages_hc.bmp" />
+    <Image Include="res\mode0.ico" />
+    <Image Include="res\mode0Chk.ico" />
+    <Image Include="res\mode0Chk_cold.ico" />
+    <Image Include="res\mode0Chk_hot.ico" />
+    <Image Include="res\mode0Hot.ico" />
+    <Image Include="res\mode0HotChk.ico" />
+    <Image Include="res\mode0_cold.ico" />
+    <Image Include="res\mode0_dnl.ico" />
+    <Image Include="res\mode0_dnl_cold.ico" />
+    <Image Include="res\mode0_dnl_hot.ico" />
+    <Image Include="res\mode0_hot.ico" />
+    <Image Include="res\mode1.ico" />
+    <Image Include="res\mode1Chk.ico" />
+    <Image Include="res\mode1Chk_cold.ico" />
+    <Image Include="res\mode1Chk_hot.ico" />
+    <Image Include="res\mode1Hot.ico" />
+    <Image Include="res\mode1HotChk.ico" />
+    <Image Include="res\mode1_cold.ico" />
+    <Image Include="res\mode1_hot.ico" />
+    <Image Include="res\mode2.ico" />
+    <Image Include="res\mode2Chk.ico" />
+    <Image Include="res\mode2Chk_cold.ico" />
+    <Image Include="res\mode2Chk_hot.ico" />
+    <Image Include="res\mode2Hot.ico" />
+    <Image Include="res\mode2HotChk.ico" />
+    <Image Include="res\mode2_cold.ico" />
+    <Image Include="res\mode2_hot.ico" />
+    <Image Include="res\mode_cold.ico" />
+    <Image Include="res\omniwarelogo.bmp" />
+    <Image Include="res\output_wnd.ico" />
+    <Image Include="res\output_wnd_hc.ico" />
+    <Image Include="res\parms.bmp" />
+    <Image Include="res\parms_hc.bmp" />
+    <Image Include="res\parms_wnd.ico" />
+    <Image Include="res\parms_wnd_hc.ico" />
+    <Image Include="res\project.bmp" />
+    <Image Include="res\projectview.bmp" />
+    <Image Include="res\projectview_hc.bmp" />
+    <Image Include="res\project_hc.bmp" />
+    <Image Include="res\project_view.ico" />
+    <Image Include="res\project_view_hc.ico" />
+    <Image Include="res\properties.ico" />
+    <Image Include="res\refresh.bmp" />
+    <Image Include="res\refresh.ico" />
+    <Image Include="res\refresh_cold.ico" />
+    <Image Include="res\refresh_hot.ico" />
+    <Image Include="res\settings.bmp" />
+    <Image Include="res\settings_hc.bmp" />
+    <Image Include="res\settings_wnd.ico" />
+    <Image Include="res\settings_wnd_hc.ico" />
+    <Image Include="res\Toolbar.bmp" />
+    <Image Include="res\Toolbar256.bmp" />
+    <Image Include="res\vtk_image.bmp" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties RESOURCE_FILE="app.rc" />
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

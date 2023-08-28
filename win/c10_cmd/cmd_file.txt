@@ -1,0 +1,26 @@
+#
+#  DE0 COMMAND FILE
+#
+gc.debug          = 0x00000000;
+gc.trace          = 0x00001AC2;
+gc.feature        = 0x00000007;
+#
+# OPC_CMD_DAQ = 1
+opc.opcode        = 1;
+#
+# milliseconds
+opc.timeout       = 5000;
+opc.comport       = 2;
+opc.mac_addr_hi   = 0x0002C94E;
+opc.mac_addr_lo   = 0x7FC80000;
+opc.ip_addr       = 0xC0A80146;
+opc.cm_udp_port   = 0x00000ADD;
+daq.opcmd         = 0x00007005;
+daq.file          = daq_data.txt;
+daq.packets       = 32;
+daq.to_file       = 1;
+daq.file_type     = 2;
+daq.file_stamp    = 0;
+daq.ramp          = 0;
+daq.real          = 1;
+@EOF

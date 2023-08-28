@@ -1,0 +1,1100 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#ifndef APSTUDIO_INVOKED
+#include "targetver.h"
+#endif
+#include "afxres.h"
+#include "verrsrc.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (United States) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#ifndef APSTUDIO_INVOKED\r\n"
+    "#include ""targetver.h""\r\n"
+    "#endif\r\n"
+    "#include ""afxres.h""\r\n"
+    "#include ""verrsrc.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)\r\n"
+    "LANGUAGE 9, 1\r\n"
+    "#include ""res\\app.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#include ""afxres.rc""      // Standard components\r\n"
+    "#if !defined(_AFXDLL)\r\n"
+    "#include ""afxprint.rc""        // printing/print preview resources\r\n"
+    "#include ""afxribbon.rc""        // MFC ribbon and control bar resources\r\n"
+    "#endif\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_MAINFRAME           ICON                    "res\\app.ico"
+
+IDR_DEVICETYPE          ICON                    "res\\appDoc.ico"
+
+IDI_REFRESH_HOT         ICON                    "res\\refresh_hot.ico"
+
+IDI_REFRESH_COLD        ICON                    "res\\refresh_cold.ico"
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDR_MAINFRAME           BITMAP                  "res\\Toolbar.bmp"
+
+IDR_MAINFRAME_256       BITMAP                  "res\\Toolbar256.bmp"
+
+IDR_MENU_IMAGES         BITMAP                  "res\\menuimages.bmp"
+
+IDB_MENU_IMAGES_24      BITMAP                  "res\\menuimages_hc.bmp"
+
+IDR_SETTINGS            BITMAP                  "res\\settings.bmp"
+
+IDB_INFO                BITMAP                  "res\\info.bmp"
+
+IDB_OMNIWARE_LOGO       BITMAP                  "res\\omniwarelogo.bmp"
+
+IDB_BIGRED              BITMAP                  "res\\BIGRED.bmp"
+
+IDB_BIGGRN              BITMAP                  "res\\BIGGRN.bmp"
+
+IDB_BIGBLU              BITMAP                  "res\\BIGBLUE.bmp"
+
+IDR_PROJECT             BITMAP                  "res\\project.bmp"
+
+IDR_GRAPH               BITMAP                  "res\\graph.bmp"
+
+IDB_APP                 BITMAP                  "res\\app.bmp"
+
+IDR_IMAGE               BITMAP                  "res\\image.bmp"
+
+IDR_PARMS               BITMAP                  "res\\parms.bmp"
+
+IDB_BIGACT              BITMAP                  "res\\BIGACT.bmp"
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Toolbar
+//
+
+IDR_MAINFRAME TOOLBAR 16, 15
+BEGIN
+    BUTTON      ID_FILE_NEW
+    BUTTON      ID_FILE_OPEN
+    BUTTON      ID_FILE_SAVE
+    SEPARATOR
+    BUTTON      ID_EDIT_CUT
+    BUTTON      ID_EDIT_COPY
+    BUTTON      ID_EDIT_PASTE
+    SEPARATOR
+    BUTTON      ID_FILE_PRINT
+    BUTTON      ID_APP_ABOUT
+END
+
+IDR_MAINFRAME_256 TOOLBAR 16, 15
+BEGIN
+    BUTTON      ID_FILE_NEW
+    BUTTON      ID_FILE_OPEN
+    BUTTON      ID_FILE_SAVE
+    SEPARATOR
+    BUTTON      ID_EDIT_CUT
+    BUTTON      ID_EDIT_COPY
+    BUTTON      ID_EDIT_PASTE
+    SEPARATOR
+    BUTTON      ID_FILE_PRINT
+    BUTTON      ID_APP_ABOUT
+END
+
+IDR_MENU_IMAGES TOOLBAR 16, 15
+BEGIN
+    BUTTON      ID_WINDOW_MANAGER
+    SEPARATOR
+    BUTTON      ID_WINDOW_CASCADE
+    BUTTON      ID_WINDOW_TILE_HORZ
+    BUTTON      ID_TOOLS_MACRO
+    BUTTON      ID_SORTING_SORTALPHABETIC
+    BUTTON      ID_SORTING_SORTBYTYPE
+    BUTTON      ID_SORTING_SORTBYACCESS
+    BUTTON      ID_SORTING_GROUPBYTYPE
+END
+
+IDR_SETTINGS TOOLBAR 16, 15
+BEGIN
+    BUTTON      ID_EXPAND_ALL
+    BUTTON      ID_SORTPROPERTIES
+    BUTTON      ID_PROPERTIES1
+    BUTTON      ID_PROPERTIES2
+END
+
+IDR_PROJECT TOOLBAR 22, 22
+BEGIN
+    BUTTON      ID_PROJECT_1
+    BUTTON      ID_PROJECT_2
+END
+
+IDR_GRAPH TOOLBAR 22, 22
+BEGIN
+    BUTTON      ID_GRAPH_1
+    BUTTON      ID_GRAPH_2
+END
+
+IDR_IMAGE TOOLBAR 22, 22
+BEGIN
+    BUTTON      ID_IMAGE_1
+    BUTTON      ID_IMAGE_2
+END
+
+IDR_PARMS TOOLBAR 22, 22
+BEGIN
+    BUTTON      ID_PARMS_SET
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_MAINFRAME MENU
+BEGIN
+    POPUP "&File"
+    BEGIN
+        MENUITEM "&New\tCtrl+N",                ID_FILE_NEW
+        MENUITEM "&Open...\tCtrl+O",            ID_FILE_OPEN
+        MENUITEM "&Save\tCtrl+S",               ID_FILE_SAVE
+        MENUITEM "Save &As...",                 ID_FILE_SAVE_AS
+        MENUITEM SEPARATOR
+        MENUITEM "Recent File",                 ID_FILE_MRU_FILE1, GRAYED
+        MENUITEM SEPARATOR
+        MENUITEM "E&xit",                       ID_APP_EXIT
+    END
+    POPUP "&Edit"
+    BEGIN
+        MENUITEM "&Undo\tCtrl+Z",               ID_EDIT_UNDO
+        MENUITEM SEPARATOR
+        MENUITEM "Cu&t\tCtrl+X",                ID_EDIT_CUT
+        MENUITEM "&Copy\tCtrl+C",               ID_EDIT_COPY
+        MENUITEM "&Paste\tCtrl+V",              ID_EDIT_PASTE
+    END
+    POPUP "&View"
+    BEGIN
+        POPUP "&Toolbars"
+        BEGIN
+            MENUITEM "<placeholder>",               ID_VIEW_TOOLBAR
+        END
+        MENUITEM "&Status Bar",                 ID_VIEW_STATUS_BAR
+    END
+    POPUP "&Help"
+    BEGIN
+        MENUITEM "&About app...",               ID_APP_ABOUT
+    END
+END
+
+IDR_CONTEXT MENU
+BEGIN
+    POPUP "Log"
+    BEGIN
+        MENUITEM "S&tamp",                      ID_LOG_STAMP, CHECKED
+        MENUITEM SEPARATOR
+        MENUITEM "&Clear",                      ID_LOG_CLEAR
+        MENUITEM "Copy &All",                   ID_LOG_COPY_ALL
+        MENUITEM SEPARATOR
+        MENUITEM "&Save...",                    ID_LOG_SAVE
+    END
+    POPUP "Traffic"
+    BEGIN
+        MENUITEM "&Enable",                     ID_TRAFFIC_ENABLE, CHECKED
+        MENUITEM "S&tamp",                      ID_TRAFFIC_STAMP, CHECKED
+        MENUITEM "&Local",                      ID_TRAFFIC_LOCAL, CHECKED
+        MENUITEM "Pipe",                        ID_TRAFFIC_PIPE, CHECKED
+        MENUITEM SEPARATOR
+        MENUITEM "&Clear",                      ID_TRAFFIC_CLEAR
+        MENUITEM "Copy &All",                   ID_TRAFFIC_COPY_ALL
+        MENUITEM SEPARATOR
+        MENUITEM "&Save...",                    ID_TRAFFIC_SAVE
+    END
+    POPUP "Debug"
+    BEGIN
+        MENUITEM "&Enable",                     ID_DEBUG_ENABLE, CHECKED
+        MENUITEM "S&tamp",                      ID_DEBUG_STAMP, CHECKED
+        MENUITEM SEPARATOR
+        MENUITEM "&Clear",                      ID_DEBUG_CLEAR
+        MENUITEM "Copy &All",                   ID_DEBUG_COPY_ALL
+        MENUITEM SEPARATOR
+        MENUITEM "&Save...",                    ID_DEBUG_SAVE
+    END
+    POPUP "FEC"
+    BEGIN
+        MENUITEM "&Enable",                     ID_FEC_ENABLE, CHECKED
+        MENUITEM "S&tamp",                      ID_FEC_STAMP, CHECKED
+        MENUITEM SEPARATOR
+        MENUITEM "&Clear",                      ID_FEC_CLEAR
+        MENUITEM "Copy &All",                   ID_FEC_COPY_ALL
+        MENUITEM SEPARATOR
+        MENUITEM "&Save...",                    ID_FEC_SAVE
+    END
+    POPUP "EditEx"
+    BEGIN
+        MENUITEM "&Clear",                      ID_EDITEX_CLEAR
+        MENUITEM "Copy &All",                   ID_EDITEX_COPYALL
+        MENUITEM SEPARATOR
+        MENUITEM "&Save...",                    ID_EDITEX_SAVE
+    END
+    POPUP "TreeEx"
+    BEGIN
+        MENUITEM "&Expand All",                 ID_EXPAND_ALL
+        MENUITEM "&Collapse All",               ID_COLLAPSE_ALL
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Accelerator
+//
+
+IDR_MAINFRAME ACCELERATORS
+BEGIN
+    "C",            ID_EDIT_COPY,           VIRTKEY, CONTROL, NOINVERT
+    VK_INSERT,      ID_EDIT_COPY,           VIRTKEY, CONTROL, NOINVERT
+    VK_DELETE,      ID_EDIT_CUT,            VIRTKEY, SHIFT, NOINVERT
+    "X",            ID_EDIT_CUT,            VIRTKEY, CONTROL, NOINVERT
+    "V",            ID_EDIT_PASTE,          VIRTKEY, CONTROL, NOINVERT
+    VK_INSERT,      ID_EDIT_PASTE,          VIRTKEY, SHIFT, NOINVERT
+    VK_BACK,        ID_EDIT_UNDO,           VIRTKEY, ALT, NOINVERT
+    "Z",            ID_EDIT_UNDO,           VIRTKEY, CONTROL, NOINVERT
+    "N",            ID_FILE_NEW,            VIRTKEY, CONTROL, NOINVERT
+    "O",            ID_FILE_OPEN,           VIRTKEY, CONTROL, NOINVERT
+    "S",            ID_FILE_SAVE,           VIRTKEY, CONTROL, NOINVERT
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_ABOUT DIALOGEX 0, 0, 145, 55
+STYLE DS_SETFONT | WS_POPUP | WS_BORDER
+FONT 8, "Tahoma", 400, 0, 0x0
+BEGIN
+    CONTROL         IDB_APP,IDC_STATIC,"Static",SS_BITMAP,6,6,15,13
+    LTEXT           "Program",IDC_PROGRAM,60,6,78,8,SS_NOPREFIX | NOT WS_GROUP
+    LTEXT           "Version",IDC_VERSION,60,16,78,8,SS_NOPREFIX | NOT WS_GROUP
+    LTEXT           "Company",IDC_COMPANY,60,26,78,8,NOT WS_GROUP
+    LTEXT           "omniware.us",IDC_OMNIWARE_LINK,59,35,43,8,NOT WS_GROUP
+END
+
+IDD_CONNECT DIALOGEX 0, 0, 326, 158
+STYLE DS_SETFONT | WS_CHILD
+FONT 8, "Tahoma", 400, 0, 0x0
+BEGIN
+    CONTROL         "",IDC_CON_REFRESH,"MfcButton",WS_TABSTOP,6,6,18,14
+    PUSHBUTTON      "Connect",IDC_CON_CONNECT,24,6,54,14
+    CONTROL         "Startup",IDC_CON_STARTUP,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,84,9,36,10
+    COMBOBOX        IDC_CON_PORT_TYPE,48,36,78,30,CBS_DROPDOWN | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_CON_PORT_SEL,48,54,78,30,CBS_DROPDOWN | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_CON_PORT_SPEED,48,72,78,30,CBS_DROPDOWN | WS_VSCROLL | WS_TABSTOP
+    EDITTEXT        IDC_CON_IP_ADDR,48,90,78,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_CON_MAC_ADDR,48,108,78,14,ES_AUTOHSCROLL
+    GROUPBOX        "Message Connection",IDC_CON_MSG_STATIC,6,24,126,126
+    RTEXT           "Type",IDC_CON_TYPE_STATIC,12,39,31,8
+    RTEXT           "Port",IDC_CON_PORT_STATIC,12,56,31,8
+    RTEXT           "Speed",IDC_CON_SPEED_STATIC,12,74,31,8
+    RTEXT           "IP Addr",IDC_CON_IP_ADDR_STATIC,12,92,31,8
+    GROUPBOX        "Device Versions",IDC_CON_DEV_STATIC,138,24,84,126
+    GROUPBOX        "Services",IDC_CON_SERVERS_STATIC,228,24,42,126
+    GROUPBOX        "Clients",IDC_CON_CLIENTS_STATIC,276,24,42,126
+    EDITTEXT        IDC_CON_SYS_ID,276,6,42,14,ES_AUTOHSCROLL | ES_READONLY | WS_DISABLED
+    RTEXT           "System ID",IDC_CON_SYS_ID_STATIC,227,9,43,8
+    EDITTEXT        IDC_CON_FW_REV,168,36,48,14,ES_AUTOHSCROLL | ES_READONLY | WS_DISABLED
+    RTEXT           "F/W",IDC_CON_FW_REV_STATIC,144,36,19,8
+    EDITTEXT        IDC_CON_STAMP,168,6,54,14,ES_AUTOHSCROLL | ES_READONLY | WS_DISABLED
+    CONTROL         "CM",IDC_CON_SRV_CM,"Button",BS_AUTOCHECKBOX | WS_DISABLED | WS_TABSTOP,234,36,26,10
+    CONTROL         "CP",IDC_CON_SRV_CP,"Button",BS_AUTOCHECKBOX | WS_DISABLED | WS_TABSTOP,234,48,25,10
+    CONTROL         "CM",IDC_CON_CLI_CM,"Button",BS_AUTOCHECKBOX | WS_DISABLED | WS_TABSTOP,282,36,26,10
+    CONTROL         "CP",IDC_CON_CLI_CP,"Button",BS_AUTOCHECKBOX | WS_DISABLED | WS_TABSTOP,282,48,25,10
+    RTEXT           "MAC Addr",IDC_CON_MAC_STATIC,7,111,36,8
+    RTEXT           "Stamp",IDC_CON_STAMP_STATIC,132,9,31,8
+    EDITTEXT        IDC_CON_FIFO_REV,198,54,18,14,ES_RIGHT | ES_AUTOHSCROLL | ES_READONLY | WS_DISABLED
+    RTEXT           "FIFO",IDC_CON_FIFO_REV_STATIC,174,56,22,8
+    CONTROL         "DAQ",IDC_CON_SRV_DAQ,"Button",BS_AUTOCHECKBOX | WS_DISABLED | WS_TABSTOP,234,60,27,10
+    CONTROL         "DAQ",IDC_CON_CLI_DAQ,"Button",BS_AUTOCHECKBOX | WS_DISABLED | WS_TABSTOP,282,60,27,10
+    EDITTEXT        IDC_CON_ADC_REV,198,72,18,14,ES_RIGHT | ES_AUTOHSCROLL | ES_READONLY | WS_DISABLED
+    RTEXT           "ADC",IDC_CON_ADC_REV_STATIC,174,74,22,8
+    EDITTEXT        IDC_CON_IP_PORT,48,126,78,14,ES_AUTOHSCROLL
+    RTEXT           "IP Port",IDC_CON_PORT_IP_STATIC,6,128,36,8
+END
+
+IDD_CP DIALOGEX 0, 0, 326, 194
+STYLE DS_SETFONT | WS_CHILD
+FONT 8, "Tahoma", 400, 0, 0x0
+BEGIN
+    PUSHBUTTON      "Get",IDC_CP_GET,12,18,24,12
+    EDITTEXT        IDC_CP_ADDR,66,18,84,14,ES_AUTOHSCROLL | ES_OEMCONVERT,WS_EX_RIGHT
+    PUSHBUTTON      "Set",IDC_CP_SET,12,30,24,12
+    EDITTEXT        IDC_CP_VALUE,66,36,84,14,ES_AUTOHSCROLL,WS_EX_RIGHT
+    CONTROL         "W/R",IDC_CP_WR,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,12,54,30,10
+    COMBOBOX        IDC_CP_DATA_TYPE,66,54,84,30,CBS_DROPDOWN | WS_VSCROLL | WS_TABSTOP
+    EDITTEXT        IDC_CP_TRACE,12,84,54,14,ES_AUTOHSCROLL,WS_EX_RIGHT
+    PUSHBUTTON      "Get",IDC_CP_TRACE_GET,78,84,18,12
+    PUSHBUTTON      "Set",IDC_CP_TRACE_SET,96,84,18,12
+    PUSHBUTTON      "On",IDC_CP_TRACE_ON,114,84,18,12
+    PUSHBUTTON      "Off",IDC_CP_TRACE_OFF,132,84,18,12
+    CONTROL         "CI",IDC_CP_CI,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,12,102,30,10
+    CONTROL         "CM",IDC_CP_CM,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,12,114,30,10
+    CONTROL         "IRQ",IDC_CP_IRQ,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,66,102,30,10
+    CONTROL         "DVR",IDC_CP_DVR,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,66,114,30,10
+    CONTROL         "RUN",IDC_CP_RUN,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,120,102,30,10
+    CONTROL         "ERR",IDC_CP_ERR,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,120,114,30,10
+    CONTROL         "ID",IDC_CP_ID,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,12,126,30,10
+    CONTROL         "",IDC_CP_EDIT,"RichEdit20W",WS_VSCROLL | WS_HSCROLL | WS_TABSTOP | 0x28c4,162,10,162,182,WS_EX_STATICEDGE
+    GROUPBOX        "CPU Address Space Read/Write",IDC_CP_MEM_STATIC,6,6,150,66
+    RTEXT           "Address",IDC_CP_ADDR_STATIC,37,20,28,8
+    RTEXT           "Value",IDC_CP_VALUE_STATIC,40,38,25,8
+    RTEXT           "Type",IDC_CP_TYPE_STATIC,39,56,25,8
+    GROUPBOX        "Trace Flags",IDC_CP_TRACE_STATIC,6,72,150,120
+    CONTROL         "ROUTE",IDC_CP_ROUTE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,66,126,36,10
+    CONTROL         "UART",IDC_CP_UART,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,120,126,30,10
+END
+
+IDD_CP_MEM DIALOGEX 0, 0, 326, 158
+STYLE DS_SETFONT | WS_CHILD
+FONT 8, "Tahoma", 400, 0, 0x0
+BEGIN
+    GROUPBOX        "Memory Block Read/Write",IDC_CP_MEM_BLK_STATIC,6,6,150,144
+    CONTROL         "",IDC_CP_MEM_FILE,"MfcEditBrowse",WS_BORDER | WS_TABSTOP | 0x80,12,18,138,14
+    PUSHBUTTON      "Read",IDC_CP_MEM_READ,12,36,30,12
+    CONTROL         "Binary",IDC_CP_MEM_BIN,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,48,36,30,10
+    CONTROL         "Verify",IDC_CP_MEM_VERIFY,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,84,36,30,10
+    CONTROL         "All",IDC_CP_MEM_ALL,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,120,36,24,10
+    PUSHBUTTON      "Write",IDC_CP_MEM_WRITE,12,48,30,12
+    CONTROL         "AWGN",IDC_CP_MEM_AWGN,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,48,48,32,10
+    CONTROL         "Cycle",IDC_CP_MEM_CYCLE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,84,48,30,10
+    CONTROL         "Hex",IDC_CP_MEM_HEX,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,120,48,29,10
+    CONTROL         "Show",IDC_CP_MEM_SHOW,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,120,60,30,10
+    PUSHBUTTON      "Get",IDC_CP_MEM_GET,12,78,30,12
+    PUSHBUTTON      "Set",IDC_CP_MEM_SET,12,90,30,12
+    PUSHBUTTON      "Clear",IDC_CP_MEM_CLEAR,12,102,30,12
+    PUSHBUTTON      "Test",IDC_CP_MEM_TEST,12,114,30,12
+    EDITTEXT        IDC_CP_MEM_START,84,78,66,14,ES_AUTOHSCROLL | ES_OEMCONVERT,WS_EX_RIGHT
+    EDITTEXT        IDC_CP_MEM_LENGTH,84,96,66,14,ES_AUTOHSCROLL | ES_OEMCONVERT,WS_EX_RIGHT
+    EDITTEXT        IDC_CP_MEM_XFER,84,114,66,14,ES_AUTOHSCROLL | ES_OEMCONVERT | ES_READONLY,WS_EX_RIGHT
+    COMBOBOX        IDC_CP_MEM_TYPE,84,132,66,30,CBS_DROPDOWN | WS_VSCROLL | WS_TABSTOP
+    CONTROL         "",IDC_CP_MEM_EDIT,"RichEdit20W",WS_VSCROLL | WS_HSCROLL | WS_TABSTOP | 0x2804,162,10,162,140,WS_EX_STATICEDGE
+    RTEXT           "Start",IDC_CP_MEM_START_STATIC,54,80,24,8
+    RTEXT           "Length",IDC_CP_MEM_LENGTH_STATIC,54,98,24,8
+    RTEXT           "Transfer",IDC_CP_MEM_XFER_STATIC,48,116,30,8
+    RTEXT           "Type",IDC_CP_MEM_TYPE_STATIC,54,134,24,8
+    CONTROL         "File",IDC_CP_MEM_TO_FILE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,84,60,30,10
+END
+
+IDD_GPH_SETTINGS DIALOGEX 0, 0, 141, 165
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Graph Settings"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,12,144,50,14
+    COMBOBOX        IDC_GPH_TYPE,42,6,84,30,CBS_DROPDOWN | WS_VSCROLL | WS_TABSTOP
+    EDITTEXT        IDC_GPH_X_MIN,42,24,84,14,ES_AUTOHSCROLL,WS_EX_RIGHT
+    EDITTEXT        IDC_GPH_X_MAX,42,42,84,14,ES_AUTOHSCROLL,WS_EX_RIGHT
+    EDITTEXT        IDC_GPH_Y_MIN,42,60,84,14,ES_AUTOHSCROLL,WS_EX_RIGHT
+    EDITTEXT        IDC_GPH_Y_MAX,42,78,84,14,ES_AUTOHSCROLL,WS_EX_RIGHT
+    CONTROL         "Auto Scale",IDC_GPH_AUTO,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,42,102,54,10
+    CONTROL         "Data Cursor",IDC_GPH_CURSOR,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,42,114,54,10
+    CONTROL         "Small Points",IDC_GPH_POINTS,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,42,126,54,10
+    PUSHBUTTON      "Cancel",IDCANCEL,78,144,50,14
+    RTEXT           "Type",IDC_STATIC,6,8,31,8
+    RTEXT           "X Min",IDC_STATIC,6,26,31,8
+    RTEXT           "X Max",IDC_STATIC,6,44,31,8
+    RTEXT           "Y Min",IDC_STATIC,6,62,31,8
+    RTEXT           "Y Max",IDC_STATIC,6,80,31,8
+END
+
+IDD_IMG_SETTINGS DIALOGEX 0, 0, 141, 165
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Image Settings"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,12,144,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,78,144,50,14
+END
+
+IDD_PRJ_SETTINGS DIALOGEX 0, 0, 165, 165
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Project Settings"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    CONTROL         "Auto Save the Project",IDC_PRJ_SET_AUTO,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,12,12,144,10
+    CONTROL         "At Startup Reload the Last File",IDC_PRJ_SET_RELOAD_LAST,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,12,24,144,10
+    CONTROL         "Warn if SysID or Time Stamp Mismatch",IDC_PRJ_SET_SYSID_WARN,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,12,36,144,10
+    CONTROL         "Warn if Timeout Disconnect",IDC_PRJ_SET_PING_WARN,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,12,48,144,10
+    CONTROL         "Warn if File Overwrite",IDC_PRJ_SET_OVERWRITE_WARN,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,12,60,144,10
+    DEFPUSHBUTTON   "OK",IDOK,24,144,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,90,144,50,14
+    CONTROL         "Warn if Message Dropped",IDC_PRJ_SET_MESSAGE_DROPPED_WARN,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,12,72,144,10
+    CONTROL         "Log CM Traffic to File",IDC_PRJ_SET_LOG_CM_TRAFFIC,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,12,84,144,10
+END
+
+IDD_CP_RPC DIALOGEX 0, 0, 368, 158
+STYLE DS_SETFONT | WS_CHILD
+FONT 8, "Tahoma", 400, 0, 0x0
+BEGIN
+    PUSHBUTTON      "Start",IDC_CP_RPC_SRV_START,12,18,30,12
+    CONTROL         "Auto Start",IDC_CP_RPC_SRV_AUTO,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,54,19,48,10
+    EDITTEXT        IDC_CP_RPC_SRV_PORT,54,36,66,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_CP_RPC_ACTIVE,54,54,66,14,ES_AUTOHSCROLL | ES_OEMCONVERT | ES_READONLY,WS_EX_RIGHT
+    PUSHBUTTON      "Start",IDC_CP_RPC_CLI_START,12,90,30,12
+    CONTROL         "Auto Start",IDC_CP_RPC_CLI_AUTO,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,54,91,48,10
+    EDITTEXT        IDC_CP_RPC_CLI_IP,54,108,66,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_CP_RPC_CLI_PORT,54,126,66,14,ES_AUTOHSCROLL
+    CONTROL         "",IDC_CP_RPC_EDIT,"RichEdit20W",WS_VSCROLL | WS_HSCROLL | WS_TABSTOP | 0x28c4,132,10,234,140,WS_EX_STATICEDGE
+    GROUPBOX        "RPC Server",IDC_CP_RPC_SERVER_STATIC,6,6,120,72
+    RTEXT           "TCP Port",IDC_CP_RPC_SRV_PORT_STATIC,12,38,37,8
+    RTEXT           "Connections",IDC_CP_RPC_ACTIVE_STATIC,8,56,41,8
+    GROUPBOX        "RPC Client",IDC_CP_RPC_CLIENT_STATIC,6,78,120,72
+    RTEXT           "TCP Port",IDC_CP_RPC_CLI_PORT_STATIC,12,128,37,8
+    RTEXT           "IP Address",IDC_CP_RPC_CLI_IP_STATIC,12,110,37,8
+END
+
+IDD_SRV DIALOGEX 0, 0, 368, 158
+STYLE DS_SETFONT | WS_CHILD
+FONT 8, "Tahoma", 400, 0, 0x0
+BEGIN
+END
+
+IDD_CLI DIALOGEX 0, 0, 368, 158
+STYLE DS_SETFONT | WS_CHILD
+FONT 8, "Tahoma", 400, 0, 0x0
+BEGIN
+END
+
+IDD_DAQ DIALOGEX 0, 0, 326, 188
+STYLE DS_SETFONT | WS_CHILD
+FONT 8, "Tahoma", 400, 0, 0x0
+BEGIN
+    GROUPBOX        "DAQ Controller",IDC_DAQ_BLK_STATIC,6,6,150,180
+    CONTROL         "",IDC_DAQ_FILE,"MfcEditBrowse",WS_BORDER | WS_TABSTOP | 0x80,12,18,138,14
+    CONTROL         "File",IDC_DAQ_TO_FILE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,48,36,30,10
+    CONTROL         "Hex",IDC_DAQ_HEX,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,120,36,29,10
+    CONTROL         "Ramp",IDC_DAQ_RAMP,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,48,48,30,10
+    CONTROL         "Show",IDC_DAQ_SHOW,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,84,48,30,10
+    EDITTEXT        IDC_DAQ_PACKETS,102,78,48,14,ES_AUTOHSCROLL | ES_OEMCONVERT,WS_EX_RIGHT
+    PUSHBUTTON      "Start",IDC_DAQ_START,12,36,30,12
+    CONTROL         "",IDC_DAQ_EDIT,"RichEdit20W",WS_VSCROLL | WS_HSCROLL | WS_TABSTOP | 0x2804,162,10,162,176,WS_EX_STATICEDGE
+    RTEXT           "Packets",IDC_DAQ_PACKETS_STATIC,42,80,54,8
+    CONTROL         "Float",IDC_DAQ_FLOAT,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,84,36,30,10
+    CONTROL         "Plot",IDC_DAQ_PLOT,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,120,48,30,10
+    CONTROL         "Raw",IDC_DAQ_RAW,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,48,60,30,10
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,4,1,0
+ PRODUCTVERSION 1,4,1,0
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x40004L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040904b0"
+        BEGIN
+            VALUE "CompanyName", "Omniware"
+            VALUE "FileDescription", "C10"
+            VALUE "FileVersion", "1.4.1.0"
+            VALUE "InternalName", "c10.exe"
+            VALUE "LegalCopyright", "(c) Omniware  All rights reserved."
+            VALUE "OriginalFilename", "c10.exe"
+            VALUE "ProductName", "C10 Application"
+            VALUE "ProductVersion", "1.4.1.0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x409, 1200
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog Info
+//
+
+IDD_CONNECT DLGINIT
+BEGIN
+    IDC_CON_REFRESH, 0x37c, 369, 0
+0x4d3c, 0x4346, 0x7542, 0x7474, 0x6e6f, 0x535f, 0x7974, 0x656c, 0x343e, 
+0x2f3c, 0x464d, 0x4243, 0x7475, 0x6f74, 0x5f6e, 0x7453, 0x6c79, 0x3e65, 
+0x4d3c, 0x4346, 0x7542, 0x7474, 0x6e6f, 0x415f, 0x7475, 0x736f, 0x7a69, 
+0x3e65, 0x4146, 0x534c, 0x3c45, 0x4d2f, 0x4346, 0x7542, 0x7474, 0x6e6f, 
+0x415f, 0x7475, 0x736f, 0x7a69, 0x3e65, 0x4d3c, 0x4346, 0x7542, 0x7474, 
+0x6e6f, 0x545f, 0x6f6f, 0x746c, 0x7069, 0x3c3e, 0x4d2f, 0x4346, 0x7542, 
+0x7474, 0x6e6f, 0x545f, 0x6f6f, 0x746c, 0x7069, 0x3c3e, 0x464d, 0x4243, 
+0x7475, 0x6f74, 0x5f6e, 0x7546, 0x6c6c, 0x6554, 0x7478, 0x6f54, 0x6c6f, 
+0x543e, 0x5552, 0x3c45, 0x4d2f, 0x4346, 0x7542, 0x7474, 0x6e6f, 0x465f, 
+0x6c75, 0x546c, 0x7865, 0x5474, 0x6f6f, 0x3e6c, 0x4d3c, 0x4346, 0x7542, 
+0x7474, 0x6e6f, 0x435f, 0x7275, 0x6f73, 0x5472, 0x7079, 0x3e65, 0x3131, 
+0x2f3c, 0x464d, 0x4243, 0x7475, 0x6f74, 0x5f6e, 0x7543, 0x7372, 0x726f, 
+0x7954, 0x6570, 0x3c3e, 0x464d, 0x4243, 0x7475, 0x6f74, 0x5f6e, 0x6d49, 
+0x6761, 0x5465, 0x7079, 0x3e65, 0x3c38, 0x4d2f, 0x4346, 0x7542, 0x7474, 
+0x6e6f, 0x495f, 0x616d, 0x6567, 0x7954, 0x6570, 0x3c3e, 0x464d, 0x4243, 
+0x7475, 0x6f74, 0x5f6e, 0x6d49, 0x6761, 0x4f65, 0x546e, 0x706f, 0x463e, 
+0x4c41, 0x4553, 0x2f3c, 0x464d, 0x4243, 0x7475, 0x6f74, 0x5f6e, 0x6d49, 
+0x6761, 0x4f65, 0x546e, 0x706f, 0x3c3e, 0x464d, 0x4243, 0x7475, 0x6f74, 
+0x5f6e, 0x6d49, 0x6761, 0x4f65, 0x526e, 0x6769, 0x7468, 0x463e, 0x4c41, 
+0x4553, 0x2f3c, 0x464d, 0x4243, 0x7475, 0x6f74, 0x5f6e, 0x6d49, 0x6761, 
+0x4f65, 0x526e, 0x6769, 0x7468, "\076" 
+    IDC_CON_PORT_TYPE, 0x403, 4, 0
+0x4f43, 0x004d, 
+    IDC_CON_PORT_TYPE, 0x403, 5, 0
+0x4155, 0x5452, "\000" 
+    IDC_CON_PORT_TYPE, 0x403, 5, 0
+0x504f, 0x4f54, "\000" 
+    IDC_CON_PORT_TYPE, 0x403, 5, 0
+0x4946, 0x4f46, "\000" 
+    IDC_CON_PORT_TYPE, 0x403, 4, 0
+0x414c, 0x004e, 
+    IDC_CON_PORT_TYPE, 0x403, 4, 0
+0x4455, 0x0050, 
+    IDC_CON_PORT_TYPE, 0x403, 4, 0
+0x4354, 0x0050, 
+    0
+END
+
+IDD_CP DLGINIT
+BEGIN
+    IDC_CP_DATA_TYPE, 0x403, 6, 0
+0x4e49, 0x3854, 0x0055, 
+    IDC_CP_DATA_TYPE, 0x403, 6, 0
+0x4e49, 0x3854, 0x0053, 
+    IDC_CP_DATA_TYPE, 0x403, 7, 0
+0x4e49, 0x3154, 0x5536, "\000" 
+    IDC_CP_DATA_TYPE, 0x403, 7, 0
+0x4e49, 0x3154, 0x5336, "\000" 
+    IDC_CP_DATA_TYPE, 0x403, 7, 0
+0x4e49, 0x3354, 0x5532, "\000" 
+    IDC_CP_DATA_TYPE, 0x403, 7, 0
+0x4e49, 0x3354, 0x5332, "\000" 
+    IDC_CP_DATA_TYPE, 0x403, 5, 0
+0x5046, 0x3233, "\000" 
+    IDC_CP_DATA_TYPE, 0x403, 7, 0
+0x4e49, 0x3654, 0x5534, "\000" 
+    IDC_CP_DATA_TYPE, 0x403, 7, 0
+0x4e49, 0x3654, 0x5334, "\000" 
+    IDC_CP_DATA_TYPE, 0x403, 5, 0
+0x5046, 0x3436, "\000" 
+    0
+END
+
+IDD_CP_MEM DLGINIT
+BEGIN
+    IDC_CP_MEM_FILE, 0x37c, 42, 0
+0x4d3c, 0x4346, 0x6445, 0x7469, 0x7242, 0x776f, 0x6573, 0x4d5f, 0x646f, 
+0x3e65, 0x3c31, 0x4d2f, 0x4346, 0x6445, 0x7469, 0x7242, 0x776f, 0x6573, 
+0x4d5f, 0x646f, 0x3e65, 
+    IDC_CP_MEM_TYPE, 0x403, 6, 0
+0x4e49, 0x3854, 0x0055, 
+    IDC_CP_MEM_TYPE, 0x403, 6, 0
+0x4e49, 0x3854, 0x0053, 
+    IDC_CP_MEM_TYPE, 0x403, 7, 0
+0x4e49, 0x3154, 0x5536, "\000" 
+    IDC_CP_MEM_TYPE, 0x403, 7, 0
+0x4e49, 0x3154, 0x5336, "\000" 
+    IDC_CP_MEM_TYPE, 0x403, 7, 0
+0x4e49, 0x3354, 0x5532, "\000" 
+    IDC_CP_MEM_TYPE, 0x403, 7, 0
+0x4e49, 0x3354, 0x5332, "\000" 
+    IDC_CP_MEM_TYPE, 0x403, 5, 0
+0x5046, 0x3233, "\000" 
+    0
+END
+
+IDD_DAQ DLGINIT
+BEGIN
+    IDC_DAQ_FILE, 0x37c, 42, 0
+0x4d3c, 0x4346, 0x6445, 0x7469, 0x7242, 0x776f, 0x6573, 0x4d5f, 0x646f, 
+0x3e65, 0x3c31, 0x4d2f, 0x4346, 0x6445, 0x7469, 0x7242, 0x776f, 0x6573, 
+0x4d5f, 0x646f, 0x3e65, 
+    0
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO
+BEGIN
+    IDD_ABOUT, DIALOG
+    BEGIN
+    END
+
+    IDD_CONNECT, DIALOG
+    BEGIN
+    END
+
+    IDD_CP, DIALOG
+    BEGIN
+        BOTTOMMARGIN, 158
+    END
+
+    IDD_CP_MEM, DIALOG
+    BEGIN
+    END
+
+    IDD_GPH_SETTINGS, DIALOG
+    BEGIN
+    END
+
+    IDD_IMG_SETTINGS, DIALOG
+    BEGIN
+    END
+
+    IDD_PRJ_SETTINGS, DIALOG
+    BEGIN
+    END
+
+    IDD_CP_RPC, DIALOG
+    BEGIN
+    END
+
+    IDD_SRV, DIALOG
+    BEGIN
+    END
+
+    IDD_CLI, DIALOG
+    BEGIN
+    END
+
+    IDD_DAQ, DIALOG
+    BEGIN
+        BOTTOMMARGIN, 158
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// AFX_DIALOG_LAYOUT
+//
+
+IDD_CONNECT AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+IDD_CP_MEM AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+IDD_PRJ_SETTINGS AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+IDD_ABOUT AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+IDD_CP AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+IDD_DAQ AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE
+BEGIN
+    IDP_OLE_INIT_FAILED     "OLE initialization failed.  Make sure that the OLE libraries are the correct version."
+    IDS_COMPANY             "Omniware"
+    IDS_PROGRAM             "C10"
+    IDS_CON_DISCONNECT      "Disconnect from Hardware"
+    IDP_SOCKETS_INIT_FAILED "Windows sockets initialization failed."
+    IDS_REFRESH_DISALLOWED  "Connection Port Refresh is not Allowed \nwhile connected to the Hardware."
+    IDS_SYSID_INVALID       "Hardware System ID Doesn't Match Application!"
+    IDS_PANE_PROJECT        "Project View"
+    IDS_PANE_OUTPUT         "Log"
+    IDS_PANE_GRAPH          "Graph"
+    IDS_PANE_IMAGE          "2D Image"
+    IDS_WARNING_ID_MISMATCH "The Device ID read doesn't match the\nexpected value. Press OK to continue or\nCancel to select another device."
+END
+
+STRINGTABLE
+BEGIN
+    IDR_MAINFRAME           "C10\n\nc10\nC10 Files (*.c10)\n.c10\nc10.Document\nc10.Document"
+END
+
+STRINGTABLE
+BEGIN
+    AFX_IDS_APP_TITLE       "C10 1.4.1"
+    AFX_IDS_IDLEMESSAGE     "Ready"
+END
+
+STRINGTABLE
+BEGIN
+    ID_FILE_NEW             "Create a new document\nNew"
+    ID_FILE_OPEN            "Open an existing document\nOpen"
+    ID_FILE_CLOSE           "Close the active document\nClose"
+    ID_FILE_SAVE            "Save the active document\nSave"
+    ID_FILE_SAVE_AS         "Save the active document with a new name\nSave As"
+END
+
+STRINGTABLE
+BEGIN
+    ID_APP_ABOUT            "Display program information, version number and copyright\nAbout"
+    ID_APP_EXIT             "Quit the application; prompts to save documents\nExit"
+END
+
+STRINGTABLE
+BEGIN
+    ID_FILE_MRU_FILE1       "Open this document"
+    ID_FILE_MRU_FILE2       "Open this document"
+    ID_FILE_MRU_FILE3       "Open this document"
+    ID_FILE_MRU_FILE4       "Open this document"
+END
+
+STRINGTABLE
+BEGIN
+    ID_EDIT_CLEAR           "Erase the selection\nErase"
+    ID_EDIT_CLEAR_ALL       "Erase everything\nErase All"
+    ID_EDIT_COPY            "Copy the selection and put it on the Clipboard\nCopy"
+    ID_EDIT_CUT             "Cut the selection and put it on the Clipboard\nCut"
+    ID_EDIT_FIND            "Find the specified text\nFind"
+    ID_EDIT_PASTE           "Insert Clipboard contents\nPaste"
+    ID_EDIT_REPEAT          "Repeat the last action\nRepeat"
+    ID_EDIT_REPLACE         "Replace specific text with different text\nReplace"
+    ID_EDIT_SELECT_ALL      "Select the entire document\nSelect All"
+    ID_EDIT_UNDO            "Undo the last action\nUndo"
+    ID_EDIT_REDO            "Redo the previously undone action\nRedo"
+END
+
+STRINGTABLE
+BEGIN
+    ID_VIEW_STATUS_BAR      "Show or hide the status bar\nToggle Status Bar"
+END
+
+STRINGTABLE
+BEGIN
+    AFX_IDS_SCSIZE          "Change the window size"
+    AFX_IDS_SCMOVE          "Change the window position"
+    AFX_IDS_SCMINIMIZE      "Reduce the window to an icon"
+    AFX_IDS_SCMAXIMIZE      "Enlarge the window to full size"
+    AFX_IDS_SCNEXTWINDOW    "Switch to the next document window"
+    AFX_IDS_SCPREVWINDOW    "Switch to the previous document window"
+    AFX_IDS_SCCLOSE         "Close the active window and prompts to save the documents"
+END
+
+STRINGTABLE
+BEGIN
+    AFX_IDS_SCRESTORE       "Restore the window to normal size"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_PING_WARN           "Communications Timeout, Port Disconnected"
+    IDS_WARNING_DOC_CONNECT "A New Document cannot be created if a hardware connection\nis still active. Please disconnect from the hardware first."
+    IDS_PANE_PARMS          "Parameters"
+    IDS_MESSAGE_DROPPED     "Outbound Message was Dropped, no External Devices Connected!"
+    IDS_TOOLBAR_STANDARD    "Standard"
+    IDS_TOOLBAR_CUSTOMIZE   "Customize..."
+END
+
+STRINGTABLE
+BEGIN
+    ID_PANE_OUTPUT          "Enable the Logging Toolbar"
+END
+
+STRINGTABLE
+BEGIN
+    ID_CUSTOMIZE            "Customize the Toolbars"
+    IDS_IND_COM             "Connection Port"
+    IDS_IND_COUNT           "Transfer Rate"
+    IDS_IND_CONNECT         "Blue : Disconnected, Green : Connected, Red : Com Error"
+END
+
+STRINGTABLE
+BEGIN
+    ID_PANE_PROJECT         "Show or Hide the ProjectView Toolbar"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_LOG_TAB             "Log"
+    IDS_DEBUG_TAB           "Debug"
+    IDS_TRAFFIC_TAB         "Traffic"
+END
+
+STRINGTABLE
+BEGIN
+    ID_OUTPUT_CLEAR         "Clear Log Text"
+    ID_OUTPUT_COPY_ALL      "Copy Entire Log Text to Clipboard"
+    ID_OUTPUT_SAVE          "Save Log Text to File"
+    ID_TRAFFIC_CLEAR        "Clear Entire Traffic Log"
+    ID_LOG_CLEAR            "Clear Entire Application Log"
+    ID_LOG_COPY_ALL         "Copy Entire Log to Clipboard"
+    ID_LOG_SAVE             "Save Log to File"
+    ID_TRAFFIC_COPY_ALL     "Copy Entire Traffic Log to Clipboard"
+    ID_TRAFFIC_SAVE         "Save Traffic Log to File"
+    ID_TRAFFIC_ENABLE       "Enable or Disable Message Traffic Capture"
+    ID_DEBUG_ENABLE         "Enable or Disable Debug Message Capture"
+    ID_DEBUG_CLEAR          "Clear Entire Debug Log"
+END
+
+STRINGTABLE
+BEGIN
+    ID_DEBUG_COPYALL        "Copy Entire Debug Log to Clipboard"
+    ID_DEBUG_SAVE           "Save Debug Log to File"
+    ID_DEBUG_COPY_ALL       "Copy Entire Debug Log to Clipboard"
+    ID_TRAFFIC_STAMP        "Enable or Disable Traffic Message Time Stamping"
+    ID_DEBUG_STAMP          "Enable or Disable Debug Message Time Stamping"
+    ID_LOG_STAMP            "Enable or Disable Log Message Time Stamping"
+    ID_PROJECT              "Change the Application Settings\nSettings"
+    ID_GRAPH                "Change the Graph Settings\nSettings"
+    ID_IMAGE                "Change the Image Settings\nSettings"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_IND_TIMER           "Event Timer"
+END
+
+STRINGTABLE
+BEGIN
+    ID_PANE_GRAPH           "Show or Hide the Graphing Toolbar"
+END
+
+STRINGTABLE
+BEGIN
+    ID_PANE_IMAGE           "Show or Hide the 2D Image Toolbar"
+END
+
+STRINGTABLE
+BEGIN
+    IDD_CONNECT             "Connection"
+    IDD_CONNECT_TIP         "Hardware Media Attachment and Versions"
+END
+
+STRINGTABLE
+BEGIN
+    IDD_CP                  "Control Panel"
+    IDD_CP_TIP              "Control Panel Client"
+END
+
+STRINGTABLE
+BEGIN
+    IDD_CP_MEMORY           "Memory"
+    IDD_CP_MEMORY_TIP       "Embedded Processor Address Space Access"
+END
+
+STRINGTABLE
+BEGIN
+    IDC_CON_CONNECT         "Connect to Hardware"
+    IDC_CON_REFRESH         "Refresh Connection Ports, Only when Disconnected"
+END
+
+STRINGTABLE
+BEGIN
+    IDC_CON_STARTUP         "Connect on Startup"
+END
+
+STRINGTABLE
+BEGIN
+    IDC_CP_WR               "Readback After Written"
+END
+
+STRINGTABLE
+BEGIN
+    ID_TRAFFIC_LOCAL        "Enable or Disable Locally Delivered CM Traffic"
+    ID_COLLAPSE_ALL         "Collapse All Items"
+    ID_TRAFFIC_PIPE         "Enable or Disable CM In/Out Pipe Traffic"
+    ID_GRAPH_1              "Change the Graph Settings\nSettings"
+    ID_GRAPH_2              "Print the Graph\nPrint"
+    ID_IMAGE_1              "Change the Image Settings\nSettings"
+END
+
+STRINGTABLE
+BEGIN
+    IDC_CP_MEM_BIN          "Write File in Binary"
+    IDC_CP_MEM_ALL          "Display Full Length Data Set"
+    IDC_CP_MEM_HEX          "Display Data in Hex Format"
+    IDC_CP_MEM_WR           "Read Data Back after Written"
+    IDC_CP_MEM_CYCLE        "Cycle the Memory Test"
+    IDC_CP_MEM_AWGN         "Use Additive White Gaussian Noise for Memory Test"
+    IDC_CP_MEM_VERIFY       "Verify Memory Contents while Testing"
+    IDC_CP_MEM_SHOW         "Display Memory Contents"
+    IDC_CP_MEM_TO_FILE      "Stream DAQ Samples to File"
+END
+
+STRINGTABLE
+BEGIN
+    ID_EXPAND_ALL           "Expand All Items"
+END
+
+STRINGTABLE
+BEGIN
+    AFX_ID_PREVIEW_CLOSE    "A New Document cannot be created if a hardware connection\nis still active. Please disconnect the hardware first."
+END
+
+STRINGTABLE
+BEGIN
+    IDD_CP_RPC              "Remote"
+    IDD_CP_RPC_TIP          "Remote Procedure Call Server"
+END
+
+STRINGTABLE
+BEGIN
+    ID_PANE_VTK_IMAGE       "Show or Hide the VTK Image Toolbar"
+END
+
+STRINGTABLE
+BEGIN
+    ID_PROJECT_1            "Change the Application Settings\nSettings"
+END
+
+STRINGTABLE
+BEGIN
+    IDD_SRV                 "Services"
+    IDD_SRV_TIP             "TVC Services"
+END
+
+STRINGTABLE
+BEGIN
+    IDD_CLI                 "Clients"
+    IDD_CLI_TIP             "Clients"
+END
+
+STRINGTABLE
+BEGIN
+    IDD_DAQ                 "Acquisition Controller"
+    IDD_DAQ_TIP             "ADC128S022 Acquisition Controller"
+    IDC_DAQ_FILE            "File to Write Samples"
+END
+
+STRINGTABLE
+BEGIN
+    IDC_DAQ_PACKETS         "Number of 1K Packets to Collect, Minimum is 4 (0 is Continuous Sampling)"
+END
+
+STRINGTABLE
+BEGIN
+    IDC_DAQ_START           "Start ADC Sample Acquisition"
+END
+
+STRINGTABLE
+BEGIN
+    IDC_DAQ_TO_FILE         "Store Samples to File"
+    IDC_DAQ_HEX             "Show Samples in Hex"
+    IDC_DAQ_SHOW            "Report Samples in Edit Box"
+    IDC_DAQ_PLOT            "Plot Samples from ADC"
+    IDC_DAQ_RAMP            "Insert Ramp in Samples"
+    IDC_DAQ_FLOAT           "Store Samples as FLOAT otherwise INT"
+    IDC_DAQ_RAW             "Save Raw Packets to File"
+END
+
+#endif    // English (United States) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+LANGUAGE 9, 1
+#include "res\app.rc2"  // non-Microsoft Visual C++ edited resources
+#include "afxres.rc"      // Standard components
+#if !defined(_AFXDLL)
+#include "afxprint.rc"        // printing/print preview resources
+#include "afxribbon.rc"        // MFC ribbon and control bar resources
+#endif
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

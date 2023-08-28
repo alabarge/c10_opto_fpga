@@ -1,0 +1,49 @@
+1.    Quartus Prime Version 22.1std.1 Build 917 02/14/2023 SC Standard Edition.
+1.1   VHDL 2008, Settings -> VHDL Input
+1.2   SystemVerilog, Settings -> Verilog HDL Input
+2.    If windows app is connected then the CYC1000 flash can't be programmed
+      because of a driver conflict with the FTDI component.
+3.    If Qsys is changed then the BSP must be regenerated.
+4.    If the FPGA is rebuilt then the firmware must be rebuilt to avoid the "Mismatch Warning".
+
+Steps for building from clean repository
+
+1.    From Platform Designer open c10_qsys.qsys (from the PR_ variant directory)
+2.    Generate -> Generate HDL, Select VHDL for synthesis output and uncheck .BSF block symbol
+3.    Compile design from Processing -> Start Compilation
+4a.   Use the copy_sw.sh script from NIOS shell to copy the common files to the PR_xxx directory
+4b.   Open Eclipse from Tools -> Nios II Software Build Tools for Eclipse
+5.    File -> Import -> Preferences from c10_fpga\utils\eclipse.epf
+6.    File -> Import -> Existing Projects into Workspace from c10_fpga\PR_XXX\software
+7.    Select both c10_bsp and c10_fw
+8.    Right click c10_bsp Nios II -> Generate BSP
+9.    Project -> Clean, select Clean projects selected below and Build only selected projects
+10.   Select only c10_bsp and then OK
+11.   Then again from Project -> Clean select only c10_fw
+12.   Right click c10_fw Nios II -> Nios II Command Shell...
+13.   Change directory cd ../../script
+14.   Program SOF file from Tools -> Programmer, only necessary when flash is empty
+15.   Flash the SOF, ELF and ZIP files using ./flash_all.sh
+16.   Use the standard out USB serial port (not FTDI part, something like Prolific)
+      to monitor serial traffic from the design
+
+      NOTE: In order to build a windows app release version several files/folders need to be
+      added to the Install directory. This is necessary in order not to store large
+      binary files on github. They are described in the file install_x64.nsi. Also,
+      nsis-3.06.1 or higher must be installed in order to build a release setup file.
+
+17.   THE IPP LIBRARY IS CURRENTLY NOT REQUIRED
+18.   From win\jack directory launch VS2022 using jack.sln
+19.   Select Debug -> x64 project
+20.   Rebuild solution using Build -> Rebuild Solution
+21.   F5 to run the application
+22.   From the win\c10_cmd directory launch VS2022 using c10_cmd.sln
+23.   Select Debug -> x64 project
+24.   Rebuild solution using Build -> Rebuild Solution
+25.   Right click c10_cmd -> Properties
+26.   In the Debugging Pane, add -f cmd_file.txt to the Command Arguments field (if Debugging)
+27.   F5 to run the application
+28.   This application can also be run from the command line
+
+
+NOTE: ALL SHELL SCRIPTS RUN FROM NIOS SHELL MUST USE LINUX/UNIX LINE ENDINGS (LF ONLY)

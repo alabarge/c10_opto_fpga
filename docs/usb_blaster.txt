@@ -1,0 +1,64 @@
+BR
+Active Member
+*
+Posts: 7
+
+Arrow USB Programmer (JTAG server)
+« on: January 13, 2022, 03:43:19 PM »
+Hello,
+
+I got a strange problem with the Arrow USB Programmer (JTAG server). Everything worked fine last time I used it, but since I had windows 10 updates it can no longer find the Arrow JTAG server in the the Windows Services.
+
+I uninstalled and (re)installed the drivers and ran the "Arrow USB Programmer2 diagnostic" program and reported 1 error:
+"Checking Altera JTAG server service.
+- Error. The service is not installed. "
+
+No JTAG service PID is found in the Windows Services list. How do i install the JTAG service manually?
+
+Any ideas?
+
+Regards,
+BR
+
+====
+Arrow USB Programmer2 Diagnostic Program V1.2
+
+Reading version info.
+- Operating system version number is 10.0.19041.
+- Quartus version is 18.1.0.625.
+
+Searching programmer hardware.
+- Arrow USB Programmer2 AR1RUUJJ found.
+- Successful.
+
+Reading registry entries for programmer DLL.
+- Successful. TCK frequency is 20.000.000 Hz.
+
+Searching programmer DLL.
+- Successful. Programmer DLL installed properly.
+
+Checking Altera JTAG server service.
+- Error. The service is not installed.
+
+Reading registry entries for FTDI driver configuration settings.
+- Successful. FTDI driver configuration settings are OK.
+
+Total errors: 1
+Hit any key to exit program.
+====
+
+ Logged
+BR
+Active Member
+*
+Posts: 7
+
+Re: Arrow USB Programmer (JTAG server)
+« Reply #1 on: January 13, 2022, 04:58:29 PM »
+I found a solution to manually install the JTAG server again by using "quartus\bin64>jtagserver.exe -install" command. Somehow it uninstalled the JTAG server??? I have no idea why.
+
+Now it works again!
+
+Regards,
+BR
+

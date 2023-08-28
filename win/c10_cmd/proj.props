@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ImportGroup Label="PropertySheets" />
+  <PropertyGroup Label="UserMacros">
+    <FW_SHARE>$(SolutionDir)..\..\nios\de0_fw\share\</FW_SHARE>
+  </PropertyGroup>
+  <PropertyGroup />
+  <ItemDefinitionGroup />
+  <ItemGroup>
+    <BuildMacro Include="FW_SHARE">
+      <Value>$(FW_SHARE)</Value>
+    </BuildMacro>
+  </ItemGroup>
+</Project>

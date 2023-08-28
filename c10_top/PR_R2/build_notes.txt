@@ -1,0 +1,53 @@
+Creating FPGA .SOF & .ELF files
+
+Only Quartus II 64-Bit Version 22.1std.1 Build 917 02/14/2023 SC Full Version is Supported.
+
+1.    Launch Quartus and open project in PR directory de0_fpga.qpf
+2.    Tools->Platform Designer Open de0_fpga.qsys
+3.    Generate HDL, Select VHDL and uncheck Create block symbol file
+4.    Synthesize Design with Quartus, Processing->Start Compilation
+
+      NOTE: WSL (Version 1) and Eclipse MARS must be installed manually in order
+            to use the NIOS II SBT for Eclipse
+
+5.    Launch Tools->NIOS II Software Build Tools for Eclipse
+6.    File->Import->General->Preferences from utils/eclipse.epf
+7.    File->Import->General->Existing Projects into Workspace from de0_com_fpga/nios
+      import de0_bsp and de0_fw do not copy projects into workspace
+8.    Right-Click on de0_bsp->NIOS II->Generate BSP
+9.    Right-Click on de0_bsp->Build Project
+10.   Right-Click on de0_fw->Build Project
+
+      NOTE: This error message is okay:
+            make[1]: flash2dat: Command not found
+            make[1]: *** [../de0_bsp//mem_init.mk:233: mem_init/hdl_sim/de0_qsys_epcs_boot_rom.dat] Error 127
+
+11.   Flash the DE0-Nano Board, launch from Start Menu -> NIOS II Command Shell (Intel FPGA Install Directory)
+      cd /mnt/d/de0_com_fpga/de0_top/PR_RF/script
+      ./flash_all.sh (this fill flash de0_fpga.sof, de0_fw.elf and zipfs.zip)
+
+      NOTE: In the PR script directory the .SOF, .ELF or .ZIP files may be flashed independently using the
+            shell scripts from WSL.
+
+12.   Build Products in "output_files" :
+         de0_fpga.sof
+         de0_fpga.pof
+         de0_fpga_checksum.txt
+         de0_fpga_crc32.txt
+         de0_fpga_md5.txt
+         fpga_build.h
+         fpga_version.h
+         de0_fpga_v1C.1.2.011F5ADC.C1C45E38.sof (for example)
+         de0_fpga_release_20230712_1244.zip (for example, when zip_release.tcl used)
+
+      NOTE: For FPGA production release use the TCL command Tools->TCL Scripts->zip_release.tcl
+
+13.   Build Products in "release" :
+         DE0_F_FPGA_Project.sof
+         de0_fpga_checksum.txt
+         de0_fpga_crc32.txt
+         de0_fpga_md5.txt
+         de0_fpga_v1C.1.2.011F5ADC.C1C45E38.sof
+         fpga_build.h
+         fpga_build.vhd
+         fpga_version.h

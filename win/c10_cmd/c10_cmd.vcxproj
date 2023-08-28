@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>16.0</VCProjectVersion>
+    <Keyword>Win32Proj</Keyword>
+    <ProjectGuid>{50147eab-bd60-4175-bc26-cc775fa24b3f}</ProjectGuid>
+    <RootNamespace>daqcmd</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>NotSet</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="proj.props" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="proj.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(reprocessorDefinitions);_CRT_SECURE_NO_WARNINGS;_WINSOCK_DEPRECATED_NO_WARNINGS</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>.\;.\core;.\driver;.\opc_srv;.\cp_cli;$(FW_SHARE)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>.\driver</AdditionalLibraryDirectories>
+      <AdditionalDependencies>wpcap64.lib;ftd2xx.lib;libserialport.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+    <PreBuildEvent>
+      <Command>$(SolutionDir)..\..\utils\fw_ver.exe $(ProjectDir)build.inc $(ProjectDir)build.h $(ProjectDir)..\..\.git</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Message>Build Version</Message>
+    </PreBuildEvent>
+    <PostBuildEvent>
+      <Command>copyFiles.bat $(SolutionDir) $(Platform) $(Configuration) $(ProjectName)</Command>
+    </PostBuildEvent>
+    <PostBuildEvent>
+      <Message>Copy Exe</Message>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions);_CRT_SECURE_NO_WARNINGS;_WINSOCK_DEPRECATED_NO_WARNINGS</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>.\;.\core;.\driver;.\opc_srv;.\cp_cli;$(FW_SHARE)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>.\driver</AdditionalLibraryDirectories>
+      <AdditionalDependencies>wpcap64.lib;ftd2xx.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;libserialport.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+    <PreBuildEvent>
+      <Command>$(SolutionDir)..\..\utils\fw_ver.exe $(ProjectDir)build.inc $(ProjectDir)build.h $(ProjectDir)..\..\.git</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Message>Build Version</Message>
+    </PreBuildEvent>
+    <PostBuildEvent>
+      <Command>copyFiles.bat $(SolutionDir) $(Platform) $(Configuration) $(ProjectName)</Command>
+    </PostBuildEvent>
+    <PostBuildEvent>
+      <Message>Copy Exe</Message>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="core\ci.c" />
+    <ClCompile Include="core\cm.c" />
+    <ClCompile Include="core\lib.c" />
+    <ClCompile Include="core\log.c" />
+    <ClCompile Include="core\main.c" />
+    <ClCompile Include="core\trace.c" />
+    <ClCompile Include="cp_cli\cp_cli.c" />
+    <ClCompile Include="driver\com.c" />
+    <ClCompile Include="driver\fifo.c" />
+    <ClCompile Include="driver\lan.c" />
+    <ClCompile Include="driver\opto.c" />
+    <ClCompile Include="driver\timer.c" />
+    <ClCompile Include="driver\udp.c" />
+    <ClCompile Include="driver\udp_log.c" />
+    <ClCompile Include="opc_srv\opc_srv.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="core\cc.h" />
+    <ClInclude Include="core\ci.h" />
+    <ClInclude Include="core\cm.h" />
+    <ClInclude Include="core\io.h" />
+    <ClInclude Include="core\lib.h" />
+    <ClInclude Include="core\log.h" />
+    <ClInclude Include="core\main.h" />
+    <ClInclude Include="core\msg_str.h" />
+    <ClInclude Include="core\trace.h" />
+    <ClInclude Include="core\win_cfg.h" />
+    <ClInclude Include="cp_cli\cp_cli.h" />
+    <ClInclude Include="driver\com.h" />
+    <ClInclude Include="driver\fifo.h" />
+    <ClInclude Include="driver\lan.h" />
+    <ClInclude Include="driver\lanpkt.h" />
+    <ClInclude Include="driver\opto.h" />
+    <ClInclude Include="driver\timer.h" />
+    <ClInclude Include="driver\udp.h" />
+    <ClInclude Include="driver\udp_log.h" />
+    <ClInclude Include="opc_srv\opc_msg.h" />
+    <ClInclude Include="opc_srv\opc_srv.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

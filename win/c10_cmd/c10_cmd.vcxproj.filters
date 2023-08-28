@@ -1,0 +1,137 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Source Files\core">
+      <UniqueIdentifier>{6076a65f-a48a-43cf-8bbe-a1164ecfe491}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\driver">
+      <UniqueIdentifier>{0831371f-2e67-4f33-900a-17dbb643df18}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\cp_cli">
+      <UniqueIdentifier>{49236ae7-7dab-4994-82c7-2d7a17c846b5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\opc_srv">
+      <UniqueIdentifier>{a7996335-deab-4e94-8a8f-91fdfe8e1a83}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="core\ci.c">
+      <Filter>Source Files\core</Filter>
+    </ClCompile>
+    <ClCompile Include="core\cm.c">
+      <Filter>Source Files\core</Filter>
+    </ClCompile>
+    <ClCompile Include="core\lib.c">
+      <Filter>Source Files\core</Filter>
+    </ClCompile>
+    <ClCompile Include="core\log.c">
+      <Filter>Source Files\core</Filter>
+    </ClCompile>
+    <ClCompile Include="core\main.c">
+      <Filter>Source Files\core</Filter>
+    </ClCompile>
+    <ClCompile Include="driver\opto.c">
+      <Filter>Source Files\driver</Filter>
+    </ClCompile>
+    <ClCompile Include="driver\udp_log.c">
+      <Filter>Source Files\driver</Filter>
+    </ClCompile>
+    <ClCompile Include="cp_cli\cp_cli.c">
+      <Filter>Source Files\cp_cli</Filter>
+    </ClCompile>
+    <ClCompile Include="driver\timer.c">
+      <Filter>Source Files\driver</Filter>
+    </ClCompile>
+    <ClCompile Include="opc_srv\opc_srv.c">
+      <Filter>Source Files\opc_srv</Filter>
+    </ClCompile>
+    <ClCompile Include="driver\fifo.c">
+      <Filter>Source Files\driver</Filter>
+    </ClCompile>
+    <ClCompile Include="driver\com.c">
+      <Filter>Source Files\driver</Filter>
+    </ClCompile>
+    <ClCompile Include="driver\lan.c">
+      <Filter>Source Files\driver</Filter>
+    </ClCompile>
+    <ClCompile Include="core\trace.c">
+      <Filter>Source Files\core</Filter>
+    </ClCompile>
+    <ClCompile Include="driver\udp.c">
+      <Filter>Source Files\driver</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="core\ci.h">
+      <Filter>Source Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\cm.h">
+      <Filter>Source Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\io.h">
+      <Filter>Source Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\lib.h">
+      <Filter>Source Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\log.h">
+      <Filter>Source Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\main.h">
+      <Filter>Source Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\win_cfg.h">
+      <Filter>Source Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="cp_cli\cp_cli.h">
+      <Filter>Source Files\cp_cli</Filter>
+    </ClInclude>
+    <ClInclude Include="driver\opto.h">
+      <Filter>Source Files\driver</Filter>
+    </ClInclude>
+    <ClInclude Include="driver\timer.h">
+      <Filter>Source Files\driver</Filter>
+    </ClInclude>
+    <ClInclude Include="driver\udp_log.h">
+      <Filter>Source Files\driver</Filter>
+    </ClInclude>
+    <ClInclude Include="opc_srv\opc_srv.h">
+      <Filter>Source Files\opc_srv</Filter>
+    </ClInclude>
+    <ClInclude Include="opc_srv\opc_msg.h">
+      <Filter>Source Files\opc_srv</Filter>
+    </ClInclude>
+    <ClInclude Include="core\cc.h">
+      <Filter>Source Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\msg_str.h">
+      <Filter>Source Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="driver\fifo.h">
+      <Filter>Source Files\driver</Filter>
+    </ClInclude>
+    <ClInclude Include="driver\com.h">
+      <Filter>Source Files\driver</Filter>
+    </ClInclude>
+    <ClInclude Include="driver\lan.h">
+      <Filter>Source Files\driver</Filter>
+    </ClInclude>
+    <ClInclude Include="core\trace.h">
+      <Filter>Source Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="driver\udp.h">
+      <Filter>Source Files\driver</Filter>
+    </ClInclude>
+    <ClInclude Include="driver\lanpkt.h">
+      <Filter>Source Files\driver</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
