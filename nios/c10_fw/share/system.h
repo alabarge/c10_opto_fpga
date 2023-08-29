@@ -4,7 +4,7 @@
  * Machine generated for CPU 'cpu' in SOPC Builder design 'c10_fpga'
  * SOPC Builder design path: D:/c10_opto_fpga/c10_top/PR_R2/c10_fpga.sopcinfo
  *
- * Generated: Sun Aug 27 08:19:29 PDT 2023
+ * Generated: Tue Aug 29 09:14:03 PDT 2023
  */
 
 /*

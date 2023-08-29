@@ -51,6 +51,9 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "udpapi", "udpapi\udpapi.vcx
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "uartapi", "uartapi\uartapi.vcxproj", "{7FA4A42A-662F-4F29-839B-4CEB0645FD4A}"
+	ProjectSection(ProjectDependencies) = postProject
+		{9C6E64DC-A002-4A73-9447-467F118FEBF7} = {9C6E64DC-A002-4A73-9447-467F118FEBF7}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libserialport", "libserialport\libserialport.vcxproj", "{1C8EAAF2-133E-4CEE-8981-4A903A8B3935}"
 EndProject
