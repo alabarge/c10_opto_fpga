@@ -24,7 +24,7 @@ set_module_property INTERNAL false
 set_module_property OPAQUE_ADDRESS_MAP true
 set_module_property GROUP Omniware
 set_module_property AUTHOR "A.E. LaBarge"
-set_module_property DISPLAY_NAME "FTDI OPTO w/ Head & Tail"
+set_module_property DISPLAY_NAME "FTDI Fast Serial OPTO w/ Head & Tail"
 set_module_property INSTANTIATE_IN_SYSTEM_MODULE true
 set_module_property EDITABLE true
 set_module_property ANALYZE_HDL AUTO
@@ -43,7 +43,7 @@ add_fileset_file opto_regs.vhd VHDL PATH opto_regs.vhd
 add_fileset_file opto_ctl.vhd VHDL PATH opto_ctl.vhd
 add_fileset_file opto_irq.vhd VHDL PATH opto_irq.vhd
 add_fileset_file opto_rtx.vhd VHDL PATH opto_rtx.vhd
-add_fileset_file opto_4K.vhd VHDL PATH opto_4k.vhd
+add_fileset_file opto_2k.vhd VHDL PATH opto_2k.vhd
 add_fileset_file opto_fifo.vhd VHDL PATH opto_fifo.vhd
 add_fileset_file opto_burst.vhd VHDL PATH opto_burst.vhd
 
@@ -55,7 +55,7 @@ add_fileset_file opto_regs.vhd VHDL PATH opto_regs.vhd
 add_fileset_file opto_ctl.vhd VHDL PATH opto_ctl.vhd
 add_fileset_file opto_irq.vhd VHDL PATH opto_irq.vhd
 add_fileset_file opto_rtx.vhd VHDL PATH opto_rtx.vhd
-add_fileset_file opto_4K.vhd VHDL PATH opto_4k.vhd
+add_fileset_file opto_2k.vhd VHDL PATH opto_2k.vhd
 add_fileset_file opto_fifo.vhd VHDL PATH opto_fifo.vhd
 add_fileset_file opto_burst.vhd VHDL PATH opto_burst.vhd
 
@@ -93,7 +93,7 @@ set_interface_property s1 ENABLED true
 
 add_interface_port s1 read_n read_n Input 1
 add_interface_port s1 write_n write_n Input 1
-add_interface_port s1 address address Input 14
+add_interface_port s1 address address Input 12
 add_interface_port s1 readdata readdata Output 32
 add_interface_port s1 writedata writedata Input 32
 set_interface_assignment s1 embeddedsw.configuration.isFlash 0
@@ -181,4 +181,13 @@ add_interface_port opto_export fscts export Input 1
 add_interface_port opto_export fsdo export Input 1
 add_interface_port opto_export fsdi export Output 1
 add_interface_port opto_export test_bit export Output 1
+add_interface_port opto_export debug export Output 4
+
+#
+# DTS Entry
+#
+set_module_assignment embeddedsw.dts.vendor "omni"
+set_module_assignment embeddedsw.dts.group "opto"
+set_module_assignment embeddedsw.dts.name "opto"
+set_module_assignment embeddedsw.dts.compatible "generic-uio"
 

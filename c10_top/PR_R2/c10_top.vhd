@@ -74,6 +74,7 @@ component c10_fpga is
       opto_fsdo      : in    std_logic;
       opto_fsdi      : out   std_logic;
       opto_test_bit  : out   std_logic;
+      opto_debug     : out   std_logic_vector(3 downto 0);
       gpi_export     : in    std_logic_vector(8 downto 0);
       gpx_export     : inout std_logic_vector(6 downto 0);
       dram_clk       : out   std_logic;
@@ -166,6 +167,7 @@ signal debug               : std_logic_vector(3 downto 0);
          opto_fsdo         => iFSDO,
          opto_fsdi         => oFSDI,
          opto_test_bit     => sw_test_bit,
+         opto_debug        => open,
          adc_cs_n          => oADC_CSn,
          adc_mosi          => oADC_MOSI,
          adc_miso          => iADC_MISO,

@@ -7,6 +7,7 @@
 #include <time.h>
 #include <unistd.h>
 #include <limits.h>
+#include <sys/stat.h>
 
 int main(int argc, char *argv[]) {
 
@@ -29,7 +30,7 @@ int main(int argc, char *argv[]) {
    char  build_user[128]   = {0};
    char  build_time[128]   =  {0};
    char  build_date[128]   = {0};
-   char  build_hi[128]     = {0};
+   char  build_hi[1024]     = {0};
    char  build_lo[128]     = {0};
    char  build_str1[128]   = {0};
    char  build_str2[128]   = {0};
@@ -49,7 +50,7 @@ int main(int argc, char *argv[]) {
             "SEP", "OCT", "NOV", "DEC"
           };
 
-   printf("\nFirmware Version Utility 1.9 [AEL]\n");
+   printf("\nFirmware Version Utility 1.10\n");
 
    // command Line
    printf("cmd : ");
@@ -61,7 +62,7 @@ int main(int argc, char *argv[]) {
    // current directory
    if (getcwd(cwd, sizeof(cwd)) != NULL) printf("cwd : %s\n", cwd);
 
-   if (argc < 3) {
+   if (argc < 4) {
       printf("Error: Filenames not specified.\n");
       return -1;
    }
@@ -77,6 +78,7 @@ int main(int argc, char *argv[]) {
          if (strcmp(token, "BUILD_INC") == 0) {
             token = strtok(NULL, "\n");
             sscanf(token, "%d", &build_inc);
+            build_inc++;
             build_inc &= 0x00FF;
             build_inc_found = 1;
             break;
@@ -201,9 +203,20 @@ int main(int argc, char *argv[]) {
       build_user[0] = '\0';
    }
 
-   // Get git HEAD detail
-   ret = system("git show --quiet HEAD > git_hash.txt");
-   if (ret == 0) {
+   remove("git_hash.txt");
+   remove("git_porcelain.txt");
+
+   // Check for .git existence
+   struct stat status;
+   stat(argv[3], &status);
+
+   // If .git directory then gather state info
+   if (S_ISDIR(status.st_mode)) {
+
+      ret = system("git show --quiet HEAD > git_hash.txt");
+      ret = system("git status --porcelain > git_porcelain.txt");
+
+      // Get git HEAD detail
       //status --porcelain
       // Parse git_hash.txt
       //
@@ -223,9 +236,16 @@ int main(int argc, char *argv[]) {
             if (strcmp(token, "commit") == 0) {
                token = strtok(NULL, " ");
                sprintf(git_rev, "%s", token);
-               // last sixteen characters of hash
-               memcpy(git_rev, &git_rev[24], 16);
-               git_rev[16] = 0x00;
+               // example sha-1 hash - 71a42555d9d0c2ca21d5d48b653ef538eeac36fd
+               // first seven characters of hash
+               memcpy(&git_rev[0], &git_rev[0], 7);
+               // ellipses ...
+               git_rev[7] = '.';
+               git_rev[8] = '.';
+               git_rev[9] = '.';
+               // last seven characters of hash
+               memcpy(&git_rev[10], &git_rev[33], 7);
+               git_rev[17] = 0x00;
             }
             // Merge
             if (strcmp(token, "Merge:") == 0) {
@@ -245,12 +265,10 @@ int main(int argc, char *argv[]) {
             }
          }
          fclose(git);
+         remove("git_hash.txt");
       }
-   }
 
-   // Get git status detail
-   ret = system("git status --porcelain > git_porcelain.txt");
-   if (ret == 0) {
+      // Get git status detail
       //
       // Parse git_porcelain.txt
       //
@@ -267,7 +285,11 @@ int main(int argc, char *argv[]) {
             }
          }
          fclose(git);
+         remove("git_porcelain.txt");
       }
+   }
+   else {
+      printf("Warning : The %s Directory was not found\n", argv[3]);
    }
 
    // Create Build Strings

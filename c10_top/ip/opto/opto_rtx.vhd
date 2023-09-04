@@ -15,7 +15,6 @@ entity opto_rtx is
       fsdi                 : out std_logic;
       dat_wr               : in  std_logic;
       tx_rdy               : out std_logic;
-      rx_pend              : in  std_logic;
       din                  : in  std_logic_vector(7 downto 0)
    );
 end opto_rtx;
@@ -35,7 +34,6 @@ type  TX_SV_t is record
    bit_cnt     : integer range 0 to 10;
    tick        : std_logic;
    busy        : std_logic;
-   wr_ack      : std_logic;
    sout        : std_logic;
 end record TX_SV_t;
 
@@ -53,7 +51,7 @@ end record RX_SV_t;
 -- CONSTANTS
 --
 
--- 16.6 MHZ @ 100MHZ SYSCLK
+-- 16.666 MHZ @ 100MHZ SYSCLK, (60 nS)
 constant C_FSCLK           : integer := 2;
 
 -- TX State Vector Initialization
@@ -64,8 +62,7 @@ constant C_TX_SV_INIT : TX_SV_t := (
    bit_cnt     => 0,
    tick        => '0',
    busy        => '0',
-   wr_ack      => '0',
-   sout        => '0'
+   sout        => '1'
 );
 
 -- RX State Vector Initialization
@@ -87,11 +84,6 @@ signal tx                  : TX_SV_t;
 
 signal rx_dout             : std_logic_vector(7 downto 0);
 
-signal tx_dat_in           : std_logic_vector(7 downto 0);
-
-signal wr_req              : std_logic;
-signal wr_req_r0           : std_logic;
-
 signal fifo_ef             : std_logic;
 
 signal fs_clk_cnt          : integer range 0 to 2;
@@ -108,18 +100,19 @@ begin
    dout        <= rx_dout;
    rx_rdy      <= not fifo_ef;
 
-   -- OPTO output signals
+   -- FTDI output signals
    fsclk       <= fs_tick;
    fsdi        <= tx.sout;
 
    -- withold ready indication until character
    -- is fully transmitted
-   tx_rdy      <= not (tx.busy or dat_wr or wr_req);
+   tx_rdy      <= '1' when (tx.busy = '0' and fscts = '1' and
+                            tx.tick = '1' and fs_tick = '0') else '0';
 
    --
-   --   1024x8 BLOCKRAM FIFO
+   --   1024x8 BLOCKRAM RX FIFO
    --
-   OPTO_FIFO_I : entity work.opto_fifo
+   FTDI_FIFO_I : entity work.opto_fifo
       port map (
          clock             => clk,
          sclr              => not reset_n,
@@ -148,26 +141,24 @@ begin
                --
                -- Look for Serial Write, if not Busy Receiving
                --
-               if (wr_req = '1' and fsdo = '1' and rx.busy = '0' and
-                   fscts = '1' and rx_pend = '0') then
+               if (dat_wr = '1') then
                   tx.state    <= TX_CTS;
                   tx.busy     <= '1';
                   -- start + symbol + stop, LSB first
-                  tx.dat      <= '0' & tx_dat_in & '0';
+                  tx.dat      <= '0' & din & '0';
                   tx.bit_cnt  <= 0;
-                  tx.delay    <= 255;
+                  tx.delay    <= 2;
+                  tx.sout     <= '1';
                else
                   tx.state    <= IDLE;
-                  tx.busy     <= '0';
                   tx.sout     <= '1';
-                  tx.wr_ack   <= '0';
                end if;
 
             --
             -- Check for Clear-to-Send at Rising-Edge
             --
             when TX_CTS =>
-               if (tx.tick = '0' and fs_tick = '1' and fscts = '1') then
+               if (tx.tick = '1' and fs_tick = '0' and fscts = '1') then
                   tx.state    <= TX_DAT;
                   tx.sout     <= tx.dat(0);
                else
@@ -178,7 +169,7 @@ begin
             -- Assert Serial Bit at Falling-Edge
             --
             when TX_DAT =>
-               if (tx.tick = '1' and fs_tick = '0') then
+               if (tx.tick = '0' and fs_tick = '1') then
                   tx.state    <= TX_NEXT;
                   -- next serial bit
                   tx.dat      <= '1' & tx.dat(9 downto 1);
@@ -194,7 +185,8 @@ begin
                if (tx.bit_cnt = 10) then
                   tx.state    <= TX_WAIT;
                   tx.bit_cnt  <= 0;
-               elsif (tx.tick = '0' and fs_tick = '1') then
+                  tx.sout     <= '1';
+               elsif (tx.tick = '1' and fs_tick = '0') then
                   tx.state    <= TX_DAT;
                   tx.sout     <= tx.dat(0);
                else
@@ -202,23 +194,18 @@ begin
                end if;
 
             --
-            -- Wait for CTS Falling-Edge
+            -- Wait for 2 Serial Clocks
             --
             when TX_WAIT =>
-               if (tx.delay = 0) then
+               if (tx.tick = '1' and fs_tick = '0' and tx.delay = 0) then
                   tx.state    <= IDLE;
-                  tx.wr_ack   <= '1';
-               elsif (fscts = '0' and tx.delay = 255) then
-                  tx.state    <= IDLE;
-                  tx.wr_ack   <= '1';
-               -- Resend the Character, FT232H does not
-               -- indicate this will happen, but it does during
-               -- simultaneous TX/RX.
-               elsif (fscts = '0' and tx.delay /= 255) then
-                  tx.state    <= IDLE;
-               else
+                  tx.busy     <= '0';
+               elsif (tx.tick = '1' and fs_tick = '0') then
                   tx.state    <= TX_WAIT;
                   tx.delay    <= tx.delay - 1;
+               else
+                  tx.state    <= TX_WAIT;
+                  tx.delay    <= tx.delay;
                end if;
 
             when others =>
@@ -226,25 +213,6 @@ begin
 
          end case;
 
-      end if;
-   end process;
-
-   --
-   --  DATA WR REQUEST
-   --
-   process(all) begin
-      if (reset_n = '0') then
-         wr_req         <= '0';
-         wr_req_r0      <= '0';
-         tx_dat_in      <= (others => '0');
-      elsif (rising_edge(clk)) then
-         wr_req_r0      <= dat_wr;
-         if (dat_wr = '1' and wr_req_r0 = '0') then
-            wr_req      <= '1';
-            tx_dat_in   <= din;
-         elsif (tx.wr_ack = '1') then
-            wr_req      <= '0';
-         end if;
       end if;
    end process;
 
@@ -316,7 +284,7 @@ begin
    end process;
 
    --
-   -- OPTO FT232H FSCLK
+   -- FTDI FT232H FSCLK
    --
    process(all) begin
       if (reset_n = '0') then

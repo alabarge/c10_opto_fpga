@@ -4,7 +4,7 @@ JedecChain;
 	DefaultMfr(6E);
 
 	P ActionCode(Cfg)
-		Device PartName(10CL025Y) Path("D:/c10_opto_fpga/c10_top/PR_R2/output_files/") File("c10_fpga.jic") MfrSpec(OpMask(1) SEC_Device(EPCQ16A) Child_OpMask(1 3));
+		Device PartName(10CL025Y) Path("./output_files/") File("c10_fpga.jic") MfrSpec(OpMask(1) SEC_Device(EPCQ16A) Child_OpMask(1 3));
 
 ChainEnd;
 

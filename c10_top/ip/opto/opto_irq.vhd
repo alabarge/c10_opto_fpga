@@ -4,7 +4,7 @@ use ieee.numeric_std.all;
 
 entity opto_irq is
    generic (
-      C_NUM_INT            : integer      := 2
+      C_NUM_INT            : integer      := 3
    );
    port (
       clk                  : in    std_logic;
@@ -52,7 +52,7 @@ begin
    -- Combinatorial Signal Outputs
    --
 
-   irq      <= intReq(0) or intReq(1);
+   irq      <= intReq(0) or intReq(1) or intReq(2);
    int_req  <= intReq;
 
 end rtl;

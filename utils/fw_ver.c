@@ -248,9 +248,16 @@ int main(int argc, char *argv[]) {
             if (strcmp(token, "commit") == 0) {
                token = strtok(NULL, " ");
                sprintf(git_rev, "%s", token);
-               // last sixteen characters of hash
-               memcpy(git_rev, &git_rev[24], 16);
-               git_rev[16] = 0x00;
+               // example sha-1 hash - 71a42555d9d0c2ca21d5d48b653ef538eeac36fd
+               // first seven characters of hash
+               memcpy(&git_rev[0], &git_rev[0], 7);
+               // ellipses ...
+               git_rev[7] = '.';
+               git_rev[8] = '.';
+               git_rev[9] = '.';
+               // last seven characters of hash
+               memcpy(&git_rev[10], &git_rev[33], 7);
+               git_rev[17] = 0x00;
             }
             // Merge
             if (strcmp(token, "Merge:") == 0) {
