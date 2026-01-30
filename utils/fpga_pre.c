@@ -23,7 +23,7 @@
 
 int main(int argc, char *argv[]) {
 
-   FILE  *ver, *git;
+   FILE  *ver, *git, *qsf;
 
    struct tm *now;
    time_t clock;
@@ -52,6 +52,8 @@ int main(int argc, char *argv[]) {
    char  git_auth[128]     = {0};
    char  git_email[128]    = {0};
    char  git_date[128]     = {0};
+   char  last_quartus[128] = {0};
+   char  creation_date[128] = {0};
 
    char  *env, *token;
 
@@ -63,7 +65,7 @@ int main(int argc, char *argv[]) {
             "SEP", "OCT", "NOV", "DEC"
           };
 
-   printf("\nCYC1000 fpga_build.vhd & fpga_build.h File Creation 1.3, Pre-Synthesis\n");
+   printf("\nCYC1000 fpga_build.vhd & fpga_build.h File Creation 1.4, Pre-Synthesis\n");
 
    // command Line
    printf("cmd : ");
@@ -75,7 +77,7 @@ int main(int argc, char *argv[]) {
    // current directory
    if (getcwd(cwd, sizeof(cwd)) != 0) printf("cwd : %s\n", cwd);
 
-   if (argc < 5) {
+   if (argc < 6) {
       printf("Error: Filenames not specified.\n");
       return -1;
    }
@@ -150,6 +152,29 @@ int main(int argc, char *argv[]) {
       printf("Error Parsing %s, %d\n", argv[1], error);
       return -1;
    }
+
+   //
+   // If the QSF exists then parse for LAST_QUARTUS_VERSION and PROJECT_CREATION_TIME_DATE
+   //
+   if  ((qsf = fopen(argv[5],"rt")) != NULL) {
+      while (fgets(in_line, sizeof(in_line), qsf) != NULL) {
+         token = strtok(in_line, " ");
+         token = strtok(NULL, " ");
+         token = strtok(NULL, " ");
+         if (token == NULL) continue;
+         if (strcmp(token, "LAST_QUARTUS_VERSION") == 0) {
+            token = strtok(NULL, "\"");
+            strcpy(last_quartus, token);
+         }
+         if (strcmp(token, "PROJECT_CREATION_TIME_DATE") == 0) {
+            token = strtok(NULL, "\"");
+            strcpy(creation_date, token);
+            break;
+         }
+      }
+      fclose(qsf);
+   }
+
 
    // Increment Build Number, only 0 to 255
    build_inc++;
@@ -272,33 +297,36 @@ int main(int argc, char *argv[]) {
 
    // Create Build Strings
    sprintf(build_lo, "%d.%d.%d build %d", build_pid, build_map, build_logic, build_inc);
-   sprintf(build_hi, "%s, %s %s [%s] %s", build_lo, build_time, build_date, build_user, git_rev);
+   sprintf(build_hi, "%s, %s %s [%s] %s %s", build_lo, build_time, build_date,
+      build_user, git_rev, last_quartus);
    sprintf(build_str1, "%s (%04d/%02d/%02d)", "", now->tm_year+1900, now->tm_mon+1, now->tm_mday);
    sprintf(build_str2, "%d.%d.%d.%d", build_pid, build_map, build_logic, build_inc);
 
    fprintf(ver, "#pragma once\n\n");
 
-   fprintf(ver, "#define FPGA_PID        %d\n",     build_pid);
-   fprintf(ver, "#define FPGA_MAP        %d\n",     build_map);
-   fprintf(ver, "#define FPGA_LOGIC      %d\n",     build_logic);
-   fprintf(ver, "#define FPGA_INC        %d\n",     build_inc);
-   fprintf(ver, "#define FPGA_MAP_DATE   0x%08X\n", build_map_date);
-   fprintf(ver, "#define FPGA_VER_HEX    0x%08X\n", build_hex);
-   fprintf(ver, "#define FPGA_TIME       \"%s\"\n", build_time);
-   fprintf(ver, "#define FPGA_DATE       \"%s\"\n", build_date);
-   fprintf(ver, "#define FPGA_USER       \"%s\"\n", build_user);
-   fprintf(ver, "#define FPGA_STR        \"%s\"\n", build_str2);
-   fprintf(ver, "#define FPGA_LO         \"%s\"\n", build_lo);
-   fprintf(ver, "#define FPGA_HI         \"%s\"\n", build_hi);
-   fprintf(ver, "#define FPGA_STRING     \"%s\"\n", build_str2);
-   fprintf(ver, "#define FPGA_EPOCH      %d\n", (uint32_t)clock);
-   fprintf(ver, "#define FPGA_EPOCH_HEX  0x%08X\n", (uint32_t)clock);
-   fprintf(ver, "#define FPGA_DATE_HEX   0x%04d%02d%02d\n", now->tm_year+1900, now->tm_mon+1, now->tm_mday);
-   fprintf(ver, "#define FPGA_TIME_HEX   0x00%02d%02d%02d\n", now->tm_hour, now->tm_min, now->tm_sec);
-   fprintf(ver, "#define FPGA_GIT_REV    \"%s\"\n", git_rev);
-   fprintf(ver, "#define FPGA_GIT_AUTH   \"%s\"\n", git_auth);
-   fprintf(ver, "#define FPGA_GIT_EMAIL  \"%s\"\n", git_email);
-   fprintf(ver, "#define FPGA_GIT_DATE   \"%s\"\n", git_date);
+   fprintf(ver, "#define FPGA_PID            %d\n",     build_pid);
+   fprintf(ver, "#define FPGA_MAP            %d\n",     build_map);
+   fprintf(ver, "#define FPGA_LOGIC          %d\n",     build_logic);
+   fprintf(ver, "#define FPGA_INC            %d\n",     build_inc);
+   fprintf(ver, "#define FPGA_MAP_DATE       0x%08X\n", build_map_date);
+   fprintf(ver, "#define FPGA_VER_HEX        0x%08X\n", build_hex);
+   fprintf(ver, "#define FPGA_TIME           \"%s\"\n", build_time);
+   fprintf(ver, "#define FPGA_DATE           \"%s\"\n", build_date);
+   fprintf(ver, "#define FPGA_USER           \"%s\"\n", build_user);
+   fprintf(ver, "#define FPGA_STR            \"%s\"\n", build_str2);
+   fprintf(ver, "#define FPGA_LO             \"%s\"\n", build_lo);
+   fprintf(ver, "#define FPGA_HI             \"%s\"\n", build_hi);
+   fprintf(ver, "#define FPGA_STRING         \"%s\"\n", build_str2);
+   fprintf(ver, "#define FPGA_EPOCH          %d\n", (uint32_t)clock);
+   fprintf(ver, "#define FPGA_EPOCH_HEX      0x%08X\n", (uint32_t)clock);
+   fprintf(ver, "#define FPGA_DATE_HEX       0x%04d%02d%02d\n", now->tm_year+1900, now->tm_mon+1, now->tm_mday);
+   fprintf(ver, "#define FPGA_TIME_HEX       0x00%02d%02d%02d\n", now->tm_hour, now->tm_min, now->tm_sec);
+   fprintf(ver, "#define FPGA_GIT_REV        \"%s\"\n", git_rev);
+   fprintf(ver, "#define FPGA_GIT_AUTH       \"%s\"\n", git_auth);
+   fprintf(ver, "#define FPGA_GIT_EMAIL      \"%s\"\n", git_email);
+   fprintf(ver, "#define FPGA_GIT_DATE       \"%s\"\n", git_date);
+   fprintf(ver, "#define FPGA_LAST_QUARTUS   \"%s\"\n", last_quartus);
+   fprintf(ver, "#define FPGA_CREATION_DATE  \"%s\"\n", creation_date);
 
    fclose(ver);
    fflush(ver);
@@ -316,27 +344,29 @@ int main(int argc, char *argv[]) {
    fprintf(ver, "\n");
    fprintf(ver, "package fpga_ver is\n");
    fprintf(ver, "\n");
-   fprintf(ver, "   constant C_BUILD_PID       : std_logic_vector(7 downto 0)   := X\"%02X\";\n", build_pid);
-   fprintf(ver, "   constant C_BUILD_MAP       : std_logic_vector(11 downto 0)  := X\"%03X\";\n", build_map);
-   fprintf(ver, "   constant C_BUILD_LOGIC     : std_logic_vector(11 downto 0)  := X\"%03X\";\n", build_logic);
-   fprintf(ver, "   constant C_BUILD_INC       : std_logic_vector(7 downto 0)   := X\"%02X\";\n", build_inc);
-   fprintf(ver, "   constant C_BUILD_MAP_DATE  : std_logic_vector(31 downto 0)  := X\"%08X\";\n", build_map_date);
-   fprintf(ver, "   constant C_BUILD_VER_HEX   : std_logic_vector(31 downto 0)  := X\"%08X\";\n", build_hex);
-   fprintf(ver, "   constant C_BUILD_TIME      : string                         := \"%s\";\n", build_time);
-   fprintf(ver, "   constant C_BUILD_DATE      : string                         := \"%s\";\n", build_date);
-   fprintf(ver, "   constant C_BUILD_USER      : string                         := \"%s\";\n", build_user);
-   fprintf(ver, "   constant C_BUILD_STR       : string                         := \"%s\";\n", build_str2);
-   fprintf(ver, "   constant C_BUILD_LO        : string                         := \"%s\";\n", build_lo);
-   fprintf(ver, "   constant C_BUILD_HI        : string                         := \"%s\";\n", build_hi);
-   fprintf(ver, "   constant C_BUILD_STRING    : string                         := \"%s\";\n", build_str1);
-   fprintf(ver, "   constant C_BUILD_EPOCH     : integer                        := %d;\n", (uint32_t)clock);
-   fprintf(ver, "   constant C_BUILD_EPOCH_HEX : std_logic_vector(31 downto 0)  := X\"%08X\";\n", (uint32_t)clock);
-   fprintf(ver, "   constant C_BUILD_DATE_HEX  : std_logic_vector(31 downto 0)  := X\"%04d%02d%02d\";\n", now->tm_year+1900, now->tm_mon+1, now->tm_mday);
-   fprintf(ver, "   constant C_BUILD_TIME_HEX  : std_logic_vector(31 downto 0)  := X\"00%02d%02d%02d\";\n", now->tm_hour, now->tm_min, now->tm_sec);
-   fprintf(ver, "   constant C_BUILD_GIT_REV   : string                         := \"%s\";\n", git_rev);
-   fprintf(ver, "   constant C_BUILD_GIT_AUTH  : string                         := \"%s\";\n", git_auth);
-   fprintf(ver, "   constant C_BUILD_GIT_EMAIL : string                         := \"%s\";\n", git_email);
-   fprintf(ver, "   constant C_BUILD_GIT_DATE  : string                         := \"%s\";\n", git_date);
+   fprintf(ver, "   constant C_BUILD_PID           : std_logic_vector(7 downto 0)   := X\"%02X\";\n", build_pid);
+   fprintf(ver, "   constant C_BUILD_MAP           : std_logic_vector(11 downto 0)  := X\"%03X\";\n", build_map);
+   fprintf(ver, "   constant C_BUILD_LOGIC         : std_logic_vector(11 downto 0)  := X\"%03X\";\n", build_logic);
+   fprintf(ver, "   constant C_BUILD_INC           : std_logic_vector(7 downto 0)   := X\"%02X\";\n", build_inc);
+   fprintf(ver, "   constant C_BUILD_MAP_DATE      : std_logic_vector(31 downto 0)  := X\"%08X\";\n", build_map_date);
+   fprintf(ver, "   constant C_BUILD_VER_HEX       : std_logic_vector(31 downto 0)  := X\"%08X\";\n", build_hex);
+   fprintf(ver, "   constant C_BUILD_TIME          : string                         := \"%s\";\n", build_time);
+   fprintf(ver, "   constant C_BUILD_DATE          : string                         := \"%s\";\n", build_date);
+   fprintf(ver, "   constant C_BUILD_USER          : string                         := \"%s\";\n", build_user);
+   fprintf(ver, "   constant C_BUILD_STR           : string                         := \"%s\";\n", build_str2);
+   fprintf(ver, "   constant C_BUILD_LO            : string                         := \"%s\";\n", build_lo);
+   fprintf(ver, "   constant C_BUILD_HI            : string                         := \"%s\";\n", build_hi);
+   fprintf(ver, "   constant C_BUILD_STRING        : string                         := \"%s\";\n", build_str1);
+   fprintf(ver, "   constant C_BUILD_EPOCH         : integer                        := %d;\n", (uint32_t)clock);
+   fprintf(ver, "   constant C_BUILD_EPOCH_HEX     : std_logic_vector(31 downto 0)  := X\"%08X\";\n", (uint32_t)clock);
+   fprintf(ver, "   constant C_BUILD_DATE_HEX      : std_logic_vector(31 downto 0)  := X\"%04d%02d%02d\";\n", now->tm_year+1900, now->tm_mon+1, now->tm_mday);
+   fprintf(ver, "   constant C_BUILD_TIME_HEX      : std_logic_vector(31 downto 0)  := X\"00%02d%02d%02d\";\n", now->tm_hour, now->tm_min, now->tm_sec);
+   fprintf(ver, "   constant C_BUILD_GIT_REV       : string                         := \"%s\";\n", git_rev);
+   fprintf(ver, "   constant C_BUILD_GIT_AUTH      : string                         := \"%s\";\n", git_auth);
+   fprintf(ver, "   constant C_BUILD_GIT_EMAIL     : string                         := \"%s\";\n", git_email);
+   fprintf(ver, "   constant C_BUILD_GIT_DATE      : string                         := \"%s\";\n", git_date);
+   fprintf(ver, "   constant C_BUILD_LAST_QUARTUS  : string                         := \"%s\";\n", last_quartus);
+   fprintf(ver, "   constant C_BUILD_CREATION_DATE : string                         := \"%s\";\n", creation_date);
    fprintf(ver, "\n");
    fprintf(ver, "end fpga_ver;\n");
 

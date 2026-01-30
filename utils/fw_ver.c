@@ -23,7 +23,7 @@
 
 int main(int argc, char *argv[]) {
 
-   FILE  *ver, *git;
+   FILE  *ver, *git, *qsf;
 
    struct tm *now;
    time_t clock;
@@ -51,6 +51,8 @@ int main(int argc, char *argv[]) {
    char  git_auth[128]     = {0};
    char  git_email[128]    = {0};
    char  git_date[128]     = {0};
+   char  last_quartus[128] = {0};
+   char  creation_date[128] = {0};
 
    char  *env, *token;
 
@@ -62,7 +64,7 @@ int main(int argc, char *argv[]) {
             "SEP", "OCT", "NOV", "DEC"
           };
 
-   printf("\nFirmware Version Utility 1.10\n");
+   printf("\nFirmware Version Utility 1.11\n");
 
    // command Line
    printf("cmd : ");
@@ -74,7 +76,7 @@ int main(int argc, char *argv[]) {
    // current directory
    if (getcwd(cwd, sizeof(cwd)) != 0) printf("cwd : %s\n", cwd);
 
-   if (argc < 4) {
+   if (argc < 5) {
       printf("Error: Filenames not specified.\n");
       return -1;
    }
@@ -183,6 +185,28 @@ int main(int argc, char *argv[]) {
       fclose(ver);
       printf("Error Parsing %s\n", argv[1]);
       return -1;
+   }
+
+   //
+   // If the QSF exists then parse for LAST_QUARTUS_VERSION and PROJECT_CREATION_TIME_DATE
+   //
+   if  ((qsf = fopen(argv[4],"rt")) != NULL) {
+      while (fgets(in_line, sizeof(in_line), qsf) != NULL) {
+         token = strtok(in_line, " ");
+         token = strtok(NULL, " ");
+         token = strtok(NULL, " ");
+         if (token == NULL) continue;
+         if (strcmp(token, "LAST_QUARTUS_VERSION") == 0) {
+            token = strtok(NULL, "\"");
+            strcpy(last_quartus, token);
+         }
+         if (strcmp(token, "PROJECT_CREATION_TIME_DATE") == 0) {
+            token = strtok(NULL, "\"");
+            strcpy(creation_date, token);
+            break;
+         }
+      }
+      fclose(qsf);
    }
 
    // Increment Build Number, only 0 to 255
@@ -306,33 +330,36 @@ int main(int argc, char *argv[]) {
 
    // Create Build Strings
    sprintf(build_lo, "%d.%d.%d build %d", build_major, build_minor, build_num, build_inc);
-   sprintf(build_hi, "%s, %s %s [%s] %s", build_lo, build_time, build_date, build_user,git_rev);
+   sprintf(build_hi, "%s, %s %s [%s] %s %s", build_lo, build_time, build_date,
+      build_user, git_rev, last_quartus);
    sprintf(build_str1, "%s (%04d/%02d/%02d)", "", now->tm_year+1900, now->tm_mon+1, now->tm_mday);
    sprintf(build_str2, "%d.%d.%d.%d", build_major, build_minor, build_num, build_inc);
 
    fprintf(ver, "#pragma once\n\n");
 
-   fprintf(ver, "#define BUILD_MAJOR      %d\n", build_major);
-   fprintf(ver, "#define BUILD_MINOR      %d\n", build_minor);
-   fprintf(ver, "#define BUILD_NUM        %d\n", build_num);
-   fprintf(ver, "#define BUILD_INC        %d\n", build_inc);
-   fprintf(ver, "#define BUILD_SYSID      0x%08X\n", build_sysid);
-   fprintf(ver, "#define BUILD_VER_HEX    0x%08X\n", build_hex);
-   fprintf(ver, "#define BUILD_TIME       \"%s\"\n", build_time);
-   fprintf(ver, "#define BUILD_DATE       \"%s\"\n", build_date);
-   fprintf(ver, "#define BUILD_USER       \"%s\"\n", build_user);
-   fprintf(ver, "#define BUILD_STR        \"%s\"\n", build_str2);
-   fprintf(ver, "#define BUILD_LO         \"%s\"\n", build_lo);
-   fprintf(ver, "#define BUILD_HI         \"%s\"\n", build_hi);
-   fprintf(ver, "#define BUILD_STRING     \"%s\"\n", build_str2);
-   fprintf(ver, "#define BUILD_EPOCH      %d\n", (uint32_t)clock);
-   fprintf(ver, "#define BUILD_EPOCH_HEX  0x%08X\n", (uint32_t)clock);
-   fprintf(ver, "#define BUILD_DATE_HEX   0x%04d%02d%02d\n", now->tm_year+1900, now->tm_mon+1, now->tm_mday);
-   fprintf(ver, "#define BUILD_TIME_HEX   0x00%02d%02d%02d\n", now->tm_hour, now->tm_min, now->tm_sec);
-   fprintf(ver, "#define BUILD_GIT_REV    \"%s\"\n", git_rev);
-   fprintf(ver, "#define BUILD_GIT_AUTH   \"%s\"\n", git_auth);
-   fprintf(ver, "#define BUILD_GIT_EMAIL  \"%s\"\n", git_email);
-   fprintf(ver, "#define BUILD_GIT_DATE   \"%s\"\n", git_date);
+   fprintf(ver, "#define BUILD_MAJOR         %d\n", build_major);
+   fprintf(ver, "#define BUILD_MINOR         %d\n", build_minor);
+   fprintf(ver, "#define BUILD_NUM           %d\n", build_num);
+   fprintf(ver, "#define BUILD_INC           %d\n", build_inc);
+   fprintf(ver, "#define BUILD_SYSID         0x%08X\n", build_sysid);
+   fprintf(ver, "#define BUILD_VER_HEX       0x%08X\n", build_hex);
+   fprintf(ver, "#define BUILD_TIME          \"%s\"\n", build_time);
+   fprintf(ver, "#define BUILD_DATE          \"%s\"\n", build_date);
+   fprintf(ver, "#define BUILD_USER          \"%s\"\n", build_user);
+   fprintf(ver, "#define BUILD_STR           \"%s\"\n", build_str2);
+   fprintf(ver, "#define BUILD_LO            \"%s\"\n", build_lo);
+   fprintf(ver, "#define BUILD_HI            \"%s\"\n", build_hi);
+   fprintf(ver, "#define BUILD_STRING        \"%s\"\n", build_str2);
+   fprintf(ver, "#define BUILD_EPOCH         %d\n", (uint32_t)clock);
+   fprintf(ver, "#define BUILD_EPOCH_HEX     0x%08X\n", (uint32_t)clock);
+   fprintf(ver, "#define BUILD_DATE_HEX      0x%04d%02d%02d\n", now->tm_year+1900, now->tm_mon+1, now->tm_mday);
+   fprintf(ver, "#define BUILD_TIME_HEX      0x00%02d%02d%02d\n", now->tm_hour, now->tm_min, now->tm_sec);
+   fprintf(ver, "#define BUILD_GIT_REV       \"%s\"\n", git_rev);
+   fprintf(ver, "#define BUILD_GIT_AUTH      \"%s\"\n", git_auth);
+   fprintf(ver, "#define BUILD_GIT_EMAIL     \"%s\"\n", git_email);
+   fprintf(ver, "#define BUILD_GIT_DATE      \"%s\"\n", git_date);
+   fprintf(ver, "#define BUILD_LAST_QUARTUS  \"%s\"\n", last_quartus);
+   fprintf(ver, "#define BUILD_CREATION_DATE \"%s\"\n", creation_date);
 
    fclose(ver);
    fflush(ver);
