@@ -4,7 +4,7 @@
  * Machine generated for CPU 'cpu' in SOPC Builder design 'c10_fpga'
  * SOPC Builder design path: D:/c10_opto_fpga/c10_top/PR_R2/c10_fpga.sopcinfo
  *
- * Generated: Mon Sep 04 07:48:04 PDT 2023
+ * Generated: Sat Jan 31 13:54:44 PST 2026
  */
 
 /*
@@ -196,7 +196,7 @@
  */
 
 #define ADC_BASE 0x100b0000
-#define ADC_IRQ 1
+#define ADC_IRQ 6
 #define ADC_IRQ_INTERRUPT_CONTROLLER_ID 0
 #define ADC_NAME "/dev/adc"
 #define ADC_SPAN 8192
@@ -222,7 +222,7 @@
 #define ALT_MODULE_CLASS_epcq_avl_csr altera_epcq_controller2
 #define EPCQ_AVL_CSR_BASE 0x100d0000
 #define EPCQ_AVL_CSR_FLASH_TYPE "EPCQ16A"
-#define EPCQ_AVL_CSR_IRQ 2
+#define EPCQ_AVL_CSR_IRQ 0
 #define EPCQ_AVL_CSR_IRQ_INTERRUPT_CONTROLLER_ID 0
 #define EPCQ_AVL_CSR_IS_EPCS 0
 #define EPCQ_AVL_CSR_NAME "/dev/epcq_avl_csr"
@@ -326,7 +326,7 @@
 
 #define ALT_MODULE_CLASS_opto opto
 #define OPTO_BASE 0x100c0000
-#define OPTO_IRQ 0
+#define OPTO_IRQ 7
 #define OPTO_IRQ_INTERRUPT_CONTROLLER_ID 0
 #define OPTO_NAME "/dev/opto"
 #define OPTO_SPAN 16384
@@ -386,7 +386,7 @@
 #define STDOUT_DATA_BITS 8
 #define STDOUT_FIXED_BAUD 1
 #define STDOUT_FREQ 100000000
-#define STDOUT_IRQ 3
+#define STDOUT_IRQ 5
 #define STDOUT_IRQ_INTERRUPT_CONTROLLER_ID 0
 #define STDOUT_NAME "/dev/stdout"
 #define STDOUT_PARITY 'N'
@@ -411,7 +411,7 @@
 #define SYSCLK_COUNTER_SIZE 32
 #define SYSCLK_FIXED_PERIOD 1
 #define SYSCLK_FREQ 100000000
-#define SYSCLK_IRQ 7
+#define SYSCLK_IRQ 1
 #define SYSCLK_IRQ_INTERRUPT_CONTROLLER_ID 0
 #define SYSCLK_LOAD_VALUE 999999
 #define SYSCLK_MULT 0.001
@@ -438,7 +438,7 @@
 #define SYSTIMER_COUNTER_SIZE 32
 #define SYSTIMER_FIXED_PERIOD 1
 #define SYSTIMER_FREQ 100000000
-#define SYSTIMER_IRQ 6
+#define SYSTIMER_IRQ 2
 #define SYSTIMER_IRQ_INTERRUPT_CONTROLLER_ID 0
 #define SYSTIMER_LOAD_VALUE -2
 #define SYSTIMER_MULT 1.0E-8
@@ -479,7 +479,7 @@
 #define WATCHDOG_COUNTER_SIZE 32
 #define WATCHDOG_FIXED_PERIOD 1
 #define WATCHDOG_FREQ 100000000
-#define WATCHDOG_IRQ 5
+#define WATCHDOG_IRQ 3
 #define WATCHDOG_IRQ_INTERRUPT_CONTROLLER_ID 0
 #define WATCHDOG_LOAD_VALUE 199999999
 #define WATCHDOG_MULT 1.0

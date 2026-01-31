@@ -51,6 +51,14 @@
          type = "String";
       }
    }
+   element c10_fpga
+   {
+      datum _originalDeviceFamily
+      {
+         value = "Cyclone 10 LP";
+         type = "String";
+      }
+   }
    element clk_12
    {
       datum _sortIndex
@@ -94,23 +102,23 @@
    {
       datum _originalDeviceFamily
       {
+         value = "Cyclone IV E";
+         type = "String";
+      }
+   }
+   element de0_qsys
+   {
+      datum _originalDeviceFamily
+      {
+         value = "Cyclone IV E";
+         type = "String";
+      }
+   }
+   element de0_qsys
+   {
+      datum _originalDeviceFamily
+      {
          value = "Cyclone V";
-         type = "String";
-      }
-   }
-   element de0_qsys
-   {
-      datum _originalDeviceFamily
-      {
-         value = "Cyclone IV E";
-         type = "String";
-      }
-   }
-   element de0_qsys
-   {
-      datum _originalDeviceFamily
-      {
-         value = "Cyclone IV E";
          type = "String";
       }
    }
@@ -224,11 +232,6 @@
       {
          value = "1";
          type = "boolean";
-      }
-      datum baseAddress
-      {
-         value = "269221888";
-         type = "String";
       }
    }
    element pll
@@ -516,7 +519,7 @@
   <parameter name="dataAddrWidth" value="29" />
   <parameter name="dataMasterHighPerformanceAddrWidth" value="1" />
   <parameter name="dataMasterHighPerformanceMapParam" value="" />
-  <parameter name="dataSlaveMapParam"><![CDATA[<address-map><slave name='sdram.s1' start='0x0' end='0x800000' type='sdram.s1' /><slave name='pll.pll_slave' start='0x10000000' end='0x10000010' type='altpll.pll_slave' /><slave name='cpu.debug_mem_slave' start='0x10010000' end='0x10010800' type='altera_nios2_gen2.debug_mem_slave' /><slave name='stamp.s1' start='0x10030000' end='0x10031000' type='stamp.s1' /><slave name='sysclk.s1' start='0x10040000' end='0x10040020' type='altera_avalon_timer.s1' /><slave name='systimer.s1' start='0x10050000' end='0x10050020' type='altera_avalon_timer.s1' /><slave name='watchdog.s1' start='0x10060000' end='0x10060020' type='altera_avalon_timer.s1' /><slave name='gpx.s1' start='0x10070000' end='0x10070010' type='altera_avalon_pio.s1' /><slave name='gpi.s1' start='0x10080000' end='0x10080010' type='altera_avalon_pio.s1' /><slave name='stdout.s1' start='0x10090000' end='0x10090020' type='altera_avalon_uart.s1' /><slave name='update.avl_csr' start='0x100A0000' end='0x100A0080' type='altera_remote_update.avl_csr' /><slave name='adc.s1' start='0x100B0000' end='0x100B2000' type='adc.s1' /><slave name='opto.s1' start='0x100C0000' end='0x100D0000' type='opto.s1' /><slave name='epcq.avl_csr' start='0x100D0000' end='0x100D0040' type='altera_epcq_controller2.avl_csr' /><slave name='epcq.avl_mem' start='0x10200000' end='0x10400000' type='altera_epcq_controller2.avl_mem' /></address-map>]]></parameter>
+  <parameter name="dataSlaveMapParam"><![CDATA[<address-map><slave name='sdram.s1' start='0x0' end='0x800000' type='sdram.s1' /><slave name='pll.pll_slave' start='0x10000000' end='0x10000010' type='altpll.pll_slave' /><slave name='cpu.debug_mem_slave' start='0x10010000' end='0x10010800' type='altera_nios2_gen2.debug_mem_slave' /><slave name='stamp.s1' start='0x10030000' end='0x10031000' type='stamp.s1' /><slave name='sysclk.s1' start='0x10040000' end='0x10040020' type='altera_avalon_timer.s1' /><slave name='systimer.s1' start='0x10050000' end='0x10050020' type='altera_avalon_timer.s1' /><slave name='watchdog.s1' start='0x10060000' end='0x10060020' type='altera_avalon_timer.s1' /><slave name='gpx.s1' start='0x10070000' end='0x10070010' type='altera_avalon_pio.s1' /><slave name='gpi.s1' start='0x10080000' end='0x10080010' type='altera_avalon_pio.s1' /><slave name='stdout.s1' start='0x10090000' end='0x10090020' type='altera_avalon_uart.s1' /><slave name='update.avl_csr' start='0x100A0000' end='0x100A0080' type='altera_remote_update.avl_csr' /><slave name='adc.s1' start='0x100B0000' end='0x100B2000' type='adc.s1' /><slave name='opto.s1' start='0x100C0000' end='0x100C4000' type='opto.s1' /><slave name='epcq.avl_csr' start='0x100D0000' end='0x100D0040' type='altera_epcq_controller2.avl_csr' /><slave name='epcq.avl_mem' start='0x10200000' end='0x10400000' type='altera_epcq_controller2.avl_mem' /></address-map>]]></parameter>
   <parameter name="data_master_high_performance_paddr_base" value="0" />
   <parameter name="data_master_high_performance_paddr_size" value="0" />
   <parameter name="data_master_paddr_base" value="0" />
@@ -1118,28 +1121,28 @@
    version="22.1"
    start="cpu.irq"
    end="epcq.interrupt_sender">
-  <parameter name="irqNumber" value="2" />
+  <parameter name="irqNumber" value="0" />
  </connection>
  <connection kind="interrupt" version="22.1" start="cpu.irq" end="sysclk.irq">
-  <parameter name="irqNumber" value="7" />
+  <parameter name="irqNumber" value="1" />
  </connection>
  <connection kind="interrupt" version="22.1" start="cpu.irq" end="systimer.irq">
-  <parameter name="irqNumber" value="6" />
+  <parameter name="irqNumber" value="2" />
  </connection>
  <connection kind="interrupt" version="22.1" start="cpu.irq" end="watchdog.irq">
-  <parameter name="irqNumber" value="5" />
+  <parameter name="irqNumber" value="3" />
  </connection>
  <connection kind="interrupt" version="22.1" start="cpu.irq" end="gpi.irq">
   <parameter name="irqNumber" value="4" />
  </connection>
  <connection kind="interrupt" version="22.1" start="cpu.irq" end="stdout.irq">
-  <parameter name="irqNumber" value="3" />
+  <parameter name="irqNumber" value="5" />
  </connection>
  <connection kind="interrupt" version="22.1" start="cpu.irq" end="adc.irq">
-  <parameter name="irqNumber" value="1" />
+  <parameter name="irqNumber" value="6" />
  </connection>
  <connection kind="interrupt" version="22.1" start="cpu.irq" end="opto.irq">
-  <parameter name="irqNumber" value="0" />
+  <parameter name="irqNumber" value="7" />
  </connection>
  <connection
    kind="reset"

@@ -64,7 +64,7 @@ int main(int argc, char *argv[]) {
             "SEP", "OCT", "NOV", "DEC"
           };
 
-   printf("\nFirmware Version Utility 1.11\n");
+   printf("\nFirmware Version Utility 1.12\n");
 
    // command Line
    printf("cmd : ");
