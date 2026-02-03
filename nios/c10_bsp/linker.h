@@ -2,9 +2,9 @@
  * linker.h - Linker script mapping information
  *
  * Machine generated for CPU 'cpu' in SOPC Builder design 'c10_fpga'
- * SOPC Builder design path: d:/c10_opto_fpga/c10_top/PR_R2/c10_fpga.sopcinfo
+ * SOPC Builder design path: D:/c10_opto_fpga/c10_top/PR_R2/c10_fpga.sopcinfo
  *
- * Generated: Tue Feb 03 09:37:27 PST 2026
+ * Generated: Tue Feb 03 09:55:58 PST 2026
  */
 
 /*
@@ -73,8 +73,10 @@
 #define RESET_REGION_SPAN 32
 #define SDRAM_BEFORE_EXCEPTION_REGION_BASE 0x0
 #define SDRAM_BEFORE_EXCEPTION_REGION_SPAN 32
+#define SDRAM_FIFO_REGION_BASE 0x100000
+#define SDRAM_FIFO_REGION_SPAN 7340032
 #define SDRAM_REGION_BASE 0x20
-#define SDRAM_REGION_SPAN 8388576
+#define SDRAM_REGION_SPAN 1048544
 
 
 /*

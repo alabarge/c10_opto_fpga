@@ -2,9 +2,9 @@
  * linker.x - Linker script
  *
  * Machine generated for CPU 'cpu' in SOPC Builder design 'c10_fpga'
- * SOPC Builder design path: d:/c10_opto_fpga/c10_top/PR_R2/c10_fpga.sopcinfo
+ * SOPC Builder design path: D:/c10_opto_fpga/c10_top/PR_R2/c10_fpga.sopcinfo
  *
- * Generated: Tue Feb 03 09:37:27 PST 2026
+ * Generated: Tue Feb 03 09:55:58 PST 2026
  */
 
 /*
@@ -51,7 +51,8 @@
 MEMORY
 {
     sdram_BEFORE_EXCEPTION : ORIGIN = 0x0, LENGTH = 32
-    sdram : ORIGIN = 0x20, LENGTH = 8388576
+    sdram : ORIGIN = 0x20, LENGTH = 1048544
+    sdram_fifo : ORIGIN = 0x100000, LENGTH = 7340032
     epcq_avl_mem_BEFORE_RESET : ORIGIN = 0x10200000, LENGTH = 780000
     reset : ORIGIN = 0x102be6e0, LENGTH = 32
     epcq_avl_mem : ORIGIN = 0x102be700, LENGTH = 1317120
@@ -348,7 +349,7 @@ SECTIONS
 /*
  * Don't override this, override the __alt_stack_* symbols instead.
  */
-__alt_data_end = 0x800000;
+__alt_data_end = 0x100000;
 
 /*
  * The next two symbols define the location of the default stack.  You can
@@ -364,4 +365,4 @@ PROVIDE( __alt_stack_limit   = __alt_stack_base );
  * Override this symbol to put the heap in a different memory.
  */
 PROVIDE( __alt_heap_start    = end );
-PROVIDE( __alt_heap_limit    = 0x800000 );
+PROVIDE( __alt_heap_limit    = 0x100000 );

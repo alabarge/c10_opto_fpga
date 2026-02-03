@@ -16,16 +16,16 @@
 <td width="20%" bgcolor="#77BBFF">CPU:</td><td>cpu</td>
 </tr>
 <tr mode="wrap">
-<td width="20%" bgcolor="#77BBFF">BSP Settings File:</td><td>.\settings.bsp</td>
+<td width="20%" bgcolor="#77BBFF">BSP Settings File:</td><td>settings.bsp</td>
 </tr>
 <tr mode="wrap">
 <td width="20%" bgcolor="#77BBFF">BSP Version:</td><td>default</td>
 </tr>
 <tr mode="wrap">
-<td width="20%" bgcolor="#77BBFF">BSP Generated On:</td><td>Feb 3, 2026 9:37:27 AM</td>
+<td width="20%" bgcolor="#77BBFF">BSP Generated On:</td><td>Feb 3, 2026 9:55:57 AM</td>
 </tr>
 <tr mode="wrap">
-<td width="20%" bgcolor="#77BBFF">BSP Generated Timestamp:</td><td>1770140247532</td>
+<td width="20%" bgcolor="#77BBFF">BSP Generated Timestamp:</td><td>1770141357837</td>
 </tr>
 <tr mode="wrap">
 <td width="20%" bgcolor="#77BBFF">BSP Generated Location:</td><td>D:\c10_opto_fpga\nios\c10_bsp</td>
@@ -87,6 +87,24 @@
 <tr bgcolor="#77BBFF" mode="wrap">
 <th align="left" width="15%">Region</th><th align="left" width="40%">Address Range</th><th align="left" width="15%">Size</th><th align="left" width="15%">Memory</th><th align="left" width="15%">Offset</th>
 </tr>
+<tr mode="wrap" STYLE="display: 'block'; font-family: 'courier'; color: '#000000'; font-weight: '500'; font-size: '14'; margin-top: '10pt'; text-align: 'left'">
+<td>sdram</td><td>0x00000020 - 0x000FFFFF</td><td>1048544</td><td>sdram</td><td>32</td>
+</tr>
+<tr mode="wrap" STYLE="display: 'block'; font-family: 'courier'; color: '#000000'; font-weight: '500'; font-size: '14'; margin-top: '10pt'; text-align: 'left'">
+<td>epcq_avl_mem</td><td>0x102BE700 - 0x103FFFFF</td><td>1317120</td><td>epcq_avl_mem</td><td>780032</td>
+</tr>
+<tr mode="wrap" STYLE="display: 'block'; font-family: 'courier'; color: '#000000'; font-weight: '500'; font-size: '14'; margin-top: '10pt'; text-align: 'left'">
+<td>reset</td><td>0x102BE6E0 - 0x102BE6FF</td><td>32</td><td>epcq_avl_mem</td><td>780000</td>
+</tr>
+<tr mode="wrap" STYLE="display: 'block'; font-family: 'courier'; color: '#000000'; font-weight: '500'; font-size: '14'; margin-top: '10pt'; text-align: 'left'">
+<td>epcq_avl_mem_BEFORE_RESET</td><td>0x10200000 - 0x102BE6DF</td><td>780000</td><td>epcq_avl_mem</td><td>0</td>
+</tr>
+<tr mode="wrap" STYLE="display: 'block'; font-family: 'courier'; color: '#000000'; font-weight: '500'; font-size: '14'; margin-top: '10pt'; text-align: 'left'">
+<td>sdram_fifo</td><td>0x00100000 - 0x007FFFFF</td><td>7340032</td><td>sdram</td><td>1048576</td>
+</tr>
+<tr mode="wrap" STYLE="display: 'block'; font-family: 'courier'; color: '#000000'; font-weight: '500'; font-size: '14'; margin-top: '10pt'; text-align: 'left'">
+<td>sdram_BEFORE_EXCEPTION</td><td>0x00000000 - 0x0000001F</td><td>32</td><td>sdram</td><td>0</td>
+</tr>
 </table>
 <br>
 <br>
@@ -114,6 +132,19 @@
 <td>.stack</td><td>sdram</td>
 </tr>
 </table>
+<br>
+<br>
+<h3>Software Packages</h3>
+<table border="1" bgcolor="#FFFFCC" width="50%">
+<tr bgcolor="#77BBFF" mode="wrap">
+<th align="left" width="15%">Software Package</th><th align="left" width="15%">Version</th>
+</tr>
+<tr mode="wrap" STYLE="display: 'block'; font-family: 'courier'; color: '#000000'; font-weight: '500'; font-size: '14'; margin-top: '10pt'; text-align: 'left'">
+<td>altera_ro_zipfs</td><td>default</td>
+</tr>
+</table>
+<br>
+<br>
 <h3>Settings</h3>
 <table border="1" bgcolor="#FFFFCC" width="60%">
 <tr bgcolor="#77BBFF">
@@ -163,6 +194,87 @@
 </tr>
 <tr mode="wrap">
 <td width="20%">Description:</td><td>Small-footprint (polled mode) driver</td>
+</tr>
+<tr mode="wrap">
+<td width="20%">Restrictions:</td><td>none</td>
+</tr>
+</table>
+<br>
+<table border="1" bgcolor="#FFFFCC" width="60%">
+<tr bgcolor="#77BBFF">
+<td align="left" width="15%">Setting Name:</td><td align="left">altera_ro_zipfs.ro_zipfs_base</td>
+</tr>
+<tr>
+<td width="20%">Identifier:</td><td>ALTERA_RO_ZIPFS_BASE</td>
+</tr>
+<tr>
+<td width="20%">Default Value:</td><td>0x0</td>
+</tr>
+<tr>
+<td width="20%">Value:</td><td>0x10200000</td>
+</tr>
+<tr>
+<td width="20%">Type:</td><td>HexNumber</td>
+</tr>
+<tr mode="wrap">
+<td width="20%">Destination:</td><td>system_h_define</td>
+</tr>
+<tr mode="wrap">
+<td width="20%">Description:</td><td>Base address of flash memory device</td>
+</tr>
+<tr mode="wrap">
+<td width="20%">Restrictions:</td><td>none</td>
+</tr>
+</table>
+<br>
+<table border="1" bgcolor="#FFFFCC" width="60%">
+<tr bgcolor="#77BBFF">
+<td align="left" width="15%">Setting Name:</td><td align="left">altera_ro_zipfs.ro_zipfs_name</td>
+</tr>
+<tr>
+<td width="20%">Identifier:</td><td>ALTERA_RO_ZIPFS_NAME</td>
+</tr>
+<tr>
+<td width="20%">Default Value:</td><td>/mnt/rozipfs</td>
+</tr>
+<tr>
+<td width="20%">Value:</td><td>/mnt/rozipfs</td>
+</tr>
+<tr>
+<td width="20%">Type:</td><td>QuotedString</td>
+</tr>
+<tr mode="wrap">
+<td width="20%">Destination:</td><td>system_h_define</td>
+</tr>
+<tr mode="wrap">
+<td width="20%">Description:</td><td>Mount point</td>
+</tr>
+<tr mode="wrap">
+<td width="20%">Restrictions:</td><td>none</td>
+</tr>
+</table>
+<br>
+<table border="1" bgcolor="#FFFFCC" width="60%">
+<tr bgcolor="#77BBFF">
+<td align="left" width="15%">Setting Name:</td><td align="left">altera_ro_zipfs.ro_zipfs_offset</td>
+</tr>
+<tr>
+<td width="20%">Identifier:</td><td>ALTERA_RO_ZIPFS_OFFSET</td>
+</tr>
+<tr>
+<td width="20%">Default Value:</td><td>0x100000</td>
+</tr>
+<tr>
+<td width="20%">Value:</td><td>0xe0000</td>
+</tr>
+<tr>
+<td width="20%">Type:</td><td>HexNumber</td>
+</tr>
+<tr mode="wrap">
+<td width="20%">Destination:</td><td>system_h_define</td>
+</tr>
+<tr mode="wrap">
+<td width="20%">Description:</td><td>Offset of file system from base of flash</td>
 </tr>
 <tr mode="wrap">
 <td width="20%">Restrictions:</td><td>none</td>
@@ -720,7 +832,7 @@
 <td width="20%">Default Value:</td><td>none</td>
 </tr>
 <tr>
-<td width="20%">Value:</td><td>sdram</td>
+<td width="20%">Value:</td><td>none</td>
 </tr>
 <tr>
 <td width="20%">Type:</td><td>UnquotedString</td>
@@ -774,7 +886,7 @@
 <td width="20%">Default Value:</td><td>none</td>
 </tr>
 <tr>
-<td width="20%">Value:</td><td>sdram</td>
+<td width="20%">Value:</td><td>none</td>
 </tr>
 <tr>
 <td width="20%">Type:</td><td>UnquotedString</td>
@@ -1233,7 +1345,7 @@
 <td width="20%">Default Value:</td><td>-Wall</td>
 </tr>
 <tr>
-<td width="20%">Value:</td><td>-Wall</td>
+<td width="20%">Value:</td><td>-Wall -Wno-misleading-indentation</td>
 </tr>
 <tr>
 <td width="20%">Type:</td><td>UnquotedString</td>
@@ -2097,7 +2209,7 @@
 <td width="20%">Default Value:</td><td>none</td>
 </tr>
 <tr>
-<td width="20%">Value:</td><td>none</td>
+<td width="20%">Value:</td><td>systimer</td>
 </tr>
 <tr>
 <td width="20%">Type:</td><td>UnquotedString</td>

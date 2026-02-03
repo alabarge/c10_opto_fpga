@@ -2,9 +2,9 @@
  * system.h - SOPC Builder system and BSP software package information
  *
  * Machine generated for CPU 'cpu' in SOPC Builder design 'c10_fpga'
- * SOPC Builder design path: d:/c10_opto_fpga/c10_top/PR_R2/c10_fpga.sopcinfo
+ * SOPC Builder design path: D:/c10_opto_fpga/c10_top/PR_R2/c10_fpga.sopcinfo
  *
- * Generated: Tue Feb 03 09:37:27 PST 2026
+ * Generated: Tue Feb 03 09:55:58 PST 2026
  */
 
 /*
@@ -187,7 +187,7 @@
 #define ALT_STDOUT_TYPE "altera_avalon_uart"
 #define ALT_SYSTEM_NAME "c10_fpga"
 #define ALT_SYS_CLK_TICKS_PER_SEC SYSCLK_TICKS_PER_SEC
-#define ALT_TIMESTAMP_CLK_TIMER_DEVICE_TYPE NONE_TIMER_DEVICE_TYPE
+#define ALT_TIMESTAMP_CLK_TIMER_DEVICE_TYPE SYSTIMER_TIMER_DEVICE_TYPE
 
 
 /*
@@ -202,6 +202,16 @@
 #define ADC_SPAN 8192
 #define ADC_TYPE "adc"
 #define ALT_MODULE_CLASS_adc adc
+
+
+/*
+ * altera_ro_zipfs configuration
+ *
+ */
+
+#define ALTERA_RO_ZIPFS_BASE 0x10200000
+#define ALTERA_RO_ZIPFS_NAME "/mnt/rozipfs"
+#define ALTERA_RO_ZIPFS_OFFSET 0xe0000
 
 
 /*
@@ -306,7 +316,7 @@
 #define ALT_INCLUDE_INSTRUCTION_RELATED_EXCEPTION_API
 #define ALT_MAX_FD 32
 #define ALT_SYS_CLK SYSCLK
-#define ALT_TIMESTAMP_CLK none
+#define ALT_TIMESTAMP_CLK SYSTIMER
 
 
 /*

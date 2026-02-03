@@ -3,6 +3,7 @@
 	<name>c10_fw</name>
 	<comment></comment>
 	<projects>
+		<project>c10_bsp</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

@@ -2,9 +2,9 @@
  * alt_sys_init.c - HAL initialization source
  *
  * Machine generated for CPU 'cpu' in SOPC Builder design 'c10_fpga'
- * SOPC Builder design path: d:/c10_opto_fpga/c10_top/PR_R2/c10_fpga.sopcinfo
+ * SOPC Builder design path: D:/c10_opto_fpga/c10_top/PR_R2/c10_fpga.sopcinfo
  *
- * Generated: Tue Feb 03 09:37:27 PST 2026
+ * Generated: Tue Feb 03 09:55:58 PST 2026
  */
 
 /*
@@ -63,6 +63,7 @@
 #include "altera_avalon_uart.h"
 #include "altera_epcq_controller2.h"
 #include "altera_remote_update.h"
+#include "altera_ro_zipfs.h"
 
 /*
  * Allocate the device storage
@@ -75,6 +76,7 @@ ALTERA_AVALON_TIMER_INSTANCE ( WATCHDOG, watchdog);
 ALTERA_AVALON_UART_INSTANCE ( STDOUT, stdout);
 ALTERA_EPCQ_CONTROLLER2_AVL_MEM_AVL_CSR_INSTANCE ( EPCQ, EPCQ_AVL_MEM, EPCQ_AVL_CSR, epcq);
 ALTERA_REMOTE_UPDATE_INSTANCE ( UPDATE, update);
+ALTERA_RO_ZIPFS_INSTANCE ( ALTERA_RO_ZIPFS, altera_ro_zipfs);
 
 /*
  * Initialize the interrupt controller devices
@@ -103,4 +105,5 @@ void alt_sys_init( void )
     ALTERA_AVALON_UART_INIT ( STDOUT, stdout);
     ALTERA_EPCQ_CONTROLLER2_INIT ( EPCQ, epcq);
     ALTERA_REMOTE_UPDATE_INIT ( UPDATE, update);
+    ALTERA_RO_ZIPFS_INIT ( ALTERA_RO_ZIPFS, altera_ro_zipfs);
 }

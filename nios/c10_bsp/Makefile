@@ -101,7 +101,7 @@ ACDS_VERSION := 22.1
 # BUILD_NUMBER: 922
 
 SETTINGS_FILE := settings.bsp
-SOPC_FILE := d:/c10_opto_fpga/c10_top/PR_R2/c10_fpga.sopcinfo
+SOPC_FILE := D:/c10_opto_fpga/c10_top/PR_R2/c10_fpga.sopcinfo
 
 #-------------------------------------------------------------------------------
 #                             TOOL & COMMAND DEFINITIONS
@@ -142,7 +142,7 @@ BSP_CFLAGS_OPTIMIZATION = -O0
 
 # C/C++ compiler warning level. "-Wall" is commonly used.This setting defines 
 # the value of BSP_CFLAGS_WARNINGS in Makefile. 
-BSP_CFLAGS_WARNINGS = -Wall
+BSP_CFLAGS_WARNINGS = -Wall -Wno-misleading-indentation
 
 # C compiler command. 
 CC = nios2-elf-gcc$(WINDOWS_EXE) -xc
@@ -283,6 +283,13 @@ altera_remote_update_driver_SRCS_ROOT := drivers
 altera_remote_update_driver_C_LIB_SRCS := \
 	$(altera_remote_update_driver_SRCS_ROOT)/src/altera_remote_update.c
 
+# altera_ro_zipfs sources root 
+altera_ro_zipfs_SRCS_ROOT := drivers
+
+# altera_ro_zipfs sources 
+altera_ro_zipfs_C_LIB_SRCS := \
+	$(altera_ro_zipfs_SRCS_ROOT)/src/altera_ro_zipfs.c
+
 # hal sources root 
 hal_SRCS_ROOT := HAL
 
@@ -350,6 +357,7 @@ COMPONENT_C_LIB_SRCS += \
 	$(altera_epcq_controller2_driver_C_LIB_SRCS) \
 	$(altera_nios2_gen2_hal_driver_C_LIB_SRCS) \
 	$(altera_remote_update_driver_C_LIB_SRCS) \
+	$(altera_ro_zipfs_C_LIB_SRCS) \
 	$(hal_C_LIB_SRCS)
 
 # Assemble all component assembly source files 
