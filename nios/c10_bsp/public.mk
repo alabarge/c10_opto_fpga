@@ -86,7 +86,7 @@ ACDS_VERSION := 22.1
 
 # Qsys--generated SOPCINFO file. Required for resolving node instance ID's with 
 # design component names. 
-SOPCINFO_FILE := D:/c10_opto_fpga/c10_top/PR_R2/c10_fpga.sopcinfo
+SOPCINFO_FILE := D:/new/c10_opto_fpga/c10_top/PR_R2/c10_fpga.sopcinfo
 
 # Big-Endian operation. 
 # setting BIG_ENDIAN is false

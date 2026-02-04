@@ -2,12 +2,12 @@
 <sch:Settings xmlns:sch="http://www.altera.com/embeddedsw/bsp/schema">
         <BspType>hal</BspType>
         <BspVersion>default</BspVersion>
-        <BspGeneratedTimeStamp>Feb 4, 2026 9:53:44 AM</BspGeneratedTimeStamp>
-        <BspGeneratedUnixTimeStamp>1770227624941</BspGeneratedUnixTimeStamp>
-        <BspGeneratedLocation>D:\c10_opto_fpga\nios\c10_bsp</BspGeneratedLocation>
+        <BspGeneratedTimeStamp>Feb 4, 2026 1:35:46 PM</BspGeneratedTimeStamp>
+        <BspGeneratedUnixTimeStamp>1770240946752</BspGeneratedUnixTimeStamp>
+        <BspGeneratedLocation>D:\new\c10_opto_fpga\nios\c10_bsp</BspGeneratedLocation>
         <BspSettingsFile>settings.bsp</BspSettingsFile>
-        <SopcDesignFile>D:\c10_opto_fpga\c10_top\PR_R2\c10_fpga.sopcinfo</SopcDesignFile>
-        <SystemFileHash>891caf1789c8ab637923c1b89ab19c412627508a1f897d86bb5b511878a336</SystemFileHash>
+        <SopcDesignFile>D:\new\c10_opto_fpga\c10_top\PR_R2\c10_fpga.sopcinfo</SopcDesignFile>
+        <SystemFileHash>8038825f4bd8871a9164e04356b81774855cdf607def311d4f987aa269935</SystemFileHash>
         <JdiFile>default</JdiFile>
         <Cpu>cpu</Cpu>
         <SchemaVersion>1.9</SchemaVersion>
@@ -363,7 +363,7 @@
                 <SettingName>hal.make.bsp_cflags_warnings</SettingName>
                 <Identifier>BSP_CFLAGS_WARNINGS</Identifier>
                 <Type>UnquotedString</Type>
-                <Value>-Wall -Wno-misleading-indentation</Value>
+                <Value>-Wall</Value>
                 <DefaultValue>-Wall</DefaultValue>
                 <DestinationFile>makefile_variable</DestinationFile>
                 <Description>C/C++ compiler warning level. "-Wall" is commonly used.This setting defines the value of BSP_CFLAGS_WARNINGS in Makefile.</Description>
@@ -531,7 +531,7 @@
                 <SettingName>hal.make.bsp_cflags_user_flags</SettingName>
                 <Identifier>BSP_CFLAGS_USER_FLAGS</Identifier>
                 <Type>UnquotedString</Type>
-                <Value>none</Value>
+                <Value>-Wno-misleading-indentation</Value>
                 <DefaultValue>none</DefaultValue>
                 <DestinationFile>makefile_variable</DestinationFile>
                 <Description>Custom flags passed to the compiler when compiling C, C++, and .S files. This setting defines the value of BSP_CFLAGS_USER_FLAGS in Makefile.</Description>
@@ -891,7 +891,7 @@
                 <SettingName>altera_ro_zipfs.ro_zipfs_offset</SettingName>
                 <Identifier>ALTERA_RO_ZIPFS_OFFSET</Identifier>
                 <Type>HexNumber</Type>
-                <Value>0xe0000</Value>
+                <Value>0x100000</Value>
                 <DefaultValue>0x100000</DefaultValue>
                 <DestinationFile>system_h_define</DestinationFile>
                 <Description>Offset of file system from base of flash</Description>
@@ -903,7 +903,7 @@
                 <SettingName>altera_ro_zipfs.ro_zipfs_base</SettingName>
                 <Identifier>ALTERA_RO_ZIPFS_BASE</Identifier>
                 <Type>HexNumber</Type>
-                <Value>0x10200000</Value>
+                <Value>0x2000000</Value>
                 <DefaultValue>0x0</DefaultValue>
                 <DestinationFile>system_h_define</DestinationFile>
                 <Description>Base address of flash memory device</Description>

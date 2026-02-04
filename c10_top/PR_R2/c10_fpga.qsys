@@ -102,23 +102,23 @@
    {
       datum _originalDeviceFamily
       {
-         value = "Cyclone IV E";
-         type = "String";
-      }
-   }
-   element de0_qsys
-   {
-      datum _originalDeviceFamily
-      {
-         value = "Cyclone IV E";
-         type = "String";
-      }
-   }
-   element de0_qsys
-   {
-      datum _originalDeviceFamily
-      {
          value = "Cyclone V";
+         type = "String";
+      }
+   }
+   element de0_qsys
+   {
+      datum _originalDeviceFamily
+      {
+         value = "Cyclone IV E";
+         type = "String";
+      }
+   }
+   element de0_qsys
+   {
+      datum _originalDeviceFamily
+      {
+         value = "Cyclone IV E";
          type = "String";
       }
    }

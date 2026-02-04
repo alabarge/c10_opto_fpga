@@ -2,9 +2,9 @@
  * system.h - SOPC Builder system and BSP software package information
  *
  * Machine generated for CPU 'cpu' in SOPC Builder design 'c10_fpga'
- * SOPC Builder design path: D:/c10_opto_fpga/c10_top/PR_R2/c10_fpga.sopcinfo
+ * SOPC Builder design path: D:/new/c10_opto_fpga/c10_top/PR_R2/c10_fpga.sopcinfo
  *
- * Generated: Wed Feb 04 09:53:45 PST 2026
+ * Generated: Wed Feb 04 13:35:46 PST 2026
  */
 
 /*
@@ -209,9 +209,9 @@
  *
  */
 
-#define ALTERA_RO_ZIPFS_BASE 0x10200000
+#define ALTERA_RO_ZIPFS_BASE 0x2000000
 #define ALTERA_RO_ZIPFS_NAME "/mnt/rozipfs"
-#define ALTERA_RO_ZIPFS_OFFSET 0xe0000
+#define ALTERA_RO_ZIPFS_OFFSET 0x100000
 
 
 /*

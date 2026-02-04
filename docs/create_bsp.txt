@@ -6,3 +6,8 @@ add -Wno-misleading-indentation to bsp_cflags_warnings
 remove sdram region then add
 sdram region, size=1048544 offset=32
 add sdram_fifo region, size=7340032 offset=0x100000
+
+
+alt-file-convert.exe -I elf32-littlenios2 -O hex --input=c10_fw.elf --output=mem_init/epcq.hex --base=0x10200000 --end=0x103fffff --reset=0x102be6e0 --out-data-width=8 --boot="C:\intelfpga\22.1std\nios2eds\components\altera_nios2\boot_loader_cfi.srec"
+
+

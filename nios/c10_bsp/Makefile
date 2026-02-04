@@ -101,7 +101,7 @@ ACDS_VERSION := 22.1
 # BUILD_NUMBER: 922
 
 SETTINGS_FILE := settings.bsp
-SOPC_FILE := D:/c10_opto_fpga/c10_top/PR_R2/c10_fpga.sopcinfo
+SOPC_FILE := D:/new/c10_opto_fpga/c10_top/PR_R2/c10_fpga.sopcinfo
 
 #-------------------------------------------------------------------------------
 #                             TOOL & COMMAND DEFINITIONS
@@ -140,9 +140,13 @@ BSP_CFLAGS_DEBUG = -g
 # BSP_CFLAGS_OPTIMIZATION in Makefile. 
 BSP_CFLAGS_OPTIMIZATION = -O0
 
+# Custom flags passed to the compiler when compiling C, C++, and .S files. This 
+# setting defines the value of BSP_CFLAGS_USER_FLAGS in Makefile. 
+BSP_CFLAGS_USER_FLAGS = -Wno-misleading-indentation
+
 # C/C++ compiler warning level. "-Wall" is commonly used.This setting defines 
 # the value of BSP_CFLAGS_WARNINGS in Makefile. 
-BSP_CFLAGS_WARNINGS = -Wall -Wno-misleading-indentation
+BSP_CFLAGS_WARNINGS = -Wall
 
 # C compiler command. 
 CC = nios2-elf-gcc$(WINDOWS_EXE) -xc
