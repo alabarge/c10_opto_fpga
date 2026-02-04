@@ -3480,6 +3480,88 @@ Info (293000): Quartus Prime Full Compilation was successful. 0 errors, 123 warn
 8.    File -> Import -> Existing Projects into Workspace from c10_opto_fpga\nios
 9.    Select both c10_bsp and c10_fw
 10.   Right click c10_bsp Nios II -> Generate BSP
+
+
+Generate BSP Log:
+
+####
+
+Executing: nios2-app-update-makefile --list-src-files --app-dir D:\c10_opto_fpga\nios\c10_fw (D:\c10_opto_fpga\nios\c10_fw)
+core/ci.c
+core/lib.c
+core/main.c
+core/post.c
+driver/gpio.c
+driver/xlprint.c
+cp_srv/cp_hal.c
+cp_srv/cp_srv.c
+daq_srv/daq_hal.c
+daq_srv/daq_srv.c
+driver/adc.c
+core/cm.c
+driver/stamp.c
+core/cli_lib.c
+core/cli.c
+driver/opto.c
+
+Executing: nios2-app-update-makefile --app-dir D:\c10_opto_fpga\nios\c10_fw --add-src-files build.inc --add-src-files core/ci.h --add-src-files core/cli.h --add-src-files core/cli_defs.h --add-src-files core/cli_lib.h --add-src-files core/cm.h --add-src-files core/io.h --add-src-files core/lib.h --add-src-files core/main.h --add-src-files core/msg_str.h --add-src-files core/rec_types.h --add-src-files cp_srv/cp_hal.h --add-src-files cp_srv/cp_msg.h --add-src-files cp_srv/cp_srv.h --add-src-files daq_srv/daq_hal.h --add-src-files daq_srv/daq_msg.h --add-src-files daq_srv/daq_srv.h --add-src-files driver/adc.h --add-src-files driver/gpio.h --add-src-files driver/opto.h --add-src-files driver/stamp.h --add-src-files driver/xlprint.h --add-src-files share/build.h --add-src-files share/cm_const.h --add-src-files share/cm_msg.h --add-src-files share/cp_msg.h --add-src-files share/daq_msg.h --add-src-files share/ee_type.h --add-src-files share/fpga_build.h --add-src-files share/fpga_version.h --add-src-files share/fw_cfg.h --add-src-files share/linker.h --add-src-files share/post.h --add-src-files share/system.h --add-src-files share/type.h (D:\c10_opto_fpga\nios\c10_fw)
+
+Executing: nios2-app-update-makefile --list-src-files --app-dir D:\c10_opto_fpga\nios\c10_fw (D:\c10_opto_fpga\nios\c10_fw)
+core/ci.c
+core/lib.c
+core/main.c
+core/post.c
+driver/gpio.c
+driver/xlprint.c
+cp_srv/cp_hal.c
+cp_srv/cp_srv.c
+daq_srv/daq_hal.c
+daq_srv/daq_srv.c
+driver/adc.c
+core/cm.c
+driver/stamp.c
+core/cli_lib.c
+core/cli.c
+driver/opto.c
+
+Executing: nios2-bsp-editor.exe --settings settings.bsp (D:\c10_opto_fpga\nios\c10_bsp)
+
+Executing: nios2-bsp-generate-files.exe --bsp-dir . --settings settings.bsp (D:\c10_opto_fpga\nios\c10_bsp)
+INFO: Generating BSP files...
+INFO: nios2-bsp-generate-files --bsp-dir . --settings settings.bsp
+INFO: Initializing BSP components...
+INFO: Finished initializing BSP components. Total time taken = 2 seconds
+INFO: Searching for BSP components with category: os_software_element
+INFO: Initializing SOPC project local software IP
+INFO: [Info] Reading index <b>D:\c10_opto_fpga\c10_top\PR_R2\user_components.ipx</b>
+INFO: [Info] <b>D:/c10_opto_fpga/c10_top/ip/**/*</b> matched 27 files in 0.10 seconds
+INFO: [Info] <b>D:\c10_opto_fpga\c10_top\PR_R2\user_components.ipx</b> described 0 plugins, 1 paths, in 0.10 seconds
+INFO: [Info] <b>D:/c10_opto_fpga/c10_top/PR_R2/*</b> matched 19 files in 0.11 seconds
+INFO: [Info] <b>D:/c10_opto_fpga/c10_top/PR_R2/*/*_sw.tcl</b> matched 0 files in 0.00 seconds
+INFO: [Info] <b>D:/c10_opto_fpga/c10_top/PR_R2/ip/**/*_sw.tcl</b> matched 0 files in 0.00 seconds
+INFO: [Info] <b>D:/c10_opto_fpga/c10_top/ip/**/*_sw.tcl</b> matched 0 files in 0.00 seconds
+INFO: Finished initializing SOPC project local software IP. Total time taken = 2 seconds
+INFO: Searching for BSP components with category: driver_element
+INFO: Searching for BSP components with category: software_package_element
+INFO: Found Flash Memory: epcq_avl_mem for CPU: cpu
+INFO: Loading drivers from ensemble report.
+INFO: Finished loading drivers from ensemble report.
+INFO: Generating BSP files in "D:\c10_opto_fpga\nios\c10_bsp"
+INFO: Generated file "D:\c10_opto_fpga\nios\c10_bsp\settings.bsp"
+INFO: Generated file "D:\c10_opto_fpga\nios\c10_bsp\summary.html"
+INFO: Generated file "D:\c10_opto_fpga\nios\c10_bsp\alt_sys_init.c"
+INFO: Generated file "D:\c10_opto_fpga\nios\c10_bsp\public.mk"
+INFO: Generated file "D:\c10_opto_fpga\nios\c10_bsp\mem_init.mk"
+INFO: Generated file "D:\c10_opto_fpga\nios\c10_bsp\linker.x"
+INFO: Generated file "D:\c10_opto_fpga\nios\c10_bsp\linker.h"
+INFO: Generated file "D:\c10_opto_fpga\nios\c10_bsp\memory.gdb"
+INFO: Generated file "D:\c10_opto_fpga\nios\c10_bsp\Makefile"
+INFO: Generated file "D:\c10_opto_fpga\nios\c10_bsp\system.h"
+INFO: Finished generating BSP files. Total time taken = 2 seconds
+INFO: BSP files generated in "D:\c10_opto_fpga\nios\c10_bsp"
+
+####
+
 11.   Project -> Clean, select Clean projects selected below and Build only selected projects
 10.   Select only c10_bsp and then OK
 

@@ -6,20 +6,20 @@
 #define FPGA_INC            1
 #define FPGA_MAP_DATE       0x20260130
 #define FPGA_VER_HEX        0x12001002
-#define FPGA_TIME           "08:11"
+#define FPGA_TIME           "09:52"
 #define FPGA_DATE           "04.FEB.26"
 #define FPGA_USER           "aaron"
 #define FPGA_STR            "18.1.2.1"
 #define FPGA_LO             "18.1.2 build 1"
-#define FPGA_HI             "18.1.2 build 1, 08:11 04.FEB.26 [aaron] 49a6f5e...c6ebac7* 22.1std.2 Standard Edition"
+#define FPGA_HI             "18.1.2 build 1, 09:52 04.FEB.26 [aaron] e9beb86...3ce2079 22.1std.2 Standard Edition"
 #define FPGA_STRING         "18.1.2.1"
-#define FPGA_EPOCH          1770221493
-#define FPGA_EPOCH_HEX      0x69836FB5
+#define FPGA_EPOCH          1770227538
+#define FPGA_EPOCH_HEX      0x69838752
 #define FPGA_DATE_HEX       0x20260204
-#define FPGA_TIME_HEX       0x00081133
-#define FPGA_GIT_REV        "49a6f5e...c6ebac7*"
+#define FPGA_TIME_HEX       0x00095218
+#define FPGA_GIT_REV        "e9beb86...3ce2079"
 #define FPGA_GIT_AUTH       "aaron "
 #define FPGA_GIT_EMAIL      "aaron@omniware.us"
-#define FPGA_GIT_DATE       "  Tue Feb 3 09:57:34 2026 -0800"
+#define FPGA_GIT_DATE       "  Wed Feb 4 08:45:03 2026 -0800"
 #define FPGA_LAST_QUARTUS   "22.1std.2 Standard Edition"
 #define FPGA_CREATION_DATE  "MON MAY  5 11:54:18 2014"
