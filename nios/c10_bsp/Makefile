@@ -101,7 +101,7 @@ ACDS_VERSION := 22.1
 # BUILD_NUMBER: 922
 
 SETTINGS_FILE := settings.bsp
-SOPC_FILE := D:/new/c10_opto_fpga/c10_top/PR_R2/c10_fpga.sopcinfo
+SOPC_FILE := D:/c10_opto_fpga/c10_top/PR_R2/c10_fpga.sopcinfo
 
 #-------------------------------------------------------------------------------
 #                             TOOL & COMMAND DEFINITIONS

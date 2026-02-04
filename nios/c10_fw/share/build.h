@@ -6,20 +6,20 @@
 #define BUILD_INC           1
 #define BUILD_SYSID         0x00000000
 #define BUILD_VER_HEX       0x01020101
-#define BUILD_TIME          "13:36"
+#define BUILD_TIME          "13:46"
 #define BUILD_DATE          "04.FEB.26"
 #define BUILD_USER          "aaron"
 #define BUILD_STR           "1.2.1.1"
 #define BUILD_LO            "1.2.1 build 1"
-#define BUILD_HI            "1.2.1 build 1, 13:36 04.FEB.26 [aaron] 803a377...ee95154* 22.1std.2 Standard Edition"
+#define BUILD_HI            "1.2.1 build 1, 13:46 04.FEB.26 [aaron] 774e25f...c0e718f* 22.1std.2 Standard Edition"
 #define BUILD_STRING        "1.2.1.1"
-#define BUILD_EPOCH         1770240989
-#define BUILD_EPOCH_HEX     0x6983BBDD
+#define BUILD_EPOCH         1770241591
+#define BUILD_EPOCH_HEX     0x6983BE37
 #define BUILD_DATE_HEX      0x20260204
-#define BUILD_TIME_HEX      0x00133629
-#define BUILD_GIT_REV       "803a377...ee95154*"
+#define BUILD_TIME_HEX      0x00134631
+#define BUILD_GIT_REV       "774e25f...c0e718f*"
 #define BUILD_GIT_AUTH      "aaron "
 #define BUILD_GIT_EMAIL     "aaron@omniware.us"
-#define BUILD_GIT_DATE      "  Wed Feb 4 09:57:35 2026 -0800"
+#define BUILD_GIT_DATE      "  Wed Feb 4 13:40:47 2026 -0800"
 #define BUILD_LAST_QUARTUS  "22.1std.2 Standard Edition"
 #define BUILD_CREATION_DATE "MON MAY  5 11:54:18 2014"
