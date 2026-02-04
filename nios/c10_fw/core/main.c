@@ -9,7 +9,7 @@
    1.2 Functional Description
 
       This module is responsible for implementing the main embedded
-      application for the TERASIC C10-nano board.
+      application for the ARROW CYC1000 board.
 
       Requires --override=nios2-flash-override.txt when running the
       nios2-flash-programmer command.
@@ -70,6 +70,7 @@
 // 4.1  Include Files
 
 #include "main.h"
+#include <sys/alt_irq.h>
 
 // message string table
 #include "msg_str.h"
@@ -109,6 +110,7 @@
 
    static   char     clr_scrn[] = {0x1B, '[', '2', 'J', 0x00};
    static   char     cur_home[] = {0x1B, '[', 'H', 0x00};
+
 
 // 7 MODULE CODE
 
@@ -167,7 +169,7 @@ int main() {
    gc.int_flag  = FALSE;
    gc.sw_reset  = FALSE;
    gc.sys_time  = 0;
-   gc.ping_time = alt_timestamp();
+   gc.ping_time = stamp_count();
    gc.ping_cnt  = 0;
    gc.led_cycle = CFG_LED_CYCLE;
    gc.month     = month_table;
@@ -177,12 +179,12 @@ int main() {
    sprintf(gc.dev_str, "C10-I NIOS, %s", BUILD_STR);
 
    // Report Serial Flash Regions
-   gc.fd = alt_flash_open_dev(EPCQ_AVL_CSR_NAME);
+   gc.fd = alt_flash_open_dev(EPCQ_AVL_MEM_NAME);
    if (gc.fd) {
       // Retrieve the regions map
-      alt_epcq_controller2_get_info(gc.fd, &regions, &num_regions);
+      alt_get_flash_info(gc.fd, &regions, &num_regions);
       // Report regions
-      xlprint("flash: %s\n", EPCQ_AVL_CSR_NAME);
+      xlprint("flash: %s\n", EPCQ_AVL_MEM_NAME);
       xlprint("flash.num_regions: %d\n", num_regions);
       for (i=0;i<num_regions;i++) {
          xlprint("flash.regions[%d].offset:     %d\n", i, regions[i].offset);
@@ -201,6 +203,9 @@ int main() {
    //
    // INIT THE HARDWARE
    //
+
+   // STAMP Init
+   gc.error |= stamp_init();
 
    // GPIO Init
    gc.error |= gpio_init();
@@ -222,19 +227,12 @@ int main() {
    gc.dip_sw = gpio_dip();
    xlprint("dipsw: %02X\n", gc.dip_sw);
 
-   // STAMP Init
-   gc.error |= stamp_init();
-
    // Report Ticks per Second
    xlprint("ticks/sec: %d\n", alt_ticks_per_second());
 
-   // Report Timestamp Frequency
-   xlprint("timestamp.freq: %d.%d MHz\n", alt_timestamp_freq() / 1000000,
-         alt_timestamp_freq() % 1000000);
-
    // Report NIOS Frequency
-   xlprint("nios.freq: %d.%d MHz\n", ALT_CPU_CPU_FREQ / 1000000,
-         ALT_CPU_CPU_FREQ % 1000000);
+   xlprint("nios.freq: %d.%d MHz\n", ALT_CPU_FREQ / 1000000,
+		   ALT_CPU_FREQ % 1000000);
 
    // System ID and Unique Build time stamp
    gc.sysid = stamp_sysid();
@@ -254,14 +252,6 @@ int main() {
    // Start the Periodic Timer
    alt_alarm_start(&gc.alarm, CFG_TIMER_CYCLE, timer, NULL);
 
-   // NIOS-II Processor Registers
-   NIOS2_READ_STATUS(i);
-   xlprint("nios.status:  %08X\n", i);
-   NIOS2_READ_IENABLE(i);
-   xlprint("nios.ienable: %08X\n", i);
-   NIOS2_READ_CPUID(i);
-   xlprint("nios.cpuid:   %08X\n", i);
-
    // Partial SDRAM Dump
    xlprint("\nsdram partial ...\n\n");
    dump((uint8_t *)SDRAM_BASE, 64, LIB_ADDR | LIB_ASCII, 0);
@@ -271,8 +261,8 @@ int main() {
    dump((uint8_t *)SDRAM_FIFO_REGION_BASE, 64, LIB_ADDR | LIB_ASCII, 0);
 
    // Partial EPCS Boot Dump
-   xlprint("\nepcs boot partial ...\n\n");
-   dump((uint8_t *)EPCQ_AVL_MEM_BASE, 64, LIB_ADDR | LIB_ASCII, 0);
+   xlprint("\nepcq boot partial ...\n\n");
+   dump((uint8_t *)EPCQ_AVL_MEM_BASE, 1024, LIB_ADDR | LIB_ASCII, 0);
 
    // Power-On Self Test
    gc.error |= post_all();
@@ -313,7 +303,7 @@ int main() {
    gc.status |=  CFG_STATUS_RUN;
 
    // Start the Software Watchdog
-   out32(WATCHDOG_BASE+4, 0x04);
+   stamp_wd_enable();
 
    // Init the Command Line Interpreter
    cli_init();
@@ -348,9 +338,9 @@ int main() {
       //
       cli_process(&gc.cli);
       //
-      // UPDATE QSYS WATCHDOG
+      // UPDATE WATCHDOG
       //
-      if (gc.sw_reset != TRUE) out32(WATCHDOG_BASE+8, 0x00);
+      if (gc.sw_reset != TRUE) stamp_wd_clear();
    }
 
    // Unreachable code
@@ -470,10 +460,8 @@ void version(void) {
    // Hardware Devices
    xlprint("\n");
    xlprint("%-13s base:irq %08X:%d\n", SDRAM_NAME, SDRAM_BASE, SDRAM_IRQ);
-   xlprint("%-13s base:irq %08X:%d\n", EPCQ_AVL_CSR_NAME, EPCQ_AVL_CSR_BASE, EPCQ_AVL_CSR_IRQ);
-   xlprint("%-13s base:irq %08X:%d\n", SYSCLK_NAME, SYSCLK_BASE, SYSCLK_IRQ);
-   xlprint("%-13s base:irq %08X:%d\n", SYSTIMER_NAME, SYSTIMER_BASE, SYSTIMER_IRQ);
-   xlprint("%-13s base:irq %08X:%d\n", WATCHDOG_NAME, WATCHDOG_BASE, WATCHDOG_IRQ);
+   xlprint("%-13s base:irq %08X:%d\n", EPCQ_AVL_CSR_NAME, EPCQ_AVL_CSR_BASE, -1);
+   xlprint("%-13s base:irq %08X:%d\n", EPCQ_AVL_MEM_NAME, EPCQ_AVL_MEM_BASE, EPCQ_AVL_MEM_IRQ_INTERRUPT_CONTROLLER_ID);
    xlprint("%-13s base:irq %08X:%d\n", GPX_NAME, GPX_BASE, GPX_IRQ);
    xlprint("%-13s base:irq %08X:%d\n", GPI_NAME, GPI_BASE, GPI_IRQ);
    xlprint("%-13s base:irq %08X:%d\n\n", STDOUT_NAME, STDOUT_BASE, STDOUT_IRQ);

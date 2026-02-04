@@ -44,16 +44,6 @@
 #include "priv/alt_iic_isr_register.h"
 
 /*
- * The header, alt_irq_entry.h, contains the exception entry point, and is
- * provided by the processor component. It is included here, so that the code
- * will be added to the executable only if alt_irq_register() is present, i.e.
- * if no interrupts are registered - there's no need to provide any 
- * interrupt handling.
- */
-
-#include "sys/alt_irq_entry.h"
-
-/*
  * The header, alt_irq_table.h contains a table describing which function
  * handles each interrupt.
  */

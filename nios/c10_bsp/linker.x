@@ -4,7 +4,7 @@
  * Machine generated for CPU 'cpu' in SOPC Builder design 'c10_fpga'
  * SOPC Builder design path: D:/c10_opto_fpga/c10_top/PR_R2/c10_fpga.sopcinfo
  *
- * Generated: Wed Feb 04 13:45:36 PST 2026
+ * Generated: Wed Feb 04 10:55:19 PST 2026
  */
 
 /*
@@ -50,8 +50,7 @@
 
 MEMORY
 {
-    sdram_BEFORE_EXCEPTION : ORIGIN = 0x0, LENGTH = 32
-    sdram : ORIGIN = 0x20, LENGTH = 1048544
+    sdram : ORIGIN = 0x0, LENGTH = 1048576
     sdram_fifo : ORIGIN = 0x100000, LENGTH = 7340032
     epcq_avl_mem_BEFORE_RESET : ORIGIN = 0x10200000, LENGTH = 780000
     reset : ORIGIN = 0x102be6e0, LENGTH = 32
@@ -62,10 +61,10 @@ MEMORY
 __alt_mem_sdram = 0x0;
 __alt_mem_epcq_avl_mem = 0x10200000;
 
-OUTPUT_FORMAT( "elf32-littlenios2",
-               "elf32-littlenios2",
-               "elf32-littlenios2" )
-OUTPUT_ARCH( nios2 )
+OUTPUT_FORMAT( "elf32-littleriscv",
+               "elf32-littleriscv",
+               "elf32-littleriscv" )
+OUTPUT_ARCH( riscv )
 ENTRY( _start )
 
 /*
@@ -190,7 +189,8 @@ SECTIONS
         *(.preinit_array)
         PROVIDE (__preinit_array_end = ABSOLUTE(.));
         PROVIDE (__init_array_start = ABSOLUTE(.));
-        *(.init_array)
+        KEEP(*(SORT_BY_INIT_PRIORITY(.init_array.*)));
+        KEEP(*(.init_array));
         PROVIDE (__init_array_end = ABSOLUTE(.));
         PROVIDE (__fini_array_start = ABSOLUTE(.));
         *(.fini_array)
@@ -209,7 +209,7 @@ SECTIONS
         PROVIDE (__DTOR_END__ = ABSOLUTE(.));
         KEEP (*(.jcr))
         . = ALIGN(4);
-    } > sdram = 0x3a880100 /* NOP instruction (always in big-endian byte ordering) */
+    } > sdram = 0x13000000 /* NOP instruction (always in big-endian byte ordering) */
 
     .rodata :
     {
@@ -217,6 +217,7 @@ SECTIONS
         . = ALIGN(4);
         *(.rodata .rodata.* .gnu.linkonce.r.*)
         *(.rodata1)
+        *(.srodata .srodata.*)
         . = ALIGN(4);
         PROVIDE (__ram_rodata_end = ABSOLUTE(.));
     } > sdram
@@ -227,14 +228,32 @@ SECTIONS
     {
         PROVIDE (__ram_rwdata_start = ABSOLUTE(.));
         . = ALIGN(4);
+
+        /* Lump thread local storage (TLS) in with rwdata section */
+        PROVIDE(__tls_base = ABSOLUTE(.));
+        PROVIDE(__tdata_start = ABSOLUTE(.));
+        *(.tdata .tdata.* .gnu.linkonce.td.*)
+        PROVIDE(__tdata_end = ABSOLUTE(.));
+
+        PROVIDE(__tbss_start = ABSOLUTE(.));
+        *(.tbss .tbss.* .gnu.linkonce.tb.*)
+        *(.tcommon .tcommon.*)
+        PROVIDE(__tbss_end = ABSOLUTE(.));
+        PROVIDE(__tls_end = ABSOLUTE(.));
+
+        /* crt0.S will copy from __tdata_start to __tdata_source to create the "golden" copy for all threads to be intialized with */
+        PROVIDE(__tdata_source = ABSOLUTE(.));
+        . = . + (__tdata_end - __tdata_start);
+        PROVIDE(__tdata_source_end = ABSOLUTE(.));
         *(.got.plt) *(.got)
         *(.data1)
         *(.data .data.* .gnu.linkonce.d.*)
 
-        _gp = ABSOLUTE(. + 0x8000);
-        PROVIDE(gp = _gp);
 
         *(.rwdata .rwdata.*)
+
+        __global_pointer$ = ABSOLUTE(. + 0x800);
+        PROVIDE(gp = __global_pointer$);
         *(.sdata .sdata.* .gnu.linkonce.s.*)
         *(.sdata2 .sdata2.* .gnu.linkonce.s2.*)
 
@@ -244,6 +263,10 @@ SECTIONS
         PROVIDE (__ram_rwdata_end = ABSOLUTE(.));
     } > sdram
 
+    PROVIDE(__tdata_size = (__tdata_end - __tdata_start));
+    PROVIDE(__tbss_size = (__tbss_end - __tbss_start));
+    PROVIDE(__tls_size = (__tls_end - __tls_base));
+    
     PROVIDE (__flash_rwdata_start = LOADADDR(.rwdata));
 
     .bss :

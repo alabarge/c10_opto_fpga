@@ -67,7 +67,6 @@
 // 4.1  Include Files
 
 #include <stdarg.h>
-
 #include "main.h"
 
 // 4.2   External Data Structures
@@ -87,9 +86,12 @@ static int  print_uart(char **out, const char *format, va_list args);
 
 static uint32_t  base = 0;
 
+static   volatile puart_regs_t   regs = (volatile puart_regs_t)STDOUT_BASE;
+
+
 // 6.2  Local Data Structures
 
-   static uint8_t esc = 0;
+static uint8_t esc = 0;
 
 // 7 MODULE CODE
 
@@ -184,7 +186,7 @@ int xlprints(char *buf, const char *format, ...) {
 void xlprint_open(uint32_t devAddr) {
    base = devAddr;
    // enable IRRDY interrupt ONLY
-   out16(base+RS232_CONTROL, RS232_IRRDY);
+   regs->ctl = RS232_IRRDY;
 }
 
 static void printchar(char **str, int c) {
@@ -193,8 +195,8 @@ static void printchar(char **str, int c) {
       ++(*str);
    }
    else if (base != 0) {
-      while ((in16(base+RS232_STATUS) & RS232_TRDY) == 0);
-      out16(base+RS232_TXDATA, c);
+      while ((regs->status & RS232_TRDY) == 0);
+      regs->tx_dat = c;
    }
 }
 
@@ -371,7 +373,7 @@ void xlprint_isr(void *arg) {
    // Down-Arrow is 0x5B 0x42
 
    // read the incoming character
-   ch = in16(base+RS232_RXDATA);
+   ch = (uint8_t)regs->rx_dat;
    if (isprint(ch) || ch == 0x0a) {
       if (esc == 1)
          esc = 0;
@@ -380,7 +382,7 @@ void xlprint_isr(void *arg) {
       else xlprint("%c", ch);
    }
 
-   out16(base+RS232_CONTROL, RS232_IRRDY);
+   regs->ctl = RS232_IRRDY;
 
    // send character to CLI
    cli_put(&gc.cli, (char)ch);

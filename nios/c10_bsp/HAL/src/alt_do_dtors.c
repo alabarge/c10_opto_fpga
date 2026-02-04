@@ -37,9 +37,9 @@
 * Overriding HAL Functions                                                    *
 *                                                                             *
 * To provide your own implementation of a HAL function, include the file in   *
-* your Nios II IDE application project. When building the executable, the     *
-* Nios II IDE finds your function first, and uses it in place of the HAL      *
-* version.                                                                    *
+* your Abbott's Lake IDE application project. When building the executable,   *
+* the Abbott's Lake IDE finds your function first, and uses it in place of    *
+* the HAL version.                                                            *
 *                                                                             *
 ******************************************************************************/
 
@@ -48,8 +48,8 @@
  */
 
 typedef void (*destructor) (void);
-extern destructor __DTOR_LIST__[];
-extern destructor __DTOR_END__[];
+extern destructor __fini_array_start[];
+extern destructor __fini_array_end[];
 
 /*
  * Run the C++ static destructors.
@@ -59,6 +59,6 @@ void _do_dtors(void)
 {
   destructor* dtor;
 
-  for (dtor = &__DTOR_END__[-1]; dtor >= __DTOR_LIST__; dtor--)
+  for (dtor = &__fini_array_end[-1]; dtor >= __fini_array_start; dtor--)
         (*dtor) (); 
 }

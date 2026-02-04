@@ -52,14 +52,16 @@ int ALT_ISATTY (int file)
     switch (file) {
 #ifdef ALT_STDIN_PRESENT
     case 0: /* stdin file descriptor */
+    return 1;    
 #endif /* ALT_STDIN_PRESENT */
 #ifdef ALT_STDOUT_PRESENT
     case 1: /* stdout file descriptor */
+    return 1;
 #endif /* ALT_STDOUT_PRESENT */
 #ifdef ALT_STDERR_PRESENT
     case 2: /* stderr file descriptor */
+    return 1;
 #endif /* ALT_STDERR_PRESENT */
-        return 1;
     default:
         return 0;
     }
@@ -83,6 +85,8 @@ int ALT_ISATTY (int file)
 {
   alt_fd*     fd;
   struct stat stat;
+  
+  stat.st_mode=0;  /* misrac compliance */
 
   /*
    * A common error case is that when the file descriptor was created, the call
@@ -111,8 +115,10 @@ int ALT_ISATTY (int file)
 
     else
     {
-      fstat (file, &stat);
-      return (stat.st_mode == _IFCHR) ? 1 : 0;
+      if (fstat (file, &stat) < 0)
+        return 0;  // fstat will set ERRNO
+      else
+        return (stat.st_mode == _IFCHR) ? 1 : 0;
     }
   }
   else

@@ -347,6 +347,7 @@ int alt_log_printf_proc(const char *fmt, ... )
 
     va_start (args, fmt);
     alt_log_private_printf(fmt,ALT_LOG_PORT_BASE,args);
+    va_end (args);
     return (0);
 }
 
@@ -439,24 +440,31 @@ void alt_log_jtag_uart_isr_proc(int base, altera_avalon_jtag_uart_state* dev)
  * that eventually calls write()) gets echoed to the alt_log output. */
 void alt_log_write(const void *ptr, size_t len)
 {
-    if (alt_log_write_on_flag) {
-    int temp_cnt;
+    
+    if (alt_log_write_on_flag)
+    {
+        int temp_cnt;
+        int i;
         int length=(ALT_LOG_WRITE_ECHO_LEN>len) ? len : ALT_LOG_WRITE_ECHO_LEN;
 
         if (length < 2) return;
-
-        strncpy (alt_log_write_buf,ptr,length);
-    alt_log_write_buf[length-1]='\n';
-    alt_log_write_buf[length]='\r';
-    alt_log_write_buf[length+1]='\0';
-
-    /* Escape Ctrl-D's. If the Ctrl-D gets sent it might kill the terminal
-         * connection of alt_log. It will get replaced by 'D'. */
-        for (temp_cnt=0;temp_cnt < length; temp_cnt++) {
-        if (alt_log_write_buf[temp_cnt]== 0x4) {
-            alt_log_write_buf[temp_cnt]='D';
+        for (i=0;i<length;i++)
+        {
+            *(unsigned char *)(alt_log_write_buf+i)=*(unsigned char *)(ptr+i);
         }
-    }
+        alt_log_write_buf[length-1]='\n';
+        alt_log_write_buf[length]='\r';
+        alt_log_write_buf[length+1]='\0';
+
+        /* Escape Ctrl-D's. If the Ctrl-D gets sent it might kill the terminal
+         * connection of alt_log. It will get replaced by 'D'. */
+        for (temp_cnt=0;temp_cnt < length; temp_cnt++)
+        {
+            if (alt_log_write_buf[temp_cnt]== 0x4)
+            {
+                alt_log_write_buf[temp_cnt]='D';
+            }
+        }
         ALT_LOG_PRINTF("Write Echo: %s",alt_log_write_buf);
     }
 }

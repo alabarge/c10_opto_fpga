@@ -118,6 +118,7 @@ set_interface_property stamp_export associatedReset reset
 set_interface_property stamp_export ENABLED true
 
 add_interface_port stamp_export tp export Output 4
+add_interface_port stamp_export wd_reset export Output 1
 
 #
 # DTS Entry

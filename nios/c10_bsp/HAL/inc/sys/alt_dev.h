@@ -66,7 +66,7 @@ struct stat;
 typedef struct alt_fd_s
 {
   alt_dev* dev;
-  alt_u8*  priv;
+  void*    priv;
   int      fd_flags;
 } alt_fd;
 
@@ -101,12 +101,7 @@ struct alt_dev_s {
 
 extern int alt_fs_reg  (alt_dev* dev); 
 
-static ALT_INLINE int alt_dev_reg (alt_dev* dev)
-{
-  extern alt_llist alt_dev_list;
-
-  return alt_dev_llist_insert ((alt_dev_llist*) dev, &alt_dev_list);
-}
+int alt_dev_reg (alt_dev* dev);
 
 #ifdef __cplusplus
 }

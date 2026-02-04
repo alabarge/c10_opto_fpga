@@ -53,37 +53,39 @@
  
 alt_dev* alt_find_file (const char* name)
 {
-  alt_dev* next = (alt_dev*) alt_fs_list.next;   
-
-  alt_32 len;
+    alt_dev* next = (alt_dev*) alt_fs_list.next;   
+    alt_32   len=0;
+    alt_32   MAX_STRING_LENGTH=1000;
  
-  /*
-   * Check each list entry in turn, until a match is found, or we reach the
-   * end of the list (i.e. next winds up pointing back to the list head).
-   */ 
- 
-  while (next != (alt_dev*) &alt_fs_list)
-  {
-    len = strlen(next->name);
-    
-    if (next->name[len-1] == '/')
+    /*
+    * Check each list entry in turn, until a match is found, or we reach the
+    * end of the list (i.e. next winds up pointing back to the list head).
+    */ 
+    while (next != (alt_dev*) &alt_fs_list)
     {
-      len -= 1;
+        len=0;
+        while (len < MAX_STRING_LENGTH)    
+        {
+            if (((next->name[len]== '/') && (next->name[len+1] == 0)) || (next->name[len] == 0))
+            { 
+                if ((name[len]== '/') || (name[len] == 0))
+                {
+                    return next;
+                }
+                break;
+            }
+            
+            if (next->name[len]!=name[len]) { break; }
+            len++;
+        }  
+        
+        next = (alt_dev*) next->llist.next;
     }
-
-    if (((name[len] == '/') || (name[len] == '\0')) && 
-        !memcmp (next->name, name, len))
-    {
-      /* match found */
-
-      return next;
-    }
-    next = (alt_dev*) next->llist.next;
-  }
   
-  /* No match found */
+    /* No match found */
   
-  return NULL;     
+    return NULL;     
 }
+
 
 

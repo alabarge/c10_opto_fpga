@@ -38,6 +38,12 @@
 * THIS IS A LIBRARY READ-ONLY SOURCE FILE. DO NOT EDIT.                       *
 *                                                                             *
 ******************************************************************************/
+/* Must define this so that values such as EBADFD are defined in errno.h. */
+#define __LINUX_ERRNO_EXTENSIONS__
+
+#include <errno.h>
+
+#ifndef USE_PICOLIBC
 
 /*
  * errno is defined in <errno.h> so that it uses the thread local version 
@@ -66,11 +72,6 @@
 
 extern int* (*alt_errno) (void);
 
-/* Must define this so that values such as EBADFD are defined in errno.h. */
-#define __LINUX_ERRNO_EXTENSIONS__
-
-#include <errno.h>
-
 #include "alt_types.h"
 
 #undef errno
@@ -83,5 +84,11 @@ static ALT_INLINE int* alt_get_errno(void)
 }
 
 #define ALT_ERRNO *alt_get_errno()
+
+#else /* USE_PICOLIBC */
+
+#define ALT_ERRNO errno
+
+#endif /* USE_PICOLIBC */
 
 #endif /* __ALT_ERRNO_H__ */

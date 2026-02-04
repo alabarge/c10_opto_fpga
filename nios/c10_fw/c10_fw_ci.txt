@@ -1,0 +1,12 @@
+ci.rev = 0x00000000;
+ci.check = 0x00000000;
+ci.checksum = 0x961CF227;
+ci.magic = 0x55AA1234;
+ci.debug = 0x00000000;
+ci.trace = 0x00000A82;
+ci.feature = 0x00000000;
+ci.mac_addr_hi = 0x0002C94E;
+ci.mac_addr_lo = 0x7FC80000;
+ci.ip_addr = 0xC0A80146;
+ci.cm_udp_port = 0x00000ADD;
+

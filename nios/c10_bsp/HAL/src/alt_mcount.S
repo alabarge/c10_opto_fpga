@@ -28,17 +28,23 @@
 *                                                                             *
 ******************************************************************************/
 
+/* TODO: Port to RISC-V gprof scheme.*/
 /*  mcount or _mcount is inserted by GCC before the function prologue of every 
  *  function when a program is compiled for profiling. At the start of mcount,
  *  we guarantee that:
  *  ra = self_pc (an address in the function which called mcount)
- *  r8 = from_pc (an address in the function which called mcount's caller)
+ *  a0 = from_pc (an address in the function which called mcount's caller)
  *
  *  Because this is always called at the start of a function we can corrupt
- *  r2,r3 and r11-r15.  We must not corrupt r4-r7 (because they might contain
- *  function arguments for the instrumented function) or r8 (which holds ra
+ *  t0-t6.  We must not corrupt a1-a7 (because they might contain
+ *  function arguments for the instrumented function) or a0 (which holds ra
  *  for the instrumented function).
  */
+
+#include "system.h"
+
+// TODO: Remove usage of t3 if we wish to support RV32E + gprof
+#if ALT_CPU_NUM_GPR == 32
 
         .global __mcount_fn_head
 
@@ -49,6 +55,7 @@
 
 _mcount:        
 mcount:
+
         /* Use a hash to speed up locating fn_entry.  We use bits 5 upwards to choose
          * the bucket because bits 1:0 will always be 0, and because the distribution
          * of values for bits 4:2 won't be even (aligning on cache line boundaries
@@ -56,70 +63,67 @@ mcount:
          */
         /* fn_head = mcount_fn_head + (((unsigned int)self_pc >> 5) & (HASH_BUCKETS - 1)); */
 
-        srli    r2, ra, 3
-        movhi   r3, %hiadj(__mcount_fn_head)
-        addi    r3, r3, %lo(__mcount_fn_head)
-        andi    r2, r2, 0xFC
-        add     r11, r2, r3
+        srli    t0, ra, 3
+        la      t1, __mcount_fn_head
+        andi    t0, t0, 0xFC
+        add     t2, t0, t1
 
         /* The fast case is where we have already allocated a function arc, and so
          * also a function pointer.
          */
 
         /* First find the function being called (using self_pc) */
-        mov     r10, r11
+        mv      t3, t2
 0:
-        ldw     r10, 0(r10)
-        beq     r10, zero, .Lnew_arc
-        ldw     r2, 4(r10)
-        bne     r2, ra, 0b
+        lw      t3, 0(t3)
+        beqz    t3, .Lnew_arc
+        lw      t0, 4(t3)
+        bne     t0, ra, 0b
 
         /* Found a function entry for this PC. Now look for an arc with a matching
          * from_pc value. There will always be at least one arc. */
-        ldw     r3, 8(r10)
+        lw      t1, 8(t3)
 0:
-        ldw     r2, 4(r3)
-        beq     r2, r8, .Lfound_arc
-        ldw     r3, 0(r3)
-        bne     r3, zero, 0b
+        lw      t0, 4(t1)
+        beq     t0, a0, .Lfound_arc
+        lw      t1, 0(t1)
+        bne     t1, zero, 0b
 
 .Lnew_arc:
-        addi    sp, sp, -24
+        addi    sp, sp, -20
 
 .LCFI0:
-        stw     ra, 0(sp)
-        stw     r4, 4(sp)
-        stw     r5, 8(sp)
-        stw     r6, 12(sp)
-        stw     r7, 16(sp)
-        stw     r8, 20(sp)
+        sw     ra, 0(sp)
+        sw     a0, 4(sp)
+        sw     a1, 8(sp)
+        sw     a2, 12(sp)
+        sw     a3, 16(sp)
 
 .LCFI1:
         /* __mcount_record(orig_ra, orig_r8, fn_entry, *fn_head); */
-        mov     r4, ra
-        mov     r5, r8
-        mov     r6, r10
-        mov     r7, r11
-        call     __mcount_record
+        mv      a1, a0
+        mv      a0, ra
+        mv      a2, t3
+        mv      a3, t2
+        jal     __mcount_record
         
         /* restore registers from the stack */
-        ldw     ra, 0(sp)
-        ldw     r4, 4(sp)
-        ldw     r5, 8(sp)
-        ldw     r6, 12(sp)
-        ldw     r7, 16(sp)
-        ldw     r8, 20(sp)
+        lw      ra, 0(sp)
+        lw      a0, 4(sp)
+        lw      a1, 8(sp)
+        lw      a2, 12(sp)
+        lw      a3, 16(sp)
 
-        addi    sp, sp, 24
+        addi    sp, sp, 20
 
 .LCFI2:
         ret
 
 .Lfound_arc:
         /* We've found the correct arc record.  Increment the count and return */
-        ldw     r2, 8(r3)
-        addi    r2, r2, 1
-        stw     r2, 8(r3)
+        lw      t0, 8(t1)
+        addi    t0, t0, 1
+        sw      t0, 8(t1)
         ret
 
 .Lmcount_end:
@@ -195,4 +199,6 @@ mcount:
 
         .align   2
 2:
+
+#endif
 

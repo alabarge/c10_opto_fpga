@@ -65,15 +65,19 @@ int ALT_FSTAT (int file, struct stat *st)
     switch (file) {
 #ifdef ALT_STDIN_PRESENT
     case 0: /* stdin file descriptor */
+        st->st_mode = _IFCHR;
+        return 0;
 #endif /* ALT_STDIN_PRESENT */
 #ifdef ALT_STDOUT_PRESENT
     case 1: /* stdout file descriptor */
+        st->st_mode = _IFCHR;
+        return 0;    
 #endif /* ALT_STDOUT_PRESENT */
 #ifdef ALT_STDERR_PRESENT
     case 2: /* stderr file descriptor */
-#endif /* ALT_STDERR_PRESENT */
         st->st_mode = _IFCHR;
         return 0;
+#endif /* ALT_STDERR_PRESENT */        
     default:
         return -1;
     }

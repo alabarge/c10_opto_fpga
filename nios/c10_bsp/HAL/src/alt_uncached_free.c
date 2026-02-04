@@ -28,26 +28,14 @@
 *                                                                             *
 ******************************************************************************/
 
-#include "sys/alt_warning.h"
 #include "sys/alt_cache.h"
-#include "system.h"
 
 /*
  * Free a block of uncached memory.
  */
-
 void 
 alt_uncached_free(volatile void* ptr)
 {
-#if ALT_CPU_DCACHE_SIZE > 0
-#ifdef ALT_CPU_DCACHE_BYPASS_MASK
-  free((void*) (((alt_u32)ptr) & ~ALT_CPU_DCACHE_BYPASS_MASK));
-#else /* No address mask option enabled. */
-  /* Generate a link time error, should this function ever be called. */
-  ALT_LINK_ERROR("alt_uncached_free() is not available because CPU is not configured to use bit 31 of address to bypass data cache");
-#endif /* No address mask option enabled. */
-#else /* No data cache */
-  /* Nothing needs to be done to the pointer. */
+  /* Just use regular free, no data cache */
   free((void*)ptr);
-#endif /* No data cache */
 }

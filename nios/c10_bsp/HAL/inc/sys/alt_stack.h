@@ -32,11 +32,11 @@
 #define __ALT_STACK_H__
 
 /*
- * alt_stack.h is the nios2 specific implementation of functions used by the
+ * alt_stack.h is the Nios V implementation of functions used by the
  * stack overflow code.
  */
 
-#include "nios2.h"
+#include "intel_niosv.h"
 
 #include "alt_types.h"
 
@@ -60,10 +60,7 @@ extern char __alt_exception_stack_pointer[];  /* set by the linker */
 
 static ALT_INLINE char * ALT_ALWAYS_INLINE alt_stack_limit (void)
 {
-  char * limit;
-  NIOS2_READ_ET(limit);
-
-  return limit; 
+  return alt_stack_limit_value; 
 }
 
 /*
@@ -73,10 +70,10 @@ static ALT_INLINE char * ALT_ALWAYS_INLINE alt_stack_limit (void)
 
 static ALT_INLINE char * ALT_ALWAYS_INLINE alt_stack_pointer (void)
 {
-  char * pointer;
-  NIOS2_READ_SP(pointer);
+    char * pointer;
+    NIOSV_READ_SP(pointer);
 
-  return pointer; 
+    return pointer; 
 }
 
 
@@ -91,7 +88,7 @@ static ALT_INLINE char * ALT_ALWAYS_INLINE alt_stack_pointer (void)
 
 static ALT_INLINE char * ALT_ALWAYS_INLINE alt_exception_stack_pointer (void)
 {
-  return (char *) *(alt_u32 *)(__alt_exception_stack_pointer - sizeof(alt_u32));
+    return (char *) *(alt_u32 *)(__alt_exception_stack_pointer - sizeof(alt_u32));
 }
 
 #endif /* ALT_EXCEPTION_STACK */
@@ -102,10 +99,10 @@ static ALT_INLINE char * ALT_ALWAYS_INLINE alt_exception_stack_pointer (void)
  * limit register.
  */
 
+
 static ALT_INLINE void ALT_ALWAYS_INLINE alt_set_stack_limit (char * limit)
 {
-  alt_stack_limit_value = limit;
-  NIOS2_WRITE_ET(limit);
+    alt_stack_limit_value = limit;
 }
 
 /*
@@ -114,7 +111,7 @@ static ALT_INLINE void ALT_ALWAYS_INLINE alt_set_stack_limit (char * limit)
 
 static ALT_INLINE void ALT_ALWAYS_INLINE alt_report_stack_overflow (void)
 {
-  NIOS2_REPORT_STACK_OVERFLOW();
+    NIOSV_REPORT_STACK_OVERFLOW();
 }
 
 

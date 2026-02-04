@@ -170,7 +170,7 @@ altera_avalon_uart_rxirq(altera_avalon_uart_state* sp, alt_u32 status)
 
   if (sp->rx_end == sp->rx_start)
   {
-    ALT_FLAG_POST (sp->events, ALT_UART_READ_RDY, OS_FLAG_SET);
+    ALT_FLAG_POST (sp->events, ALT_UART_READ_RDY, ALT_FLAG_SET);
   }
 
   /* Determine which slot to use next in the circular buffer */
@@ -229,7 +229,7 @@ altera_avalon_uart_txirq(altera_avalon_uart_state* sp, alt_u32 status)
       { 
         ALT_FLAG_POST (sp->events, 
                        ALT_UART_WRITE_RDY,
-                       OS_FLAG_SET);
+                       ALT_FLAG_SET);
       }
 
       /* Write the data to the device */

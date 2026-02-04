@@ -147,3 +147,9 @@ alt_fd alt_fd_list[ALT_MAX_FD] =
     }
     /* all other elements are set to zero */
   };
+  
+int alt_dev_reg (alt_dev* dev)
+{
+    return alt_dev_llist_insert ((alt_dev_llist*) dev, &alt_dev_list);
+}
+

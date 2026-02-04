@@ -28,10 +28,7 @@
 *                                                                             *
 ******************************************************************************/
 
-#include "nios2.h"
 #include "system.h"
-
-#include "alt_types.h"
 #include "sys/alt_cache.h" 
 
 /*
@@ -40,7 +37,7 @@
 
 void alt_icache_flush_all (void)
 {
-#if NIOS2_ICACHE_SIZE > 0
-  alt_icache_flush (0, NIOS2_ICACHE_SIZE);
+#if ALT_CPU_ICACHE_SIZE > 0
+    __asm__ volatile("fence.i" ::: "memory");
 #endif
 }

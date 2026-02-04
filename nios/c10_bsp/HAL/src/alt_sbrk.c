@@ -29,6 +29,7 @@
 * Altera does not recommend, suggest or require that this reference design    *
 * file be used in conjunction or combination with any other product.          *
 ******************************************************************************/
+#ifndef USE_PICOLIBC
 
 #include <sys/types.h>
 
@@ -133,4 +134,6 @@ caddr_t ALT_SBRK (int incr)
   alt_irq_enable_all(context);
 
   return (caddr_t) prev_heap_end; 
-} 
+}
+
+#endif /* USE_PICOLIBC */

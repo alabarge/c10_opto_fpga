@@ -38,6 +38,26 @@
 #include "sys/alt_dev.h"
 #include "priv/alt_file.h"
 
+#ifdef USE_PICOLIBC
+
+static int putc_wrapper(char c, FILE *fp) {
+    return write(STDOUT_FILENO, &c, 1);
+}
+
+static int getc_wrapper(FILE *fp) {
+    unsigned char c;
+    read(STDIN_FILENO, &c, 1);
+    return c;
+}
+
+static FILE __stdio = FDEV_SETUP_STREAM(putc_wrapper, getc_wrapper, NULL,
+                                             _FDEV_SETUP_RW);
+         
+FILE *const stdout = &__stdio;
+FILE *const stderr = &__stdio;
+FILE *const stdin = &__stdio;
+
+#endif
 
 /*
  * alt_open_fd() is similar to open() in that it is used to obtain a file
@@ -91,6 +111,26 @@ void alt_io_redirect(const char* stdout_dev,
   alt_open_fd (&alt_fd_list[STDOUT_FILENO], stdout_dev, O_WRONLY, 0777);
   alt_open_fd (&alt_fd_list[STDIN_FILENO], stdin_dev, O_RDONLY, 0777);
   alt_open_fd (&alt_fd_list[STDERR_FILENO], stderr_dev, O_WRONLY, 0777);
+
+#ifndef USE_PICOLIBC
+  /* Allocate a stream buffer if it is not yet done.
+   * And use no buffering mode by default.
+   */
+  if ((FILE *)stdin->_bf._base == NULL)
+  {
+    setvbuf(stdin, NULL, _IONBF, 0);
+  }
+
+  if ((FILE *)stdout->_bf._base == NULL)
+  {
+    setvbuf(stdout, NULL, _IONBF, 0);
+  }
+
+  if ((FILE *)stderr->_bf._base == NULL)
+  {
+    setvbuf(stderr, NULL, _IONBF, 0);
+  }
+#endif
 }  
 
 

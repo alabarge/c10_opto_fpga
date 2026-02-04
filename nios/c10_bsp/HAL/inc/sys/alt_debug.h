@@ -39,7 +39,7 @@
 
 #define ALT_DEBUG_ASSERT(condition) if (!condition) \
 {                                                   \
-  __asm__ volatile ("break");                       \
+  __asm__ volatile ("ebreak");                       \
 }
 
 #endif /* __ALT_DEBUG_H__ */

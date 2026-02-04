@@ -1,32 +1,41 @@
 #pragma once
 
-#include "sys/alt_stdio.h"
-#include "sys/alt_alarm.h"
-#include "sys/alt_timestamp.h"
-#include "altera_epcq_controller2.h"
-#include "sys/alt_flash.h"
-#include "sys/alt_irq.h"
-#include "sys/alt_cache.h"
-#include "nios2.h"
-#include "alt_types.h"
+#include <stdio.h>
+#include <unistd.h>
+#include <io.h>
+#include <system.h>
 
 #include <math.h>
 #include <time.h>
 #include <string.h>
 #include <ctype.h>
-#include <stdio.h>
 #include <stdlib.h>
 #include <stddef.h>
 #include <stdint.h>
 #include <malloc.h>
 #include <sys/types.h>
 #include <sys/stat.h>
-#include <unistd.h>
+
+#include <linker.h>
+#include <sys/alt_stdio.h>
+#include <sys/alt_alarm.h>
+#include "sys/alt_timestamp.h"
+#include <sys/alt_flash.h>
+#include <sys/alt_irq.h>
+#include <altera_ro_zipfs.h>
+
+#include "fpga_build.h"
+#include "gpio.h"
+#include "adc.h"
+#include "opto.h"
+#include "stamp.h"
+#include "xlprint.h"
+#include "lib.h"
+#include "post.h"
 
 #include "fw_cfg.h"
 #include "type.h"
 #include "cm_const.h"
-#include "io.h"
 #include "ci.h"
 #include "cm.h"
 #include "build.h"
@@ -48,7 +57,7 @@
 
 #define DE0_OK    0
 
-#define  MSG_MAX_STR    32
+#define MSG_MAX_STR    32
 
 // Byte & Word Manipulation
 #define DIM(x)    (sizeof(x)/sizeof(*(x)))
@@ -64,20 +73,6 @@
                   (((x) >> 8) & 0xFF00L) | (((x) >> 24) & 0xFFL)))
 #define swap32s(x) ((x & 0x0000FFFF) << 16) | \
                    ((x & 0xFFFF0000) >> 16)
-
-// Input/Output Macros - Cache is bypassed
-#define in32(BASE) \
-  __builtin_ldwio ((void *)((uint8_t*)(BASE)))
-#define out32(BASE, DATA) \
-  __builtin_stwio ((void *)((uint8_t*)(BASE)), DATA)
-#define in16(BASE) \
-  __builtin_ldhuio ((void *)((uint8_t*)(BASE)))
-#define out16(BASE, DATA) \
-  __builtin_sthio ((void *)((uint8_t*)(BASE)), DATA)
-#define in8(BASE) \
-  __builtin_ldbuio ((void *)((uint8_t*)(BASE)))
-#define out8(BASE, DATA) \
-  __builtin_stbio ((void *)((uint8_t*)(BASE)), DATA)
 
 // message string table
 typedef struct _msg_entry_t {

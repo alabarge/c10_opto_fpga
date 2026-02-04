@@ -28,24 +28,21 @@
 *                                                                             *
 ******************************************************************************/
 
-#include "nios2.h"
 #include "system.h"
-
 #include "alt_types.h"
-#include "sys/alt_cache.h" 
+#include "sys/alt_cache.h"
+#include "intel_niosv.h"
 
 /*
  * alt_dcache_flush_all() is called to flush the entire data cache.
  */
-
 void alt_dcache_flush_all (void)
 {
-#if NIOS2_DCACHE_SIZE > 0
-  char* i;
-  
-  for (i = (char*) 0; i < (char*) NIOS2_DCACHE_SIZE; i+= NIOS2_DCACHE_LINE_SIZE)
-  { 
-    __asm__ volatile ("flushd (%0)" :: "r" (i));
-  }
-#endif /* NIOS2_DCACHE_SIZE > 0 */
+#if ALT_CPU_DCACHE_SIZE > 0
+    char* i;
+    for (i = (char*)0; i < (char*) ALT_CPU_DCACHE_SIZE; i+= ALT_CPU_DCACHE_LINE_SIZE)
+    { 
+      DCACHE_CLEAN_BY_INDEX_VAL(i); 
+    }
+#endif
 }

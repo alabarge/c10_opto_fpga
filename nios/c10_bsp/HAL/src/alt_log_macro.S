@@ -28,31 +28,39 @@
 
         .global tx_log_str
 tx_log_str:
-	/* load base uart / jtag uart address into r6 */
-	movhi r6, %hiadj(ALT_LOG_PORT_BASE)
-	addi r6, r6, %lo(ALT_LOG_PORT_BASE)
 tx_next_char:
-        /* if pointer points to null, return 
-         * r4 is the pointer to the str to be printed, set by ALT_LOG_PUTS */
-	ldb r7, (r4)
-	beq r0, r7, end_tx
+    /* if pointer points to null, return .
+     * a0 is the pointer to the str to be printed, set by ALT_LOG_PUTS */
+	lb      t1, (a0)
+	beqz    t1, end_tx
 
-	/* check device transmit ready  */
+	/* 
+     * Check device transmit ready
+     *    UART, ALT_LOG_PRINT_MSK == 0x40
+     *    JTAG UART, ALT_LOG_PRINT_MSK == 0xFFFF0000
+     */
+    li      t2, ALT_LOG_PRINT_MSK
+
 wait_tx_ready_loop:
-        ldwio   r8, ALT_LOG_PRINT_REG_OFFSET(r6)
-        /*UART, ALT_LOG_PRINT_MSK == 0x40
-          JTAG UART, ALT_LOG_PRINT_MSK == 0xFFFF0000 */
-        andhi   r5, r8, %hi(ALT_LOG_PRINT_MSK)
-        andi    r8, r8, %lo(ALT_LOG_PRINT_MSK)
-        or      r5, r5, r8
-        beq     r5, r0, wait_tx_ready_loop	
+    /* load base uart / jtag uart address into t0 */
+    li      t0, ALT_LOG_PORT_BASE
+
+    lw      t0, ALT_LOG_PRINT_REG_OFFSET(t0)
+    and     t0, t0, t2
+    beqz    t0, wait_tx_ready_loop	
+
+    /* load base uart / jtag uart address into t0 */
+    li      t0, ALT_LOG_PORT_BASE
+
 	/* write char */
-	stwio   r7, ALT_LOG_PRINT_TXDATA_REG_OFFSET (r6)		
+	sw      t1, ALT_LOG_PRINT_TXDATA_REG_OFFSET(t0)		
+
 	/* advance string pointer */
-	addi r4, r4, 1
-	br tx_next_char
+	addi    a0, a0, 1
+	j       tx_next_char
+
 end_tx:	
-        ret
+    ret
     
 #endif
 

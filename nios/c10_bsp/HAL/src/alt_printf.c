@@ -129,4 +129,5 @@ alt_printf(const char* fmt, ... )
 #ifdef ALT_SEMIHOSTING
     alt_putbufflush();
 #endif
+    va_end(args);
 }

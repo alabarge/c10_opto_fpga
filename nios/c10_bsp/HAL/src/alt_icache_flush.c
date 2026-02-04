@@ -28,57 +28,16 @@
 *                                                                             *
 ******************************************************************************/
 
-#include "nios2.h"
 #include "system.h"
-
-#include "alt_types.h"
-#include "sys/alt_cache.h" 
+#include "sys/alt_cache.h"
 
 /*
  * alt_icache_flush() is called to flush the instruction cache for a memory
  * region of length "len" bytes, starting at address "start".
  */
-
 void alt_icache_flush (void* start, alt_u32 len)
 {
-#if NIOS2_ICACHE_SIZE > 0
-
-  char* i;
-  char* end;
-
-  /*
-   * This is the most we would ever need to flush.
-   */
- 
-  if (len > NIOS2_ICACHE_SIZE)
-  {
-    len = NIOS2_ICACHE_SIZE;
-  }
-
-  end = ((char*) start) + len;
-
-  for (i = start; i < end; i+= NIOS2_ICACHE_LINE_SIZE)
-  { 
-    __asm__ volatile ("flushi %0" :: "r" (i)); 
-  }
-
-  /* 
-   * For an unaligned flush request, we've got one more line left.
-   * Note that this is dependent on NIOS2_ICACHE_LINE_SIZE to be a 
-   * multiple of 2 (which it always is).
-   */
-
-  if (((alt_u32) start) & (NIOS2_ICACHE_LINE_SIZE - 1))
-  {
-    __asm__ volatile ("flushi %0" :: "r" (i));
-  }
-
-  /* 
-   * Having flushed the cache, flush any stale instructions in the 
-   * pipeline 
-   */
-
-  __asm__ volatile ("flushp");
-
-#endif /* NIOS2_ICACHE_SIZE > 0 */
+#if ALT_CPU_ICACHE_SIZE > 0
+    __asm__ volatile("fence.i" ::: "memory");
+#endif
 }

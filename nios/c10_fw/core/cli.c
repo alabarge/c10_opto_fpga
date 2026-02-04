@@ -312,7 +312,7 @@ void reset_f(int argc, char **argv) {
 void recon_f(int argc, char **argv) {
    xlprint("\n*** RECONFIGURE FPGA ***\n\n");
    clk_sleep(500, MILLISECONDS);
-   out32(UPDATE_BASE + 0x74, 1);
+//   out32(UPDATE_BASE + 0x74, 1);
 }
 
 void mdio_f(int argc, char **argv) {
@@ -350,7 +350,7 @@ void md_loop_f(int argc, char **argv) {
       gc.cli.loop_end = 0;
       gc.cli.loop_fn = md_loop_f;
       gc.cli.loop_ms = MILLISECONDS * loop_ms;
-      gc.cli.loop_snap = alt_timestamp();
+      gc.cli.loop_snap = stamp_count();
       gc.cli.loop_cnt = 0;
       gc.cli.loop_addr = 0x10030014;
       gc.cli.loop_val = 0x0;
@@ -376,7 +376,7 @@ void mw_loop_f(int argc, char **argv) {
       gc.cli.loop_end = 0;
       gc.cli.loop_fn = mw_loop_f;
       gc.cli.loop_ms = MILLISECONDS * loop_ms;
-      gc.cli.loop_snap = alt_timestamp();
+      gc.cli.loop_snap = stamp_count();
       gc.cli.loop_cnt = 0;
       gc.cli.loop_addr = 0x10030014;
       gc.cli.loop_val = 0x0;
@@ -406,7 +406,7 @@ void reg_test_f(int argc, char **argv) {
       gc.cli.loop_end = 0;
       gc.cli.loop_fn = reg_test_f;
       gc.cli.loop_ms = MILLISECONDS * loop_ms;
-      gc.cli.loop_snap = alt_timestamp();
+      gc.cli.loop_snap = stamp_count();
       gc.cli.loop_cnt = 0;
       gc.cli.loop_addr = 0x10030014;
       gc.cli.loop_val = 0x0;
@@ -457,7 +457,7 @@ void mem_test_f(int argc, char **argv) {
       gc.cli.loop_end = 0;
       gc.cli.loop_fn = mem_test_f;
       gc.cli.loop_ms = MILLISECONDS * loop_ms;
-      gc.cli.loop_snap = alt_timestamp();
+      gc.cli.loop_snap = stamp_count();
       gc.cli.loop_cnt = 0;
       gc.cli.loop_addr = 0x00800000;
       gc.cli.loop_val = 0x400;

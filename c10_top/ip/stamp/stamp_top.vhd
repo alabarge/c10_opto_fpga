@@ -15,6 +15,7 @@ entity stamp_top is
       address              : in    std_logic_vector(9 downto 0);
       readdata             : out   std_logic_vector(31 downto 0);
       writedata            : in    std_logic_vector(31 downto 0);
+      wd_reset             : out   std_logic;
       tp                   : out   std_logic_vector(3 downto 0)
    );
 end entity stamp_top;
@@ -50,6 +51,7 @@ begin
       address              => address,
       readdata             => readdata,
       writedata            => writedata,
+      wd_reset             => wd_reset,
       tp                   => tp
    );
 

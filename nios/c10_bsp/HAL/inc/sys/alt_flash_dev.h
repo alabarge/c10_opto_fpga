@@ -55,12 +55,7 @@
 typedef struct alt_flash_dev alt_flash_dev; 
 typedef alt_flash_dev alt_flash_fd;
 
-static ALT_INLINE int alt_flash_device_register( alt_flash_fd* fd)
-{
-  extern alt_llist alt_flash_dev_list;
-
-  return alt_dev_llist_insert ((alt_dev_llist*) fd, &alt_flash_dev_list);
-}
+int alt_flash_device_register( alt_flash_fd* fd);
 
 typedef alt_flash_dev* (*alt_flash_open)(alt_flash_dev* flash, 
                                          const char* name );

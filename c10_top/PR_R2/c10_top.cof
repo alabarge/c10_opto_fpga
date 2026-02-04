@@ -14,7 +14,7 @@
 		</bit0>
 	</sof_data>
 	<hex_block>
-		<hex_filename>../../nios/c10_fw/mem_init/epcq.hex</hex_filename>
+		<hex_filename>../../nios/c10_fw/build/Default/c10_fw.hex</hex_filename>
 		<hex_addressing>absolute</hex_addressing>
 		<hex_little_endian>0</hex_little_endian>
 	</hex_block>

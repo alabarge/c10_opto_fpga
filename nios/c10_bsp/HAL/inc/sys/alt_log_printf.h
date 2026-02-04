@@ -92,14 +92,12 @@
     /* Assembly macro for printing in assembly, calls tx_log_str
      * which is in alt_log_macro.S.
      * If alt_log_boot_on_flag is 0, skips the printing */
-    #define ALT_LOG_PUTS(str) movhi r4, %hiadj(alt_log_boot_on_flag) ; \
-         addi r4, r4, %lo(alt_log_boot_on_flag) ; \
-         ldwio r5, 0(r4) ; \
-         beq r0, r5, 0f ; \
-         movhi r4, %hiadj(str) ; \
-         addi r4, r4, %lo(str) ; \
-	 call tx_log_str ; \
-       0:
+    #define ALT_LOG_PUTS(str) la a1, alt_log_boot_on_flag ; \
+        lw a0, 0(a1) ; \
+        beqz a0, 0f ; \
+        la a0, str ; \
+        call tx_log_str ; \
+    0:
     
     /* These defines are here to faciliate the use of one output function 
      * (alt_log_txchar) to print to both the JTAG UART or the UART. Depending

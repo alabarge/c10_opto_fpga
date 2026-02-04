@@ -32,8 +32,8 @@
 #include <string.h>
 #include <unistd.h>
 
-#include "priv/nios2_gmon_data.h"
-
+#include "intel_niosv.h"
+#include "priv/intel_niosv_gmon_data.h"
 #include "sys/alt_irq.h"
 #include "sys/alt_alarm.h"
 
@@ -42,8 +42,6 @@
 
 /* How large should the bins be which we use to generate the histogram */
 #define PCSAMPLE_BYTES_PER_BUCKET 32
-
-#define NIOS2_READ_EA(dest)  __asm__ ("mov %0, ea" : "=r" (dest))
 
 /* The compiler inserts calls to mcount() at the start of
  * every function call. The structure mcount_fn_arc records t
@@ -76,8 +74,8 @@ struct mcount_fn_entry
 void __mcount_record(void * self_pc, void * from_pc, struct mcount_fn_entry * fn_entry, struct mcount_fn_entry * * fn_head) __attribute__ ((no_instrument_function));
 
 static __inline__ void * mcount_allocate(unsigned int size) __attribute__ ((no_instrument_function));
-static int nios2_pcsample_init(void) __attribute__ ((no_instrument_function));
-static alt_u32 nios2_pcsample(void* alarm) __attribute__ ((no_instrument_function));
+static int niosv_pcsample_init(void) __attribute__ ((no_instrument_function));
+static alt_u32 niosv_pcsample(void* alarm) __attribute__ ((no_instrument_function));
 
 /* global variables */
 
@@ -101,7 +99,7 @@ static const unsigned int s_low_pc  = (unsigned int)stext;
 static const unsigned int s_high_pc = (unsigned int)etext;
 
 /* the alarm structure to register for pc sampling */
-static alt_alarm s_nios2_pcsample_alarm;
+static alt_alarm s_niosv_pcsample_alarm;
 
 unsigned int alt_gmon_data[GMON_DATA_SIZE] =
 {
@@ -167,7 +165,7 @@ void __mcount_record(void * self_pc, void * from_pc, struct mcount_fn_entry * fn
   if (pcsample_need_init)
   {
     pcsample_need_init = 0;
-    pcsample_need_init = nios2_pcsample_init();
+    pcsample_need_init = niosv_pcsample_init();
   }
 
   /*
@@ -200,7 +198,9 @@ void __mcount_record(void * self_pc, void * from_pc, struct mcount_fn_entry * fn
   arc_entry->from_pc = from_pc;
   arc_entry->count = 1;
 
-  arc_entry->next = fn_entry->arc_head;
+  if (fn_entry->arc_head == NULL) { arc_entry->next = NULL; }
+  else { arc_entry->next = fn_entry->arc_head;  }
+  
   fn_entry->arc_head = arc_entry;
 
   alt_irq_enable_all(context);
@@ -208,12 +208,12 @@ void __mcount_record(void * self_pc, void * from_pc, struct mcount_fn_entry * fn
 
 
 /*
- * nios2_pcsample_init starts profiling.
+ * niosv_pcsample_init starts profiling.
  * It is called the first time mcount is called, and on subsequent calls to
  * mcount until it returns zero. It initializes the pc histogram and turns on
  * timer driven pc sampling.
  */
-static int nios2_pcsample_init(void)
+static int niosv_pcsample_init(void)
 {
   unsigned int pcsamples_size; 
 
@@ -235,7 +235,7 @@ static int nios2_pcsample_init(void)
     alt_gmon_data[GMON_DATA_PROFILE_RATE] = prof_rate;
 
     /* Sample every tick (it's cheap) */
-    alt_alarm_start(&s_nios2_pcsample_alarm, 1, nios2_pcsample, 0);
+    alt_alarm_start(&s_niosv_pcsample_alarm, 1, niosv_pcsample, 0);
   }
 
   return 0;
@@ -245,7 +245,7 @@ static int nios2_pcsample_init(void)
 /*
  * Sample the PC value and store it in the histogram
  */
-static alt_u32 nios2_pcsample(void* context)
+static alt_u32 niosv_pcsample(void* context)
 {
   unsigned int pc=0;
   unsigned int bucket;
@@ -254,7 +254,7 @@ static alt_u32 nios2_pcsample(void* context)
    * inaccurate if there are nested interrupts but we
    * assume that this is rare and the inaccuracy will
    * not be great */
-  NIOS2_READ_EA(pc);
+   NIOSV_READ_CSR(NIOSV_MEPC_CSR, pc);
 
   /*
    * If we're within the profilable range then increment the relevant

@@ -14,6 +14,16 @@
 #define  RS232_DIVISOR  0x10
 #define  RS232_EOP      0x14
 
+// All Registers
+typedef struct _uart_regs_t {
+   uint32_t       rx_dat;
+   uint32_t       tx_dat;
+   uint32_t       status;
+   uint32_t       ctl;
+   uint32_t       div;
+   uint32_t       eop;
+} uart_regs_t, *puart_regs_t;
+
 int  xlprint(const char *format, ...);
 int  xlprints(char *buf, const char *format, ...);
 void xlprint_open(uint32_t devAddr);

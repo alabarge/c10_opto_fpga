@@ -38,46 +38,45 @@
  * These have no special effect on real hardware (they are just nops).
  */
 #define ALT_SIM_FAIL() \
-    do { __asm volatile ("cmpltui r0, r0, 0xabc1"); } while (0)
+    do { __asm volatile ("sltiu x0, x0, 0x7c1"); } while (0)
 
 #define ALT_SIM_PASS() \
-    do { __asm volatile ("cmpltui r0, r0, 0xabc2"); } while (0)
+    do { __asm volatile ("sltiu x0, x0, 0x7c2"); } while (0)
 
 #define ALT_SIM_IN_TOP_OF_HOT_LOOP() \
-    do { __asm volatile ("cmpltui r0, r0, 0xabc3"); } while (0)
+    do { __asm volatile ("sltiu x0, x0, 0x7c3"); } while (0)
 
 /*
  * Routine called on exit.
+ * TODO: Add support for GMON/gprof.
  */
 static ALT_INLINE ALT_ALWAYS_INLINE void alt_sim_halt(int exit_code)
 {
-  register int r2 asm ("r2") = exit_code;
+  register int a0 asm ("a0") = exit_code;
 
-#if defined(NIOS2_HAS_DEBUG_STUB) && (defined(ALT_BREAK_ON_EXIT) || defined(ALT_PROVIDE_GMON))
+#if defined(ALT_CPU_HAS_DEBUG_STUB) && (defined(ALT_BREAK_ON_EXIT) || defined(ALT_PROVIDE_GMON))
+  register int a1 asm ("a1") = (1 << 2);
 
-  register int r3 asm ("r3") = (1 << 2);
-
-#ifdef ALT_PROVIDE_GMON
-  extern unsigned int alt_gmon_data[];
-  register int r4 asm ("r4") = (int)alt_gmon_data;
-  r3 |= (1 << 4);
-#define ALT_GMON_DATA ,"r"(r4)
-#else
-#define ALT_GMON_DATA
-#endif /* ALT_PROVIDE_GMON */
-
-  if (r2) {
+  if (a0) {
     ALT_SIM_FAIL();
   } else {
     ALT_SIM_PASS();
   }
 
-  __asm__ volatile ("\n0:\n\taddi %0,%0, -1\n\tbgt %0,zero,0b" : : "r" (ALT_CPU_FREQ/100) ); /* Delay for >30ms */
+  __asm__ volatile (
+    "\n0:\n\t"
+    "addi %0,%0, -1\n\t"
+    "bgtz %0,0b" 
+    : 
+    : "r" (ALT_CPU_FREQ/100) ); /* Delay for >30ms */
 
-  __asm__ volatile ("break 2" : : "r"(r2), "r"(r3) ALT_GMON_DATA );
+  __asm__ volatile (
+    "ebreak" 
+    : 
+    : "r"(a0), "r"(a1));
 
 #else /* !DEBUG_STUB */
-  if (r2) {
+  if (a0) {
     ALT_SIM_FAIL();
   } else {
     ALT_SIM_PASS();

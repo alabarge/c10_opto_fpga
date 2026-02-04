@@ -4,7 +4,7 @@
  * Machine generated for CPU 'cpu' in SOPC Builder design 'c10_fpga'
  * SOPC Builder design path: D:/c10_opto_fpga/c10_top/PR_R2/c10_fpga.sopcinfo
  *
- * Generated: Wed Feb 04 13:45:36 PST 2026
+ * Generated: Wed Feb 04 10:55:19 PST 2026
  */
 
 /*
@@ -71,12 +71,10 @@
 #define EPCQ_AVL_MEM_REGION_SPAN 1317120
 #define RESET_REGION_BASE 0x102be6e0
 #define RESET_REGION_SPAN 32
-#define SDRAM_BEFORE_EXCEPTION_REGION_BASE 0x0
-#define SDRAM_BEFORE_EXCEPTION_REGION_SPAN 32
 #define SDRAM_FIFO_REGION_BASE 0x100000
 #define SDRAM_FIFO_REGION_SPAN 7340032
-#define SDRAM_REGION_BASE 0x20
-#define SDRAM_REGION_SPAN 1048544
+#define SDRAM_REGION_BASE 0x0
+#define SDRAM_REGION_SPAN 1048576
 
 
 /*

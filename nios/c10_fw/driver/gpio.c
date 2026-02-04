@@ -156,6 +156,12 @@ uint32_t gpio_init(void) {
    alt_ic_isr_register(GPI_IRQ_INTERRUPT_CONTROLLER_ID,
                        GPI_IRQ, gpio_isr, NULL, NULL);
 
+   // Report H/W Details
+   if (gc.trace & CFG_TRACE_ID) {
+      xlprint("%-13s base:irq %08X:%d\n", GPX_NAME, GPX_BASE, GPX_IRQ);
+      xlprint("%-13s base:irq %08X:%d\n", GPI_NAME, GPI_BASE, GPI_IRQ);
+   }
+
    return result;
 
 }  // end gpio_init()

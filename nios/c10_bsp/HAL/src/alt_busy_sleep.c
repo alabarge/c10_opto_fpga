@@ -27,27 +27,58 @@
  *
  * alt_busy_sleep.c - Microsecond delay routine which uses a calibrated busy
  *                    loop to perform the delay. This is used to implement
- *                    usleep for both uC/OS-II and the standalone HAL.  
- *
- * Author PRR
- *
- * Calibrated delay with no timer required
- * 
- * The ASM instructions in the routine are equivalent to 
- *
- * for (i=0;i<us*(ALT_CPU_FREQ/3);i++);
- * 
- * and takes three cycles each time around the loop
- *
+ *                    usleep for the standalone HAL.  
  */
 
 #include <limits.h>
-#include <string.h>
 
 #include "system.h"
 #include "alt_types.h"
+#include "sys/alt_timestamp.h"
+#include "intel_niosv.h"
 
 #include "priv/alt_busy_sleep.h"
+
+#define CPU_FREQUENCY_MHZ (ALT_CPU_CPU_FREQ / 1000000u)
+
+// Assumption: This is greater than 1.  The timing will have an increased innacuracy off if the CPU clock is
+// less than 1 MHz, or near 1 MHz with a fraction, e.g. 1.5 MHz or 3.5 MHz as the integer math will
+// truncate significantly.
+#define CLOCKS_PER_US CPU_FREQUENCY_MHZ
+
+// These are rough estimations and dependent on the assumption on-chip memory has been used.
+// If a memory of different latency is used the timing will be innaccurate.  For accuarate timing
+#define NIOSV_M_CLOCKS_PER_LOOP_ITERATION          9
+#define NIOSV_M_NOPIPE_CLOCKS_PER_LOOP_ITERATION   14
+#define NIOSV_G_CLOCKS_PER_LOOP_ITERATION          7
+#define NIOSV_C_CLOCKS_PER_LOOP_ITERATION          14
+
+// Detect which CPU is instantiated COER_VARIANT macros
+#if ALT_CPU_NIOSV_CORE_VARIANT == NIOSV_M_ARCH
+    #define CLOCKS_PER_LOOP_ITERATION NIOSV_M_CLOCKS_PER_LOOP_ITERATION
+#elif ALT_CPU_NIOSV_CORE_VARIANT == NIOSV_M_ARCH_NOPIPE
+    #define CLOCKS_PER_LOOP_ITERATION NIOSV_M_NOPIPE_CLOCKS_PER_LOOP_ITERATION
+#elif ALT_CPU_NIOSV_CORE_VARIANT == NIOSV_G_ARCH
+    #define CLOCKS_PER_LOOP_ITERATION NIOSV_G_CLOCKS_PER_LOOP_ITERATION
+#elif ALT_CPU_NIOSV_CORE_VARIANT == NIOSV_C_ARCH
+    #define CLOCKS_PER_LOOP_ITERATION NIOSV_C_CLOCKS_PER_LOOP_ITERATION
+#endif
+
+// Determine if timer_sw_agent interface is connected in HW
+#ifdef ALT_CPU_MTIME_OFFSET
+    #if ALT_CPU_MTIME_OFFSET != 0xffffffff
+        #define MTIME_SW_AGENT_CONNECTED
+    #endif
+#endif
+
+// Determine if timerstamp functionality is enabled in the HAL
+#define HAL_TIMESTAMP_ENABLED (ALT_TIMESTAMP_CLK_TIMER_DEVICE_TYPE != NONE_TIMER_DEVICE_TYPE)
+
+#define CLOCKS_PER_INNER_LOOP CLOCKS_PER_LOOP_ITERATION
+#define CLOCKS_PER_OUTER_LOOP (alt_u64)(((alt_u64)CLOCKS_PER_INNER_LOOP * (alt_u64)UINT_MAX) + CLOCKS_PER_LOOP_ITERATION)
+
+// For a 50 Mhz clock, this is 1,202,590,842.
+#define US_PER_OUTER_LOOP ((alt_u64)CLOCKS_PER_OUTER_LOOP / (alt_u64)CPU_FREQUENCY_MHZ)
 
 unsigned int alt_busy_sleep (unsigned int us)
 {
@@ -57,77 +88,71 @@ unsigned int alt_busy_sleep (unsigned int us)
  * skipped to speed up simulation.
  */
 #ifndef ALT_SIM_OPTIMIZE
-  int i;
-  int big_loops;
-  alt_u32 cycles_per_loop;
-  
-  if (!strcmp(NIOS2_CPU_IMPLEMENTATION,"tiny"))
-  {
-    cycles_per_loop = 9;
-  }
-  else  
-  {
-    cycles_per_loop = 3;
-  }
-  
 
-  big_loops = us / (INT_MAX/
-  (ALT_CPU_FREQ/(cycles_per_loop * 1000000)));
-
-  if (big_loops)
-  {
-    for(i=0;i<big_loops;i++)
-    {
-      /*
-      * Do NOT Try to single step the asm statement below 
-      * (single step will never return)
-      * Step out of this function or set a breakpoint after the asm statements
-      */
-      __asm__ volatile (
-        "\n0:"
-        "\n\taddi %0,%0, -1"
-        "\n\tbne %0,zero,0b"
-        "\n1:"
-        "\n\t.pushsection .debug_alt_sim_info"
-        "\n\t.int 4, 0, 0b, 1b"
-        "\n\t.popsection"
-        :: "r" (INT_MAX));
-      us -= (INT_MAX/(ALT_CPU_FREQ/
-      (cycles_per_loop * 1000000)));
+/* Determine implementation of busy sleep. For cores with timestamp enabled, use whatever
+ * timestamp device they've provided. If no timestamp driver is enabled, but the timer agent
+ * is connected, use that. If no timer agent is connected, fallback to a low accuracy busy
+ * loop. If accurate timing is desired for busy sleep (used by usleep), please be sure to
+ * provide a timestamp source, or connect the timer agent.
+ */
+#if HAL_TIMESTAMP_ENABLED
+    alt_timestamp_start();
+    const alt_timestamp_type end_time = (CPU_FREQUENCY_MHZ * us);
+    while (alt_timestamp() < end_time) {
+        // Spin
     }
-
-    /*
-    * Do NOT Try to single step the asm statement below 
-    * (single step will never return)
-    * Step out of this function or set a breakpoint after the asm statements
-    */
-    __asm__ volatile (
-      "\n0:"
-      "\n\taddi %0,%0, -1"
-      "\n\tbne %0,zero,0b"
-      "\n1:"
-      "\n\t.pushsection .debug_alt_sim_info"
-      "\n\t.int 4, 0, 0b, 1b"
-      "\n\t.popsection"
-      :: "r" (us*(ALT_CPU_FREQ/(cycles_per_loop * 1000000))));
-  }
-  else
-  {
-    /*
-    * Do NOT Try to single step the asm statement below 
-    * (single step will never return)
-    * Step out of this function or set a breakpoint after the asm statements
-    */
-    __asm__ volatile (
-      "\n0:"
-      "\n\taddi %0,%0, -1"
-      "\n\tbgt %0,zero,0b"
-      "\n1:"
-      "\n\t.pushsection .debug_alt_sim_info"
-      "\n\t.int 4, 0, 0b, 1b"
-      "\n\t.popsection"
-      :: "r" (us*(ALT_CPU_FREQ/(cycles_per_loop * 1000000))));
-  }
+#elif defined(MTIME_SW_AGENT_CONNECTED)
+    const alt_u64 start_time = alt_niosv_mtime_get();
+    const alt_u64 end_time = start_time + (CPU_FREQUENCY_MHZ * us);
+    while (alt_niosv_mtime_get() < end_time) {
+        // Spin
+    }
+#else
+    if ((alt_u64)us > (alt_u64)US_PER_OUTER_LOOP) {
+        alt_u32 big_loops =  (alt_u32)((alt_u64)us / (alt_u64)US_PER_OUTER_LOOP);
+        
+        // Big loops
+        __asm__ volatile(
+            "\n0:"
+            "\naddi %[INNER_LOOP_REG], %[INNER_LOOP_REG], -1"
+            "\nbnez %[INNER_LOOP_REG], 0b"
+            "\naddi %[OUTER_LOOP_REG], %[OUTER_LOOP_REG], -1"
+            "\nbnez %[OUTER_LOOP_REG], 0b"
+            :
+            : [OUTER_LOOP_REG] "r" (big_loops), [INNER_LOOP_REG] "r" (0)
+        );
+        
+        // US_PER_OUTER_LOOP is a large number for any reasonable clock rate we'll see,
+        // on the order of ~10^9 so the error introduced by casting to int and removing
+        // fractional part after the decimal point is negligable
+        us = us % (unsigned int)US_PER_OUTER_LOOP;        
+    }
+    
+    alt_u32 small_loop_remainder_cnt;
+    if (us > (CLOCKS_PER_INNER_LOOP << 16)) {
+        // Handle case where we have a longer delay.
+        // The order of operations and 32-bit math are chosen to prevent overflow
+        // and trunctation issues and while avoiding 64-bit math which is much slower.
+         small_loop_remainder_cnt = (us / CLOCKS_PER_INNER_LOOP) * CLOCKS_PER_US;
+    } else {
+        // Handle case where we have a short delay.
+        // The order of operations and 32-bit math are chosen to prevent overflow
+        // and trunctation issues and while avoiding 64-bit math which is much slower.
+        small_loop_remainder_cnt = (us * CLOCKS_PER_US) / CLOCKS_PER_INNER_LOOP;
+    }
+    
+    // Remainder small loops
+    if (small_loop_remainder_cnt > 0) {
+        __asm__ volatile(
+            "\n0:"
+            "\naddi %[LOOP_REG], %[LOOP_REG], -1"
+            "\nbnez %[LOOP_REG], 0b"
+            :
+            : [LOOP_REG] "r" (small_loop_remainder_cnt)
+        );
+    }
+#endif
 #endif /* #ifndef ALT_SIM_OPTIMIZE */
+
   return 0;
 }

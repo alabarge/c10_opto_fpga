@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cdtprojectproperties>
+  <section name="org.eclipse.cdt.internal.ui.wizards.settingswizards.IncludePaths">
+    <language id="org.eclipse.cdt.core.gcc" name="C Source File">
+      <includepath>C:\altera\25.1std\riscfree\toolchain\riscv32-unknown-elf\riscv32-unknown-elf\include</includepath>
+      <includepath>C:\altera\25.1std\riscfree\toolchain\riscv32-unknown-elf\riscv32-unknown-elf\include\sys</includepath>
+      <includepath>C:\altera\25.1std\riscfree\toolchain\riscv32-unknown-elf\lib\gcc\riscv32-unknown-elf\13.2.0\include</includepath>
+    </language>
+  </section>
+  <section name="org.eclipse.cdt.internal.ui.wizards.settingswizards.Macros">
+    <language id="org.eclipse.cdt.core.gcc" name="C Source File"/>
+  </section>
+</cdtprojectproperties>

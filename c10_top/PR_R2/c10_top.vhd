@@ -64,7 +64,7 @@ component c10_fpga is
       clk_clk        : in    std_logic;
       reset_reset_n  : in    std_logic;
       locked_export  : out   std_logic;
-      watchdog_reset : out   std_logic;
+      stamp_wd_reset : out   std_logic;
       stdout_rxd     : in    std_logic;
       stdout_txd     : out   std_logic;
       opto_head_addr : in    std_logic_vector(15 downto 0);
@@ -145,7 +145,7 @@ signal debug               : std_logic_vector(3 downto 0);
          clk_clk           => iCLK_12M,
          reset_reset_n     => sys_rst_n,
          locked_export     => pll_locked,
-         watchdog_reset    => watchdog,
+         stamp_wd_reset    => watchdog,
          gpx_export        => ioGPX,
          gpi_export        => iGPX,
          stdout_rxd        => iSTDOUT_UART_RX,
@@ -228,23 +228,5 @@ signal debug               : std_logic_vector(3 downto 0);
       end if;
    end process;
 
-   --
-   -- Qsys Register Map
-   --
-   -- pll                        : 0x1000_0000
-   -- cpu                        : 0x1001_0000
-   -- sdram                      : 0x0000_0000
-   -- epcs                       : 0x1002_0000
-   -- stamp                      : 0x1003_0000
-   -- sysclk                     : 0x1004_0000
-   -- systimer                   : 0x1005_0000
-   -- watchdog                   : 0x1006_0000
-   -- gpx                        : 0x1007_0000
-   -- gpi                        : 0x1008_0000
-   -- stdout                     : 0x1009_0000
-   -- adc                        : 0x100A_0000
-   -- ftdi                       : 0x100B_0000
-   -- update                     : 0x100C_0000
-   --
 
 end rtl;

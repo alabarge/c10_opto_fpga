@@ -828,7 +828,7 @@ uint32_t cm_msg(pcm_msg_t msg) {
             // Send the Request
             result = cm_send(CM_MSG_DEV_RESP, &ps);
             // Reset Ping Timeout
-            gc.ping_time = alt_timestamp();
+            gc.ping_time = stamp_count();
             gc.ping_cnt = 0;
             // Machine status to Connected
             gc.status |= CFG_STATUS_CONNECTED;
@@ -846,7 +846,7 @@ uint32_t cm_msg(pcm_msg_t msg) {
          // Machine status to Disconnected
          gc.status &= ~CFG_STATUS_CONNECTED;
          // Reset Ping Timeout
-         gc.ping_time = alt_timestamp();
+         gc.ping_time = stamp_count();
          gc.ping_cnt = 0;
          // report disconnection
          if (gc.trace & CFG_TRACE_ID) {
@@ -882,7 +882,7 @@ uint32_t cm_msg(pcm_msg_t msg) {
          }
       }
       // Reset Ping Timeout
-      gc.ping_time = alt_timestamp();
+      gc.ping_time = stamp_count();
       gc.ping_cnt = 0;
       // Machine status to Connected
       gc.status |= CFG_STATUS_CONNECTED;
@@ -927,7 +927,7 @@ uint32_t cm_msg(pcm_msg_t msg) {
    }
 
    // Reset Ping Timeout
-   gc.ping_time = alt_timestamp();
+   gc.ping_time = stamp_count();
    gc.ping_cnt  = 0;
 
    // Free the Slot
@@ -2105,7 +2105,7 @@ void cm_log(pcm_msg_t msg) {
 
     if (!(gc.trace & CFG_TRACE_CM_LOG)) return;
 
-    now = alt_timestamp();
+    now = stamp_count();
     if (cm.last_us == 0) cm.last_us = now;
     delta = (double)(now - cm.last_us);
     if (delta != 0) delta = delta / 100E6;

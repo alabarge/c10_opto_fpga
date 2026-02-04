@@ -261,7 +261,7 @@ void dump(uint8_t *pBuf, uint32_t len, uint8_t options, uint32_t offset) {
 
 // 7.2
 
-uint32_t crc(pcm_msg_t msg, BOOLEAN crc_chk) {
+uint32_t crc(pcm_msg_t msg, uint8_t crc_chk) {
 
 /* 7.2.1   Functional Description
 
@@ -426,9 +426,9 @@ void clk_sleep(uint32_t delay, uint32_t units) {
    // Cycles to Wait
    j = delay * units;
    // Read current system count
-   i = alt_timestamp();
+   i = stamp_count();
    // Spin
-   while ((alt_timestamp() - i) < j);
+   while ((stamp_count() - i) < j);
 
 }  // end clk_sleep()
 
@@ -467,12 +467,12 @@ uint32_t clk_time(uint8_t op, uint32_t units, uint32_t *tNow) {
    // Start the Count,
    // Read the 32-Bit Time Base Register
    if (op & CLK_START) {
-      *tNow = alt_timestamp();
+      *tNow = stamp_count();
    }
    // Report the Count,
    // Read the 32-Bit Time Base Register
    else if (op & CLK_STOP) {
-      tEnd = alt_timestamp();
+      tEnd = stamp_count();
       switch (units) {
          case MICROSECONDS:
             result = (uint32_t)(tEnd - *tNow) / MICROSECONDS;
@@ -533,9 +533,9 @@ void utick(uint32_t microseconds) {
    // Cycles to Wait
    j = microseconds * MICROSECONDS;
    // Read current system count
-   i = alt_timestamp();
+   i = stamp_count();
    // Spin
-   while ((alt_timestamp() - i) < j);
+   while ((stamp_count() - i) < j);
 
 }  // end utick()
 
@@ -571,8 +571,8 @@ void stick(uint32_t seconds) {
    // Cycles to Wait
    j = seconds * SECONDS;
    // Read current system count
-   i = alt_timestamp();
+   i = stamp_count();
    // Spin
-   while ((alt_timestamp() - i) < j);
+   while ((stamp_count() - i) < j);
 
 }  // end stick()

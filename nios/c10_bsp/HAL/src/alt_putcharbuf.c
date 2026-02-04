@@ -42,7 +42,7 @@
 // Buffer for the printed chars
 static char buf[ALT_PUTBUF_SIZE] ={0};
 // index into the buffer
-static unsigned int fill_index;
+static unsigned int fill_index = 0;
 
 /* 
  * ALT putcharbuf funtion

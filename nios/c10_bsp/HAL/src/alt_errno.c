@@ -35,6 +35,7 @@
  * alt_errno.h for the use of this variable.
  */
 
+#ifndef USE_PICOLIBC
 
 #include "sys/alt_errno.h"
 #include "alt_types.h"
@@ -42,3 +43,5 @@
 extern int ALT_WEAK *__errno (void);
 
 int* (*alt_errno) (void) = __errno;
+
+#endif

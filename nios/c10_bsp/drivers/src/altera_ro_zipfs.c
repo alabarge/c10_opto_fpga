@@ -419,8 +419,8 @@ static int find_file_entry( alt_ro_zipfs_dev* dev, alt_fd* fd,
 
     /* The plus 1 is for the End of file condition */
     end = *start + *len;
-    if ((fd->priv >= *start ) &&
-        (fd->priv <= end))
+    if (((alt_u8 *)fd->priv >= *start ) &&
+        ((alt_u8 *)fd->priv <= end))
     {
       ret_code = 0;
       break;
@@ -488,8 +488,8 @@ int alt_ro_zipfs_read(alt_fd* fd, char* ptr, int len)
   fd->priv += amount_to_copy;
   alt_irq_enable_all(context);
 
-  memcpy(ptr, current, amount_to_copy);
-  
+  memcpy((alt_u8 *)ptr, current, amount_to_copy);
+          
   return amount_to_copy;
 }
 
@@ -515,7 +515,7 @@ int alt_ro_zipfs_seek(alt_fd* fd, int ptr, int dir)
   case SEEK_CUR:
     {
       /* Seek from current position */
-      if ((fd->priv + ptr) > (start +len))
+      if (((alt_u8 *)fd->priv + ptr) > (start +len))
       {
         ret_code = -EINVAL;
         goto exit;
@@ -548,7 +548,7 @@ int alt_ro_zipfs_seek(alt_fd* fd, int ptr, int dir)
       break;
     }
   }
-  ret_code = (int)(fd->priv - start);
+  ret_code = (int)((alt_u8 *)fd->priv - start);
 
 exit:
   return ret_code;

@@ -40,8 +40,13 @@
  * the operating system to provide it's own implementation of the top level
  * system calls, while retaining the HAL functions under a different name, 
  * for example, alt_read(), alt_write() etc.
+ *
+ * The RISC-V GCC includes a newlib that requires namespace clean function
+ * names (e.g. _read instead of read). Note that environ is a data structure
+ * and not a function so it doesn't have an underscore prefix.
  */
 
+#ifdef USE_PICOLIBC
 #define ALT_CLOSE        close
 #define ALT_ENVIRON      environ
 #define ALT_EXECVE       execve
@@ -58,7 +63,7 @@
 #define ALT_LSEEK        lseek
 #define ALT_OPEN         open
 #define ALT_READ         read
-#define ALT_RENAME       _rename
+#define ALT_RENAME       rename
 #define ALT_SBRK         sbrk
 #define ALT_SETTIMEOFDAY settimeofday
 #define ALT_STAT         stat
@@ -67,6 +72,33 @@
 #define ALT_WAIT         wait
 #define ALT_WRITE        write
 #define ALT_TIMES        times
+#else
+#define ALT_CLOSE        _close
+#define ALT_ENVIRON      environ
+#define ALT_EXECVE       _execve
+#define ALT_EXIT         _exit
+#define ALT_FCNTL        _fcntl
+#define ALT_FORK         _fork
+#define ALT_FSTAT        _fstat
+#define ALT_GETPID       _getpid
+#define ALT_GETTIMEOFDAY _gettimeofday
+#define ALT_IOCTL        ioctl
+#define ALT_ISATTY       _isatty
+#define ALT_KILL         _kill
+#define ALT_LINK         _link
+#define ALT_LSEEK        _lseek
+#define ALT_OPEN         _open
+#define ALT_READ         _read
+#define ALT_RENAME       _rename
+#define ALT_SBRK         _sbrk
+#define ALT_SETTIMEOFDAY settimeofday
+#define ALT_STAT         _stat
+#define ALT_UNLINK       _unlink
+#define ALT_USLEEP       usleep
+#define ALT_WAIT         _wait
+#define ALT_WRITE        _write
+#define ALT_TIMES        _times
+#endif
 
 /*
  *

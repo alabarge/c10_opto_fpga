@@ -130,8 +130,8 @@ cli_status_t cli_process(cli_t *cli) {
     }
     // command looping
     else if (cli->looping == 1) {
-       if ((alt_timestamp() - cli->loop_snap) > cli->loop_ms) {
-          cli->loop_snap = alt_timestamp();
+       if ((stamp_count() - cli->loop_snap) > cli->loop_ms) {
+          cli->loop_snap = stamp_count();
           if (cli->loop_fn != NULL) {
              cli->loop_cnt++;
              cli->loop_fn(cli->argc, cli->argv);

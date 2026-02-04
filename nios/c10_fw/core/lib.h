@@ -15,17 +15,18 @@
 #define  LIB_OFFSET      0x08
 #define  LIB_SPACE       0x10
 
+// stamp timer clock is 100M
 #define  CPU_CYCLES      1
-#define  MICROSECONDS   (SYSTIMER_FREQ / 1000000)
-#define  MILLISECONDS   (SYSTIMER_FREQ / 1000)
-#define  SECONDS        (SYSTIMER_FREQ)
+#define  MICROSECONDS   (ALT_CPU_FREQ / 1000000)
+#define  MILLISECONDS   (ALT_CPU_FREQ / 1000)
+#define  SECONDS        (ALT_CPU_FREQ)
 
 #define  CLK_START      1
 #define  CLK_STOP       2
 #define  CLK_PRINT      4
 
 void     dump(uint8_t *pBuf, uint32_t len, uint8_t options, uint32_t offset);
-uint32_t crc(pcm_msg_t msg, BOOLEAN crcChk);
+uint32_t crc(pcm_msg_t msg, uint8_t crcChk);
 void     srand_32(uint32_t _seed);
 uint32_t rand_32(void);
 void     clk_sleep(uint32_t delay, uint32_t units);

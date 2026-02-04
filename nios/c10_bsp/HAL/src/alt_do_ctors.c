@@ -37,9 +37,9 @@
 * Overriding HAL Functions                                                    *
 *                                                                             *
 * To provide your own implementation of a HAL function, include the file in   *
-* your Nios II IDE application project. When building the executable, the     *
-* Nios II IDE finds your function first, and uses it in place of the HAL      *
-* version.                                                                    *
+* your Abbott's Lake IDE application project. When building the executable,   *
+* the Abbott's Lake IDE finds your function first, and uses it in place of    *
+* the HAL version.                                                            *
 *                                                                             *
 ******************************************************************************/
 
@@ -48,8 +48,13 @@
  */
 
 typedef void (*constructor) (void);
-extern constructor __CTOR_LIST__[];
-extern constructor __CTOR_END__[];
+extern constructor __init_array_start[];
+extern constructor __init_array_end[];
+
+// Workaround for dynamic shared object handle - it should be unused since
+// dynamic shared objects are not supported. However, the current version of
+// the RiscFree GNU toolchain requires this symbol to be defined.
+void *__dso_handle = ((void *) 0);
 
 /*
  * Run the C++ static constructors.
@@ -59,6 +64,6 @@ void _do_ctors(void)
 {
   constructor* ctor;
 
-  for (ctor = &__CTOR_END__[-1]; ctor >= __CTOR_LIST__; ctor--)
+  for (ctor = __init_array_start; ctor < __init_array_end; ctor++)
         (*ctor) (); 
 }

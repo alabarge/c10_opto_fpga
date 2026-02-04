@@ -33,7 +33,7 @@
 * file be used in conjunction or combination with any other product.          *
 ******************************************************************************/
 
-/* IO Header file for Nios II Toolchain */
+/* IO Header file for Nios V Toolchain */
 
 #include "alt_types.h"
 #ifdef __cplusplus
@@ -45,34 +45,127 @@ extern "C"
 #define SYSTEM_BUS_WIDTH 32
 #endif
 
-/* Dynamic bus access functions */
+/* Performs lb instruction and returns the read DATA. BASE and OFFSET are byte-aligned */
+#define LBIO(BASE, OFFSET) ({                   \
+    signed char __tmpData;                      \
+    asm volatile (                              \
+      "lb %[DATAReg], 0(%[addrReg])"            \
+      : [DATAReg] "=r"(__tmpData)               \
+      : [addrReg] "r"(BASE),[imm] "i"(OFFSET)   \
+      :                                         \
+    );                                          \
+    __tmpData; })
+
+/* Performs lh instruction and returns the read DATA. BASE and OFFSET are byte-aligned */
+#define LHIO(BASE, OFFSET) ({                   \
+    signed short __tmpData;                     \
+    asm volatile (                              \
+      "lh %[DATAReg], 0(%[addrReg])"            \
+      : [DATAReg] "=r"(__tmpData)               \
+      : [addrReg] "r"(BASE),[imm] "i"(OFFSET)   \
+      :                                         \
+    );                                          \
+    __tmpData; })
+
+/* Performs lw instruction and returns the read DATA. BASE and OFFSET are byte-aligned */
+#define LWIO(BASE, OFFSET) ({                   \
+    unsigned int __tmpData;                     \
+    asm volatile (                              \
+      "lw %[DATAReg], 0(%[addrReg])"            \
+      : [DATAReg] "=r"(__tmpData)               \
+      : [addrReg] "r"(BASE), [imm] "i"(OFFSET)  \
+      :                                         \
+    );                                          \
+    __tmpData; })
+
+/* Performs lbu instruction and returns the read DATA. BASE and OFFSET are byte-aligned */
+#define LBUIO(BASE, OFFSET) ({                  \
+    unsigned char __tmpData;                    \
+    asm volatile (                              \
+      "lbu %[DATAReg], 0(%[addrReg])"           \
+      : [DATAReg] "=r"(__tmpData)               \
+      : [addrReg] "r"(BASE), [imm] "i"(OFFSET)  \
+      :                                         \
+    );                                          \
+    __tmpData; })
+
+/* Performs lhu instruction and returns the read DATA. BASE and OFFSET are byte-aligned */
+#define LHUIO(BASE, OFFSET) ({                  \
+    unsigned short __tmpData;                   \
+    asm volatile (                              \
+      "lhu %[DATAReg], 0(%[addrReg])"           \
+      : [DATAReg] "=r"(__tmpData)               \
+      : [addrReg] "r"(BASE), [imm] "i"(OFFSET)  \
+      :                                         \
+    );                                          \
+    __tmpData; })
+
+/* Performs sbio instruction. BASE and OFFSET are byte-aligned */
+#define SBIO(BASE, OFFSET, DATA) do {                   \
+    unsigned char __tmpData = (DATA);                   \
+    asm volatile (                                      \
+      "sb %[DATAReg], 0(%[addrReg])\n\t"                \
+      :                                                 \
+      : [addrReg] "r"(BASE), [imm] "i"(OFFSET), [DATAReg] "r"(__tmpData)  \
+      : "memory"                            \
+    );                                                  \
+    } while (0)
+
+/* Performs shio instruction. BASE and OFFSET are byte-aligned */
+#define SHIO(BASE, OFFSET, DATA) do {                   \
+    unsigned short __tmpData = (DATA);                  \
+    asm volatile (                                      \
+      "sh %[DATAReg], 0(%[addrReg])\n\t"                \
+      :                                                 \
+      : [addrReg] "r"(BASE), [imm] "i"(OFFSET), [DATAReg] "r"(__tmpData)  \
+      : "memory"                                        \
+    );                                                  \
+    } while (0)
+
+/* Performs swio instruction. BASE and OFFSET are byte-aligned */
+#define SWIO(BASE, OFFSET, DATA) do {                   \
+    unsigned int __tmpData = (DATA);                    \
+    asm volatile (                                      \
+      "sw %[DATAReg], 0(%[addrReg])\n\t"                \
+      :                                                 \
+      : [addrReg] "r"(BASE), [imm] "i"(OFFSET), [DATAReg] "r"(__tmpData)  \
+      : "memory"                                        \
+    );                                                  \
+    } while (0)
+
+/* 
+ * Dynamic bus access functions 
+ */
 
 #define __IO_CALC_ADDRESS_DYNAMIC(BASE, OFFSET) \
   ((void *)(((alt_u8*)BASE) + (OFFSET)))
 
+/* Don't use OFFSET of load/store IO macros in case it exceeds the 12-bit imm range. */
 #define IORD_32DIRECT(BASE, OFFSET) \
-  __builtin_ldwio (__IO_CALC_ADDRESS_DYNAMIC ((BASE), (OFFSET)))
+  LWIO(__IO_CALC_ADDRESS_DYNAMIC((BASE), (OFFSET)), 0)
 #define IORD_16DIRECT(BASE, OFFSET) \
-  __builtin_ldhuio (__IO_CALC_ADDRESS_DYNAMIC ((BASE), (OFFSET)))
+  LHUIO(__IO_CALC_ADDRESS_DYNAMIC((BASE), (OFFSET)), 0)
 #define IORD_8DIRECT(BASE, OFFSET) \
-  __builtin_ldbuio (__IO_CALC_ADDRESS_DYNAMIC ((BASE), (OFFSET)))
+  LBUIO(__IO_CALC_ADDRESS_DYNAMIC((BASE), (OFFSET)), 0)
 
 #define IOWR_32DIRECT(BASE, OFFSET, DATA) \
-  __builtin_stwio (__IO_CALC_ADDRESS_DYNAMIC ((BASE), (OFFSET)), (DATA))
+  SWIO(__IO_CALC_ADDRESS_DYNAMIC((BASE), (OFFSET)), 0, (DATA))
 #define IOWR_16DIRECT(BASE, OFFSET, DATA) \
-  __builtin_sthio (__IO_CALC_ADDRESS_DYNAMIC ((BASE), (OFFSET)), (DATA))
+  SHIO(__IO_CALC_ADDRESS_DYNAMIC((BASE), (OFFSET)), 0, (DATA))
 #define IOWR_8DIRECT(BASE, OFFSET, DATA) \
-  __builtin_stbio (__IO_CALC_ADDRESS_DYNAMIC ((BASE), (OFFSET)), (DATA))
+  SBIO(__IO_CALC_ADDRESS_DYNAMIC((BASE), (OFFSET)), 0, (DATA))
 
-/* Native bus access functions */
-
+/* 
+ * Native bus access functions 
+ */
 #define __IO_CALC_ADDRESS_NATIVE(BASE, REGNUM) \
   ((void *)(((alt_u8*)BASE) + ((REGNUM) * (SYSTEM_BUS_WIDTH/8))))
 
+/* Don't use OFFSET of load/store IO macros in case it exceeds the 12-bit imm range. */
 #define IORD(BASE, REGNUM) \
-  __builtin_ldwio (__IO_CALC_ADDRESS_NATIVE ((BASE), (REGNUM)))
+  LWIO(__IO_CALC_ADDRESS_NATIVE((BASE), (REGNUM)), 0)
 #define IOWR(BASE, REGNUM, DATA) \
-  __builtin_stwio (__IO_CALC_ADDRESS_NATIVE ((BASE), (REGNUM)), (DATA))
+  SWIO(__IO_CALC_ADDRESS_NATIVE((BASE), (REGNUM)), 0, (DATA))
 
 #ifdef __cplusplus
 }

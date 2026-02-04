@@ -40,7 +40,10 @@
 ******************************************************************************/
 
 #include "alt_types.h"
-#include "altera_avalon_timer.h"
+
+// Overwrite the timestamp type that has been defined by altera_avalon_timer.h
+#undef alt_timestamp_type
+#define alt_timestamp_type alt_u64
 
 #ifdef __cplusplus
 extern "C"

@@ -53,36 +53,36 @@
  
 alt_dev* alt_find_dev(const char* name, alt_llist* llist)
 {
-  alt_dev* next = (alt_dev*) llist->next;
-  alt_32 len;
+    alt_dev* next=NULL; 
+    alt_32   len=0;
+    alt_32   MAX_STRING_LENGTH=1000;
+    
+    if (llist == NULL) { return NULL; }
+    next = (alt_dev*) llist->next;
 
-  len  = strlen(name) + 1;
+    /*
+     * Check each list entry in turn, until a match is found, or we reach the
+     * end of the list (i.e. next winds up pointing back to the list head).
+     */ 
 
-  /*
-   * Check each list entry in turn, until a match is found, or we reach the
-   * end of the list (i.e. next winds up pointing back to the list head).
-   */ 
-
-  while (next != (alt_dev*) llist)
-  {
-
-    /* 
-     * memcmp() is used here rather than strcmp() in order to reduce the size
-     * of the executable.
-     */
-
-    if (!memcmp (next->name, name, len))
+    while (next != (alt_dev*) llist)
     {
-      /* match found */
+        len=0;
+        while ((name[len] != 0) && (next->name[len]!=0) && (len < MAX_STRING_LENGTH))
+        {
+            if (next->name[len] != name[len]) { break; }
+            len++;
+        }
+    
+        /* match found */
+        if ((name[len] == 0) && (next->name[len]==0)) {  return next; }
 
-      return next;
+        next = (alt_dev*) next->llist.next;
     }
-    next = (alt_dev*) next->llist.next;
-  }
   
-  /* No match found */
+    /* No match found */
   
-  return NULL;
+    return NULL;
 }
 
 

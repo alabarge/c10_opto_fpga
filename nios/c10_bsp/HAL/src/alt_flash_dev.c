@@ -67,3 +67,9 @@ void alt_flash_close_dev(alt_flash_fd* fd)
   return;
 }
 
+int alt_flash_device_register( alt_flash_fd* fd)
+{
+  return alt_dev_llist_insert ((alt_dev_llist*) fd, &alt_flash_dev_list);
+}
+
+

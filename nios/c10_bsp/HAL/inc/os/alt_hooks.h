@@ -45,17 +45,20 @@
  * own implementation.
  */ 
 
+#ifndef ALT_ASM_SRC
+
 #define ALT_OS_TIME_TICK() while(0)
 #define ALT_OS_INIT()      while(0)
 #define ALT_OS_STOP()      while(0)
-
-/* Call from assembly code */
-#define ALT_OS_INT_ENTER_ASM
-#define ALT_OS_INT_EXIT_ASM
 
 /* Call from C code */
 #define ALT_OS_INT_ENTER() while(0)
 #define ALT_OS_INT_EXIT()  while(0)
 
+#endif /* !ALT_ASM_SRC */
+
+/* Call from assembly code */
+#define ALT_OS_INT_ENTER_ASM
+#define ALT_OS_INT_EXIT_ASM
 
 #endif /* __ALT_HOOKS_H__ */
