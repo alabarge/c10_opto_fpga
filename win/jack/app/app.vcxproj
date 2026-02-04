@@ -112,7 +112,7 @@
       <Message>Build Version</Message>
     </PostBuildEvent>
     <PreBuildEvent>
-      <Command>$(SolutionDir)..\..\utils\fw_ver.exe $(ProjectDir)build.inc $(ProjectDir)build.h ..\..\.git</Command>
+      <Command>$(SolutionDir)..\..\utils\fw_ver.exe $(ProjectDir)build.inc $(ProjectDir)build.h $(SolutionDir)..\..\.git $(SolutionDir)..\..\c10_top\PR_R2\c10_fpga.qsf</Command>
       <Message>Build Version</Message>
     </PreBuildEvent>
     <PreLinkEvent>
@@ -167,7 +167,7 @@
       <AdditionalIncludeDirectories>$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <PreBuildEvent>
-      <Command>$(SolutionDir)..\..\utils\fw_ver.exe $(ProjectDir)build.inc $(ProjectDir)build.h $(SolutionDir)..\..\.git</Command>
+      <Command>$(SolutionDir)..\..\utils\fw_ver.exe $(ProjectDir)build.inc $(ProjectDir)build.h $(SolutionDir)..\..\.git $(SolutionDir)..\..\c10_top\PR_R2\c10_fpga.qsf</Command>
       <Message>Build Version</Message>
     </PreBuildEvent>
     <PostBuildEvent>

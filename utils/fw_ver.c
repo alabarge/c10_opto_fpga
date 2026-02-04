@@ -191,6 +191,7 @@ int main(int argc, char *argv[]) {
    // If the QSF exists then parse for LAST_QUARTUS_VERSION and PROJECT_CREATION_TIME_DATE
    //
    if  ((qsf = fopen(argv[4],"rt")) != NULL) {
+      j = 0;
       while (fgets(in_line, sizeof(in_line), qsf) != NULL) {
          token = strtok(in_line, " ");
          token = strtok(NULL, " ");
@@ -199,12 +200,14 @@ int main(int argc, char *argv[]) {
          if (strcmp(token, "LAST_QUARTUS_VERSION") == 0) {
             token = strtok(NULL, "\"");
             strcpy(last_quartus, token);
+            j++;
          }
          if (strcmp(token, "PROJECT_CREATION_TIME_DATE") == 0) {
             token = strtok(NULL, "\"");
             strcpy(creation_date, token);
-            break;
+            j++;
          }
+         if (j == 2) break;
       }
       fclose(qsf);
    }

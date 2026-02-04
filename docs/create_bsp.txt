@@ -4,5 +4,5 @@ File->New->NIOS II Board Support Package
 do not use default directory, instead use nios\c10_bsp
 add -Wno-misleading-indentation to bsp_cflags_warnings
 remove sdram region then add
-sdram region to size=1048544 offset=32
-add sdram_fifo size=7340032 offset=0x100000
+sdram region, size=1048544 offset=32
+add sdram_fifo region, size=7340032 offset=0x100000
